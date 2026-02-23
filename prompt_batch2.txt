@@ -1,0 +1,73 @@
+请为以下50个英语语块补全中文翻译和例句：
+
+51. Gifts around the
+52. Be wise with      world                 management
+53. Festivals around the
+54. Please greet and introduce            is
+55. Do you have any
+
+           hobbies
+56. What do you want to tell
+57. What do you know about your
+58. Here are my new
+        classmates
+59. We also use
+60. He is always full of energy
+61. He is good at sport
+62. He often plays football after school
+63. She is tall and slim
+64. She has long hair
+65. She is very polite
+66. She likes music and she can
+67. He is not tall
+68. He wears glasses
+69. He is smart and always ready
+70. He is interested in science
+71. Match the new students in
+72. Then correct the false one
+73. Millie is interested in reading
+74. Simon is not tall
+75. Simon loves science
+76. Sandy is a tall
+77. Daniel wear glasses
+78. Daniel is very helpful
+79. Wu is making some notes about
+80. Complete his notes with the
+     correct
+81. She has short hair
+82. She loves reading
+83. Simon is a tall boy
+84. He likes sport and
+85. He is
+             always
+86. Sandy is a tall and
+87. She is interested
+             in music
+88. She is very
+89. She always says
+90. Daniel is not tall
+91. He likes
+             learning about
+92. He is very nice and always
+93. My new students are all very
+94. Write some sentences about yourself or
+95. You can write them
+   in the
+96. Millie sends a message to her
+97. Jenny about her new classmates
+98. Read the
+message and pay attention
+99. It is a nice school
+100. They are all very friendly
+
+要求：
+1. 返回JSON数组格式
+2. 包含字段：phrase, meaning, example
+3. 例句中的关键词用 ** 包裹
+4. 不要有任何其他文字，只要JSON
+
+示例格式：
+[
+  {"phrase": "look at", "meaning": "看", "example": "Please **look at** the blackboard."},
+  ...
+]

@@ -1,0 +1,68 @@
+请为以下英语语块补全中文翻译和例句：
+
+1. Look at the
+2. look at the
+3. Look at
+     the
+4. Look at
+the
+5. be ready to
+6. be good for
+7. Welcome to the unit
+8. Getting to know each other
+9. Simple present tense
+10. What do you like to
+11. Places at school
+12. Our wonderful school
+13. Welcome to our
+14. Prepositions of time
+15. Adverbs of frequency
+16. All kinds of food
+17. Countable and uncountable
+18. Gifts around the
+19. Be wise with      world                 management
+20. Using there be
+21. Festivals around the
+22. Meeting my new
+23. Great places at school
+24. Learning by doing
+25. Different types of
+26. All about money
+27. Festivals for the
+28. Millie and her new classmates
+29. In this unit
+30. This is our first day at
+31. Here are some students from
+32. Read what they say
+33. Daniel is my
+34. Please greet and introduce            is
+35. You can call me
+36. Chinese name is
+37. Millie is greeting
+38. Work in pairs
+39. Greet your partner and then introduce
+40. Use the conversation below as a
+41. The sentences in the box may
+42. The same goes for
+43. Nice to meet you
+44. Glad to meet you too
+45. Which class are you in
+46. Do you have any
+
+           hobbies
+47. What about you
+48. What other greetings do you know
+49. Think of a different greeting and
+50. Millie is introducing herself and her
+
+要求：
+1. 返回JSON数组格式
+2. 包含字段：phrase, meaning, example
+3. 例句中的关键词用 ** 包裹
+4. 不要有任何其他文字，只要JSON
+
+示例格式：
+[
+  {"phrase": "look at", "meaning": "看", "example": "Please **look at** the blackboard."},
+  {"phrase": "be ready to", "meaning": "准备好做某事", "example": "I am **ready to** go."}
+]

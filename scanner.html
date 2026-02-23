@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>数据扫描器</title>
+</head>
+<body>
+<script>
+const dbName = 'PhraseLearningDB';
+const request = indexedDB.open(dbName, 1);
+
+request.onsuccess = function() {
+    const db = request.result;
+    const transaction = db.transaction('phrases', 'readonly');
+    const store = transaction.objectStore('phrases');
+    const getAll = store.getAll();
+
+    getAll.onsuccess = function() {
+        const phrases = getAll.result;
+        console.log('总语块数:', phrases.length);
+
+        const incomplete = [];
+
+        phrases.forEach(p => {
+            const missing = [];
+            if (!p.meaning || p.meaning.trim() === '') missing.push('meaning');
+            if (!p.example || p.example.trim() === '') missing.push('example');
+            if (!p.keywords || p.keywords.length === 0) missing.push('keywords');
+
+            if (missing.length > 0) {
+                incomplete.push({
+                    id: p.id,
+                    phrase: p.phrase,
+                    meaning: p.meaning || '',
+                    example: p.example || '',
+                    keywords: p.keywords || [],
+                    missing: missing
+                });
+            }
+        });
+
+        console.log('需要补全:', incomplete.length);
+        console.log('不完整数据:', incomplete);
+        alert(`总语块: ${phrases.length}\n需要补全: ${incomplete.length}\n\n详细数据请查看控制台`);
+    };
+};
+</script>
+</body>
+</html>

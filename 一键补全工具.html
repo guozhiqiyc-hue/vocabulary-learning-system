@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>一键自动补全工具</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Microsoft YaHei', Arial, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 20px;
+            padding: 30px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+        }
+        h1 { color: #667eea; margin-bottom: 20px; }
+        .step {
+            background: #f8f9fa;
+            padding: 20px;
+            border-radius: 10px;
+            margin-bottom: 20px;
+        }
+        .step h3 { color: #333; margin-bottom: 10px; }
+        .step p { color: #666; line-height: 1.6; }
+        textarea {
+            width: 100%;
+            min-height: 300px;
+            padding: 15px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            font-family: 'Consolas', monospace;
+            font-size: 13px;
+            margin: 10px 0;
+        }
+        .btn {
+            padding: 12px 24px;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            margin-right: 10px;
+            font-size: 14px;
+        }
+        .btn-primary { background: #667eea; color: white; }
+        .btn-success { background: #28a745; color: white; }
+        .stats {
+            display: flex;
+            gap: 15px;
+            margin: 20px 0;
+        }
+        .stat-box {
+            flex: 1;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 15px;
+            border-radius: 10px;
+            text-align: center;
+        }
+        .stat-box .number {
+            font-size: 28px;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🚀 七上数据一键自动补全工具</h1>
+
+        <div class="stats">
+            <div class="stat-box">
+                <div class="number" id="stat-total">950</div>
+                <div>总语块数</div>
+            </div>
+            <div class="stat-box">
+                <div class="number" id="stat-completed">45</div>
+                <div>已完成</div>
+            </div>
+            <div class="stat-box">
+                <div class="number" id="stat-remaining">905</div>
+                <div>待补全</div>
+            </div>
+        </div>
+
+        <div class="step">
+            <h3>📋 使用步骤</h3>
+            <p><strong>方式A：自动分批处理（推荐）</strong></p>
+            <ol>
+                <li>点击下方"生成下一批提示词"按钮</li>
+                <li>复制生成的提示词，发送给Claude AI</li>
+                <li>将Claude返回的JSON粘贴到下方文本框</li>
+                <li>点击"应用并保存"</li>
+                <li>重复以上步骤直到全部完成</li>
+            </ol>
+
+            <p style="margin-top: 15px;"><strong>方式B：一次性处理（需要多次对话）</strong></p>
+            <p>由于数据量大(950条)，建议分批处理，每批50条。</p>
+        </div>
+
+        <div style="margin: 20px 0;">
+            <button class="btn btn-primary" onclick="generateNextBatch()">📊 生成下一批提示词</button>
+            <button class="btn btn-success" onclick="applyAndSave()">✅ 应用并保存</button>
+            <button class="btn btn-success" onclick="downloadUpdatedFile()">💾 下载更新后的文件</button>
+        </div>
+
+        <div class="step">
+            <h3>📝 Claude返回的JSON数据（粘贴到下方）</h3>
+            <textarea id="claude-response" placeholder="将Claude生成的JSON数组粘贴到这里...
+
+示例:
+[
+  {&quot;phrase&quot;: &quot;be good at&quot;, &quot;meaning&quot;: &quot;擅长&quot;, &quot;example&quot;: &quot;He is **good at** **playing**.&quot;},
+  {&quot;phrase&quot;: &quot;look at&quot;, &quot;meaning&quot;: &quot;看&quot;, &quot;example&quot;: &quot;Please **look at** this.&quot;}
+]"></textarea>
+        </div>
+
+        <div class="step">
+            <h3>📊 当前状态</h3>
+            <div id="status-log" style="background: #1e1e1e; color: #d4d4d4; padding: 15px; border-radius: 8px; max-height: 200px; overflow-y: auto; font-family: 'Consolas', monospace; font-size: 12px;">
+                <div>等待操作...</div>
+            </div>
+        </div>
+    </div>
+
+    <script src="七上_system_updated.json"></script>
+    <script>
+        let currentData = window[0]; // 加载的JSON数据
+        let currentBatch = 46; // 从第46条开始（已完成45条）
+        const BATCH_SIZE = 50;
+
+        function addLog(message) {
+            const log = document.getElementById('status-log');
+            const time = new Date().toLocaleTimeString();
+            log.innerHTML += `<div>[${time}] ${message}</div>`;
+            log.scrollTop = log.scrollHeight;
+        }
+
+        function generateNextBatch() {
+            // 找出未完成的语块
+            const incomplete = currentData.cards.filter((card, index) => {
+                const cleanPhrase = card.phrase.replace(/\s+/g, ' ').trim();
+                return !card.meaning || card.meaning.trim() === '' ||
+                       !card.example || card.example.trim() === '';
+            });
+
+            if (incomplete.length === 0) {
+                alert('🎉 所有数据已完成！');
+                return;
+            }
+
+            // 取下一批
+            const batch = incomplete.slice(0, BATCH_SIZE);
+
+            let prompt = `请为以下${batch.length}个英语语块补全中文翻译和例句：\n\n`;
+            batch.forEach((card, index) => {
+                prompt += `${index + 1}. ${card.phrase}\n`;
+            });
+            prompt += `\n要求：\n`;
+            prompt += `1. 返回JSON数组格式\n`;
+            prompt += `2. 包含字段：phrase, meaning, example\n`;
+            prompt += `3. 例句中的关键词用 ** 包裹\n`;
+            prompt += `4. 不要有任何其他文字，只要JSON\n\n`;
+
+            // 复制到剪贴板
+            navigator.clipboard.writeText(prompt).then(() => {
+                addLog(`✅ 已生成第${Math.floor(currentBatch/BATCH_SIZE)+1}批提示词(${batch.length}条)，已复制到剪贴板`);
+                alert(`✅ 提示词已复制！\n\n本批次: ${batch.length} 条\n剩余: ${incomplete.length - batch.length} 条\n\n请将提示词发送给Claude AI，然后将返回的JSON粘贴到文本框。`);
+            }).catch(err => {
+                addLog(`❌ 复制失败: ${err}`);
+                alert('复制失败，请手动复制以下内容：\n\n' + prompt);
+            });
+
+            currentBatch += BATCH_SIZE;
+            updateStats();
+        }
+
+        function applyAndSave() {
+            const responseText = document.getElementById('claude-response').value.trim();
+            if (!responseText) {
+                alert('请先粘贴Claude生成的JSON数据');
+                return;
+            }
+
+            try {
+                addLog('正在解析数据...');
+
+                let jsonData = responseText;
+                // 提取JSON
+                const jsonMatch = responseText.match(/```(?:json)?\s*(\[[\s\S]*\])\s*```/);
+                if (jsonMatch) {
+                    jsonData = jsonMatch[1];
+                }
+                const arrayMatch = responseText.match(/\[[\s\S]*\]/);
+                if (arrayMatch && !jsonMatch) {
+                    jsonData = arrayMatch[0];
+                }
+
+                const completedData = JSON.parse(jsonData);
+
+                if (!Array.isArray(completedData)) {
+                    throw new Error('数据格式错误');
+                }
+
+                addLog(`✅ 解析成功: ${completedData.length} 条`);
+
+                // 应用到当前数据
+                const completedMap = new Map();
+                completedData.forEach(item => {
+                    const cleanPhrase = item.phrase.replace(/\s+/g, ' ').trim();
+                    completedMap.set(cleanPhrase, item);
+                });
+
+                let updatedCount = 0;
+                currentData.cards.forEach(card => {
+                    const cleanPhrase = card.phrase.replace(/\s+/g, ' ').trim();
+                    if (completedMap.has(cleanPhrase)) {
+                        const completed = completedMap.get(cleanPhrase);
+                        if (!card.meaning || card.meaning.trim() === '') {
+                            card.meaning = completed.meaning;
+                        }
+                        if (!card.example || card.example.trim() === '') {
+                            card.example = completed.example;
+                        }
+                        updatedCount++;
+                    }
+                });
+
+                addLog(`✅ 成功更新: ${updatedCount} 条`);
+
+                // 更新统计
+                const incomplete = currentData.cards.filter(card =>
+                    !card.meaning || card.meaning.trim() === '' ||
+                    !card.example || card.example.trim() === ''
+                );
+                const completed = currentData.cards.length - incomplete.length;
+
+                document.getElementById('stat-completed').textContent = completed;
+                document.getElementById('stat-remaining').textContent = incomplete.length;
+
+                addLog(`📊 进度: ${completed}/${currentData.cards.length} 完成`);
+
+                // 清空输入框
+                document.getElementById('claude-response').value = '';
+
+                alert(`✅ 成功更新 ${updatedCount} 条数据！\n\n已完成: ${completed}/${currentData.cards.length}\n剩余: ${incomplete.length}`);
+
+            } catch (error) {
+                addLog(`❌ 错误: ${error.message}`);
+                alert('解析失败: ' + error.message);
+            }
+        }
+
+        function downloadUpdatedFile() {
+            const dataStr = JSON.stringify(currentData, null, 2);
+            const blob = new Blob([dataStr], { type: 'application/json' });
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = '七上_system_updated.json';
+            a.click();
+            URL.revokeObjectURL(url);
+            addLog('✅ 文件已下载');
+        }
+
+        function updateStats() {
+            const incomplete = currentData.cards.filter(card =>
+                !card.meaning || card.meaning.trim() === '' ||
+                !card.example || card.example.trim() === ''
+            );
+            const completed = currentData.cards.length - incomplete.length;
+
+            document.getElementById('stat-completed').textContent = completed;
+            document.getElementById('stat-remaining').textContent = incomplete.length;
+        }
+
+        // 初始化
+        updateStats();
+        addLog('✅ 工具已就绪，可以开始补全');
+    </script>
+</body>
+</html>
