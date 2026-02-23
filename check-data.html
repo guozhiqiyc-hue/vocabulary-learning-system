@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>检查语块数据</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            padding: 20px;
+            background: #f5f5f5;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+        }
+        h1 {
+            color: #333;
+        }
+        .stats {
+            display: flex;
+            gap: 20px;
+            margin-bottom: 20px;
+        }
+        .stat-box {
+            background: #f0f0f0;
+            padding: 15px;
+            border-radius: 8px;
+            flex: 1;
+        }
+        .stat-box h3 {
+            margin: 0 0 10px 0;
+            color: #666;
+        }
+        .stat-box .number {
+            font-size: 32px;
+            font-weight: bold;
+            color: #667eea;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        th, td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: left;
+        }
+        th {
+            background: #667eea;
+            color: white;
+        }
+        tr:nth-child(even) {
+            background: #f9f9f9;
+        }
+        .missing {
+            background: #ffcccc;
+        }
+        .warning {
+            background: #fff3cd;
+            padding: 15px;
+            border-radius: 5px;
+            margin-bottom: 20px;
+            border-left: 4px solid #ffc107;
+        }
+        .export-btn {
+            background: #667eea;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-bottom: 20px;
+        }
+        .export-btn:hover {
+            background: #5568d3;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>📊 语块数据检查工具</h1>
+
+        <div class="stats">
+            <div class="stat-box">
+                <h3>总语块数</h3>
+                <div class="number" id="total-count">0</div>
+            </div>
+            <div class="stat-box">
+                <h3>缺例句</h3>
+                <div class="number" id="no-example">0</div>
+            </div>
+            <div class="stat-box">
+                <h3>缺中文</h3>
+                <div class="number" id="no-meaning">0</div>
+            </div>
+            <div class="stat-box">
+                <h3>完整数据</h3>
+                <div class="number" id="complete">0</div>
+            </div>
+        </div>
+
+        <div id="warning" class="warning" style="display:none;"></div>
+
+        <button class="export-btn" onclick="exportCleanData()">📥 导出清理后的数据</button>
+        <button class="export-btn" onclick="exportTemplate()">📝 下载导入模板</button>
+
+        <table id="data-table">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>语块</th>
+                    <th>中文翻译</th>
+                    <th>例句</th>
+                    <th>关键词</th>
+                    <th>状态</th>
+                </tr>
+            </thead>
+            <tbody id="table-body">
+            </tbody>
+        </table>
+    </div>
+
+    <script>
+        const dbName = 'PhraseLearningDB';
+        const dbVersion = 1;
+        let db = null;
+        let allPhrases = [];
+
+        async function initDB() {
+            return new Promise((resolve, reject) => {
+                const request = indexedDB.open(dbName, dbVersion);
+
+                request.onerror = () => reject(request.error);
+                request.onsuccess = () => {
+                    db = request.result;
+                    resolve(db);
+                };
+
+                request.onupgradeneeded = (event) => {
+                    const db = event.target.result;
+                    if (!db.objectStoreNames.contains('phrases')) {
+                        db.createObjectStore('phrases', { keyPath: 'id', autoIncrement: true });
+                    }
+                };
+            });
+        }
+
+        async function getAllPhrases() {
+            return new Promise((resolve, reject) => {
+                const transaction = db.transaction('phrases', 'readonly');
+                const store = transaction.objectStore('phrases');
+                const request = store.getAll();
+
+                request.onsuccess = () => resolve(request.result);
+                request.onerror = () => reject(request.error);
+            });
+        }
+
+        function checkPhrase(phrase) {
+            const issues = [];
+
+            if (!phrase.meaning || phrase.meaning.trim() === '') {
+                issues.push('缺中文');
+            }
+            if (!phrase.example || phrase.example.trim() === '') {
+                issues.push('缺例句');
+            }
+            if (!phrase.keywords || !Array.isArray(phrase.keywords) || phrase.keywords.length === 0) {
+                issues.push('缺关键词');
+            }
+
+            return issues;
+        }
+
+        function renderTable() {
+            const tbody = document.getElementById('table-body');
+            const warning = document.getElementById('warning');
+
+            let noExample = 0;
+            let noMeaning = 0;
+            let complete = 0;
+
+            const rows = allPhrases.map(phrase => {
+                const issues = checkPhrase(phrase);
+
+                if (issues.includes('缺例句')) noExample++;
+                if (issues.includes('缺中文')) noMeaning++;
+                if (issues.length === 0) complete++;
+
+                const rowClass = issues.length > 0 ? 'missing' : '';
+
+                return `
+                    <tr class="${rowClass}">
+                        <td>${phrase.id || ''}</td>
+                        <td>${escapeHtml(phrase.phrase || '')}</td>
+                        <td>${escapeHtml(phrase.meaning || '')}</td>
+                        <td>${escapeHtml((phrase.example || '').substring(0, 100))}</td>
+                        <td>${Array.isArray(phrase.keywords) ? phrase.keywords.join(', ') : ''}</td>
+                        <td>${issues.length > 0 ? issues.join(', ') : '✅ 完整'}</td>
+                    </tr>
+                `;
+            }).join('');
+
+            tbody.innerHTML = rows;
+
+            document.getElementById('total-count').textContent = allPhrases.length;
+            document.getElementById('no-example').textContent = noExample;
+            document.getElementById('no-meaning').textContent = noMeaning;
+            document.getElementById('complete').textContent = complete;
+
+            if (noExample > 0 || noMeaning > 0) {
+                warning.style.display = 'block';
+                warning.innerHTML = `
+                    <strong>⚠️ 发现数据问题</strong><br>
+                    共有 ${allPhrases.length} 个语块，其中 ${noExample} 个缺例句，${noMeaning} 个缺中文翻译。<br>
+                    建议使用下方按钮导出清理后的数据或下载导入模板。
+                `;
+            }
+        }
+
+        function escapeHtml(text) {
+            const div = document.createElement('div');
+            div.textContent = text;
+            return div.innerHTML;
+        }
+
+        function exportCleanData() {
+            const cleanData = allPhrases.filter(p => {
+                const issues = checkPhrase(p);
+                return issues.length === 0;
+            });
+
+            const dataStr = JSON.stringify({ phrases: cleanData }, null, 2);
+            downloadFile(dataStr, 'vocabulary-learning-clean.json', 'application/json');
+
+            alert(`已导出 ${cleanData.length} 个完整数据`);
+        }
+
+        function exportTemplate() {
+            const template = {
+                "说明": "请按照此格式填写语块数据，所有字段均为必填项",
+                "phrases": [
+                    {
+                        "id": 1,
+                        "phrase": "be good at doing",
+                        "meaning": "擅长做某事",
+                        "example": "He is **good at** **playing** basketball.",
+                        "keywords": ["good", "play"],
+                        "level": "核心词汇",
+                        "frequency": "高频",
+                        "topic": "能力描述"
+                    }
+                ]
+            };
+
+            const dataStr = JSON.stringify(template, null, 2);
+            downloadFile(dataStr, 'vocabulary-template.json', 'application/json');
+
+            alert('模板已下载，请按照格式填写后导入');
+        }
+
+        function downloadFile(content, filename, type) {
+            const blob = new Blob([content], { type: type });
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = filename;
+            a.click();
+            URL.revokeObjectURL(url);
+        }
+
+        async function init() {
+            try {
+                await initDB();
+                allPhrases = await getAllPhrases();
+                renderTable();
+            } catch (error) {
+                console.error('Error:', error);
+                alert('加载数据失败: ' + error.message);
+            }
+        }
+
+        init();
+    </script>
+</body>
+</html>

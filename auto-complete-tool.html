@@ -1,0 +1,960 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI自动补全工具 - 语块学习系统</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Microsoft YaHei', Arial, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 20px;
+            padding: 30px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+        }
+
+        h1 {
+            color: #667eea;
+            margin-bottom: 10px;
+        }
+
+        .subtitle {
+            color: #666;
+            margin-bottom: 30px;
+        }
+
+        .config-section {
+            background: #f8f9fa;
+            padding: 20px;
+            border-radius: 10px;
+            margin-bottom: 20px;
+        }
+
+        .config-section h3 {
+            margin-bottom: 15px;
+            color: #333;
+        }
+
+        .form-group {
+            margin-bottom: 15px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+            color: #555;
+        }
+
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 14px;
+        }
+
+        .form-group textarea {
+            min-height: 100px;
+            font-family: monospace;
+        }
+
+        .btn {
+            padding: 12px 24px;
+            border: none;
+            border-radius: 8px;
+            font-size: 14px;
+            cursor: pointer;
+            transition: all 0.3s;
+            margin-right: 10px;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(102, 126, 234, 0.4);
+        }
+
+        .btn-secondary {
+            background: #6c757d;
+            color: white;
+        }
+
+        .btn-success {
+            background: #28a745;
+            color: white;
+        }
+
+        .btn:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+        }
+
+        .stats {
+            display: flex;
+            gap: 15px;
+            margin-bottom: 20px;
+        }
+
+        .stat-box {
+            flex: 1;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 20px;
+            border-radius: 10px;
+            text-align: center;
+        }
+
+        .stat-box .number {
+            font-size: 32px;
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+
+        .stat-box .label {
+            font-size: 14px;
+            opacity: 0.9;
+        }
+
+        .progress-section {
+            background: #f8f9fa;
+            padding: 20px;
+            border-radius: 10px;
+            margin-bottom: 20px;
+        }
+
+        .progress-bar {
+            width: 100%;
+            height: 30px;
+            background: #e0e0e0;
+            border-radius: 15px;
+            overflow: hidden;
+            margin-bottom: 10px;
+        }
+
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, #667eea 0%, #764ba2 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 12px;
+            font-weight: bold;
+            transition: width 0.3s;
+        }
+
+        .log-section {
+            background: #1e1e1e;
+            color: #d4d4d4;
+            padding: 15px;
+            border-radius: 10px;
+            max-height: 400px;
+            overflow-y: auto;
+            font-family: 'Consolas', 'Monaco', monospace;
+            font-size: 13px;
+            line-height: 1.6;
+        }
+
+        .log-entry {
+            margin-bottom: 5px;
+        }
+
+        .log-entry.success {
+            color: #4ec9b0;
+        }
+
+        .log-entry.error {
+            color: #f48771;
+        }
+
+        .log-entry.warning {
+            color: #dcdcaa;
+        }
+
+        .log-entry.info {
+            color: #569cd6;
+        }
+
+        .results-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+
+        .results-table th,
+        .results-table td {
+            border: 1px solid #ddd;
+            padding: 10px;
+            text-align: left;
+        }
+
+        .results-table th {
+            background: #667eea;
+            color: white;
+        }
+
+        .results-table tr:nth-child(even) {
+            background: #f8f9fa;
+        }
+
+        .tab-buttons {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+
+        .tab-btn {
+            padding: 10px 20px;
+            background: #f0f0f0;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .tab-btn.active {
+            background: #667eea;
+            color: white;
+        }
+
+        .tab-content {
+            display: none;
+        }
+
+        .tab-content.active {
+            display: block;
+        }
+
+        .help-text {
+            background: #e3f2fd;
+            border-left: 4px solid #2196f3;
+            padding: 15px;
+            border-radius: 5px;
+            margin-bottom: 20px;
+            font-size: 14px;
+        }
+
+        .help-text strong {
+            color: #1976d2;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🤖 AI自动补全工具</h1>
+        <p class="subtitle">自动补全语块的缺失信息（例句、翻译、关键词等）</p>
+
+        <div class="stats">
+            <div class="stat-box">
+                <div class="number" id="stat-total">0</div>
+                <div class="label">总语块数</div>
+            </div>
+            <div class="stat-box">
+                <div class="number" id="stat-incomplete">0</div>
+                <div class="label">需要补全</div>
+            </div>
+            <div class="stat-box">
+                <div class="number" id="stat-processed">0</div>
+                <div class="label">已处理</div>
+            </div>
+            <div class="stat-box">
+                <div class="number" id="stat-success">0</div>
+                <div class="label">成功</div>
+            </div>
+        </div>
+
+        <div class="tab-buttons">
+            <button class="tab-btn active" onclick="switchTab('config')">⚙️ 配置</button>
+            <button class="tab-btn" onclick="switchTab('process')">🚀 执行</button>
+            <button class="tab-btn" onclick="switchTab('results')">📊 结果</button>
+        </div>
+
+        <!-- 配置标签页 -->
+        <div id="tab-config" class="tab-content active">
+            <div class="help-text">
+                <strong>💡 使用说明</strong><br>
+                1. 选择AI服务提供商并输入API密钥<br>
+                2. 设置每次处理的批次大小（建议10-20）<br>
+                3. 点击"扫描数据"查看需要补全的语块<br>
+                4. 切换到"执行"标签页开始批量处理
+            </div>
+
+            <div class="config-section">
+                <h3>🔑 API配置</h3>
+
+                <div class="form-group">
+                    <label>AI服务提供商</label>
+                    <select id="ai-provider" onchange="updateProviderConfig()">
+                        <option value="openai">OpenAI (GPT-4/GPT-3.5)</option>
+                        <option value="anthropic">Anthropic (Claude)</option>
+                        <option value="openai-compatible">OpenAI兼容接口</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label>API密钥</label>
+                    <input type="password" id="api-key" placeholder="sk-..." />
+                    <small style="color: #666;">密钥仅存储在浏览器本地，不会上传</small>
+                </div>
+
+                <div class="form-group" id="base-url-group" style="display:none;">
+                    <label>API地址</label>
+                    <input type="text" id="base-url" placeholder="https://api.openai.com/v1" />
+                </div>
+
+                <div class="form-group">
+                    <label>模型</label>
+                    <input type="text" id="model-name" value="gpt-3.5-turbo" placeholder="gpt-3.5-turbo" />
+                </div>
+
+                <div class="form-group">
+                    <label>批次大小</label>
+                    <input type="number" id="batch-size" value="10" min="1" max="50" />
+                    <small style="color: #666;">每次处理的语块数量，建议10-20</small>
+                </div>
+
+                <div class="form-group">
+                    <label>补全选项</label>
+                    <div>
+                        <input type="checkbox" id="complete-meaning" checked />
+                        <label for="complete-meaning" style="display:inline;">补全中文翻译</label>
+                    </div>
+                    <div>
+                        <input type="checkbox" id="complete-example" checked />
+                        <label for="complete-example" style="display:inline;">补全例句</label>
+                    </div>
+                    <div>
+                        <input type="checkbox" id="complete-keywords" checked />
+                        <label for="complete-keywords" style="display:inline;">补全关键词</label>
+                    </div>
+                </div>
+
+                <button class="btn btn-primary" onclick="scanData()">📊 扫描数据</button>
+                <button class="btn btn-secondary" onclick="testConnection()">🔌 测试连接</button>
+            </div>
+        </div>
+
+        <!-- 执行标签页 -->
+        <div id="tab-process" class="tab-content">
+            <div class="progress-section">
+                <h3>📈 处理进度</h3>
+                <div class="progress-bar">
+                    <div class="progress-fill" id="progress-fill" style="width: 0%">0%</div>
+                </div>
+                <div style="display:flex; justify-content:space-between; margin-top:10px;">
+                    <span id="progress-text">等待开始...</span>
+                    <span id="progress-stats">0/0</span>
+                </div>
+            </div>
+
+            <div style="margin-bottom: 20px;">
+                <button class="btn btn-success" id="start-btn" onclick="startProcessing()">
+                    🚀 开始处理
+                </button>
+                <button class="btn btn-secondary" id="pause-btn" onclick="pauseProcessing()" disabled>
+                    ⏸️ 暂停
+                </button>
+                <button class="btn btn-secondary" onclick="resetProcessing()">
+                    🔄 重置
+                </button>
+            </div>
+
+            <h3>📝 处理日志</h3>
+            <div class="log-section" id="log-section">
+                <div class="log-entry info">等待开始处理...</div>
+            </div>
+        </div>
+
+        <!-- 结果标签页 -->
+        <div id="tab-results" class="tab-content">
+            <div style="margin-bottom: 20px;">
+                <button class="btn btn-primary" onclick="exportResults()">
+                    📥 导出结果
+                </button>
+                <button class="btn btn-success" onclick="applyToDatabase()">
+                    💾 应用到数据库
+                </button>
+            </div>
+
+            <table class="results-table">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>语块</th>
+                        <th>原文翻译</th>
+                        <th>AI翻译</th>
+                        <th>原文例句</th>
+                        <th>AI例句</th>
+                        <th>状态</th>
+                    </tr>
+                </thead>
+                <tbody id="results-body">
+                    <tr>
+                        <td colspan="7" style="text-align:center;">暂无结果</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <script>
+        // 全局变量
+        let db = null;
+        let incompletePhrases = [];
+        let processedResults = [];
+        let isProcessing = false;
+        let isPaused = false;
+        let processedCount = 0;
+        let successCount = 0;
+
+        const dbName = 'PhraseLearningDB';
+        const dbVersion = 1;
+
+        // 初始化数据库
+        async function initDB() {
+            return new Promise((resolve, reject) => {
+                const request = indexedDB.open(dbName, dbVersion);
+
+                request.onerror = () => reject(request.error);
+                request.onsuccess = () => {
+                    db = request.result;
+                    resolve(db);
+                };
+
+                request.onupgradeneeded = (event) => {
+                    const db = event.target.result;
+                    if (!db.objectStoreNames.contains('phrases')) {
+                        db.createObjectStore('phrases', { keyPath: 'id', autoIncrement: true });
+                    }
+                };
+            });
+        }
+
+        // 获取所有语块
+        async function getAllPhrases() {
+            return new Promise((resolve, reject) => {
+                const transaction = db.transaction('phrases', 'readonly');
+                const store = transaction.objectStore('phrases');
+                const request = store.getAll();
+
+                request.onsuccess = () => resolve(request.result);
+                request.onerror = () => reject(request.error);
+            });
+        }
+
+        // 检查语块是否完整
+        function checkPhraseComplete(phrase) {
+            const issues = [];
+
+            if (!phrase.meaning || phrase.meaning.trim() === '') {
+                issues.push('meaning');
+            }
+            if (!phrase.example || phrase.example.trim() === '') {
+                issues.push('example');
+            }
+            if (!phrase.keywords || !Array.isArray(phrase.keywords) || phrase.keywords.length === 0) {
+                issues.push('keywords');
+            }
+
+            return {
+                isComplete: issues.length === 0,
+                missingFields: issues
+            };
+        }
+
+        // 更新提供商配置
+        function updateProviderConfig() {
+            const provider = document.getElementById('ai-provider').value;
+            const baseUrlGroup = document.getElementById('base-url-group');
+            const modelInput = document.getElementById('model-name');
+
+            switch(provider) {
+                case 'openai':
+                    baseUrlGroup.style.display = 'none';
+                    modelInput.value = 'gpt-3.5-turbo';
+                    break;
+                case 'anthropic':
+                    baseUrlGroup.style.display = 'none';
+                    modelInput.value = 'claude-3-haiku-20240307';
+                    break;
+                case 'openai-compatible':
+                    baseUrlGroup.style.display = 'block';
+                    modelInput.value = 'gpt-3.5-turbo';
+                    break;
+            }
+        }
+
+        // 扫描数据
+        async function scanData() {
+            try {
+                await initDB();
+                const allPhrases = await getAllPhrases();
+
+                incompletePhrases = [];
+                let incompleteCount = 0;
+
+                allPhrases.forEach(phrase => {
+                    const check = checkPhraseComplete(phrase);
+                    if (!check.isComplete) {
+                        incompleteCount++;
+                        incompletePhrases.push({
+                            ...phrase,
+                            missingFields: check.missingFields
+                        });
+                    }
+                });
+
+                document.getElementById('stat-total').textContent = allPhrases.length;
+                document.getElementById('stat-incomplete').textContent = incompleteCount;
+
+                addLog('info', `扫描完成: 共 ${allPhrases.length} 个语块，${incompleteCount} 个需要补全`);
+
+                if (incompleteCount === 0) {
+                    addLog('success', '所有语块数据完整，无需补全！');
+                } else {
+                    addLog('warning', `发现 ${incompleteCount} 个不完整语块，可以开始处理`);
+                }
+
+                // 自动切换到执行标签
+                switchTab('process');
+            } catch (error) {
+                addLog('error', `扫描失败: ${error.message}`);
+            }
+        }
+
+        // 测试连接
+        async function testConnection() {
+            const provider = document.getElementById('ai-provider').value;
+            const apiKey = document.getElementById('api-key').value;
+            const modelName = document.getElementById('model-name').value;
+
+            if (!apiKey) {
+                alert('请先输入API密钥');
+                return;
+            }
+
+            try {
+                addLog('info', '正在测试API连接...');
+
+                const result = await callAI([
+                    { role: 'user', content: '测试连接' }
+                ], 10);
+
+                addLog('success', '连接测试成功！');
+            } catch (error) {
+                addLog('error', `连接测试失败: ${error.message}`);
+            }
+        }
+
+        // 调用AI API
+        async function callAI(messages, maxTokens = 500) {
+            const provider = document.getElementById('ai-provider').value;
+            const apiKey = document.getElementById('api-key').value;
+            const modelName = document.getElementById('model-name').value;
+            const baseUrl = document.getElementById('base-url').value || 'https://api.openai.com/v1';
+
+            if (!apiKey) {
+                throw new Error('请先配置API密钥');
+            }
+
+            let url = '';
+            let headers = {
+                'Content-Type': 'application/json'
+            };
+            let body = {};
+
+            switch(provider) {
+                case 'openai':
+                case 'openai-compatible':
+                    url = `${baseUrl}/chat/completions`;
+                    headers['Authorization'] = `Bearer ${apiKey}`;
+                    body = {
+                        model: modelName,
+                        messages: messages,
+                        max_tokens: maxTokens,
+                        temperature: 0.7
+                    };
+                    break;
+
+                case 'anthropic':
+                    url = 'https://api.anthropic.com/v1/messages';
+                    headers['x-api-key'] = apiKey;
+                    headers['anthropic-version'] = '2023-06-01';
+                    body = {
+                        model: modelName,
+                        messages: messages,
+                        max_tokens: maxTokens
+                    };
+                    break;
+            }
+
+            const response = await fetch(url, {
+                method: 'POST',
+                headers: headers,
+                body: JSON.stringify(body)
+            });
+
+            if (!response.ok) {
+                const error = await response.text();
+                throw new Error(`API错误 (${response.status}): ${error}`);
+            }
+
+            const data = await response.json();
+
+            if (provider === 'anthropic') {
+                return data.content[0].text;
+            } else {
+                return data.choices[0].message.content;
+            }
+        }
+
+        // 生成补全提示词
+        function generateCompletionPrompt(phrase) {
+            const completeMeaning = document.getElementById('complete-meaning').checked;
+            const completeExample = document.getElementById('complete-example').checked;
+            const completeKeywords = document.getElementById('complete-keywords').checked;
+
+            let prompt = `请为以下英语语块短语补全缺失信息，严格按照JSON格式返回：\n\n`;
+            prompt += `语块: ${phrase.phrase}\n`;
+
+            if (completeMeaning && (!phrase.meaning || phrase.meaning.trim() === '')) {
+                prompt += `- 缺少中文翻译，需要提供\n`;
+            }
+            if (completeExample && (!phrase.example || phrase.example.trim() === '')) {
+                prompt += `- 缺少例句，需要提供（例句中的关键词用**包裹，如: He is **good at** **playing** basketball.）\n`;
+            }
+            if (completeKeywords && (!phrase.keywords || phrase.keywords.length === 0)) {
+                prompt += `- 缺少关键词数组（2-4个关键词）\n`;
+            }
+
+            prompt += `\n请直接返回JSON格式，不要有任何其他文字：\n`;
+            prompt += `{\n`;
+            if (completeMeaning) prompt += `  "meaning": "中文翻译",\n`;
+            if (completeExample) prompt += `  "example": "例句（关键词用**包裹）",\n`;
+            if (completeKeywords) prompt += `  "keywords": ["keyword1", "keyword2"]\n`;
+            prompt += `}`;
+
+            return prompt;
+        }
+
+        // 开始处理
+        async function startProcessing() {
+            if (incompletePhrases.length === 0) {
+                alert('请先扫描数据');
+                return;
+            }
+
+            const apiKey = document.getElementById('api-key').value;
+            if (!apiKey) {
+                alert('请先配置API密钥');
+                return;
+            }
+
+            isProcessing = true;
+            isPaused = false;
+            document.getElementById('start-btn').disabled = true;
+            document.getElementById('pause-btn').disabled = false;
+
+            const batchSize = parseInt(document.getElementById('batch-size').value);
+
+            addLog('info', `开始处理 ${incompletePhrases.length} 个语块，批次大小: ${batchSize}`);
+
+            for (let i = 0; i < incompletePhrases.length; i++) {
+                if (!isProcessing || isPaused) break;
+
+                const phrase = incompletePhrases[i];
+                processedCount++;
+
+                try {
+                    addLog('info', `正在处理 [${processedCount}/${incompletePhrases.length}]: ${phrase.phrase}`);
+
+                    const prompt = generateCompletionPrompt(phrase);
+                    const response = await callAI([{ role: 'user', content: prompt }], 300);
+
+                    // 解析AI响应
+                    let aiData;
+                    try {
+                        // 尝试提取JSON
+                        const jsonMatch = response.match(/\{[\s\S]*\}/);
+                        if (jsonMatch) {
+                            aiData = JSON.parse(jsonMatch[0]);
+                        } else {
+                            throw new Error('无法解析JSON响应');
+                        }
+                    } catch (e) {
+                        addLog('error', `解析响应失败: ${phrase.phrase}`);
+                        continue;
+                    }
+
+                    // 更新结果
+                    const result = {
+                        id: phrase.id,
+                        phrase: phrase.phrase,
+                        originalMeaning: phrase.meaning || '',
+                        aiMeaning: aiData.meaning || phrase.meaning,
+                        originalExample: phrase.example || '',
+                        aiExample: aiData.example || phrase.example,
+                        originalKeywords: phrase.keywords || [],
+                        aiKeywords: aiData.keywords || phrase.keywords,
+                        status: 'success'
+                    };
+
+                    processedResults.push(result);
+                    successCount++;
+
+                    addLog('success', `✓ 完成: ${phrase.phrase}`);
+
+                } catch (error) {
+                    addLog('error', `✗ 失败: ${phrase.phrase} - ${error.message}`);
+
+                    processedResults.push({
+                        id: phrase.id,
+                        phrase: phrase.phrase,
+                        status: 'error',
+                        error: error.message
+                    });
+                }
+
+                // 更新进度
+                updateProgress();
+
+                // 延迟避免API限流
+                if ((i + 1) % batchSize === 0 && i < incompletePhrases.length - 1) {
+                    addLog('warning', `批次完成，等待2秒后继续...`);
+                    await sleep(2000);
+                }
+            }
+
+            isProcessing = false;
+            document.getElementById('start-btn').disabled = false;
+            document.getElementById('pause-btn').disabled = true;
+
+            addLog('info', `处理完成！成功: ${successCount}, 失败: ${processedCount - successCount}`);
+            document.getElementById('stat-processed').textContent = processedCount;
+            document.getElementById('stat-success').textContent = successCount;
+
+            // 显示结果
+            renderResults();
+            switchTab('results');
+        }
+
+        // 暂停处理
+        function pauseProcessing() {
+            isPaused = !isPaused;
+            const btn = document.getElementById('pause-btn');
+            btn.textContent = isPaused ? '▶️ 继续' : '⏸️ 暂停';
+            addLog('warning', isPaused ? '已暂停' : '继续处理');
+        }
+
+        // 重置处理
+        function resetProcessing() {
+            isProcessing = false;
+            isPaused = false;
+            processedCount = 0;
+            successCount = 0;
+            processedResults = [];
+
+            document.getElementById('start-btn').disabled = false;
+            document.getElementById('pause-btn').disabled = true;
+            document.getElementById('progress-fill').style.width = '0%';
+            document.getElementById('progress-text').textContent = '等待开始...';
+            document.getElementById('progress-stats').textContent = '0/0';
+            document.getElementById('stat-processed').textContent = '0';
+            document.getElementById('stat-success').textContent = '0';
+
+            addLog('info', '已重置');
+        }
+
+        // 更新进度
+        function updateProgress() {
+            const percentage = Math.round((processedCount / incompletePhrases.length) * 100);
+            document.getElementById('progress-fill').style.width = percentage + '%';
+            document.getElementById('progress-fill').textContent = percentage + '%';
+            document.getElementById('progress-text').textContent = isPaused ? '已暂停' : '处理中...';
+            document.getElementById('progress-stats').textContent = `${processedCount}/${incompletePhrases.length}`;
+        }
+
+        // 渲染结果
+        function renderResults() {
+            const tbody = document.getElementById('results-body');
+
+            if (processedResults.length === 0) {
+                tbody.innerHTML = '<tr><td colspan="7" style="text-align:center;">暂无结果</td></tr>';
+                return;
+            }
+
+            const rows = processedResults.map(result => {
+                const statusClass = result.status === 'success' ? 'success' : 'error';
+                const statusText = result.status === 'success' ? '✓ 成功' : `✗ ${result.error}`;
+
+                return `
+                    <tr>
+                        <td>${result.id}</td>
+                        <td>${escapeHtml(result.phrase)}</td>
+                        <td>${escapeHtml(result.originalMeaning)}</td>
+                        <td style="background:#e8f5e8;">${escapeHtml(result.aiMeaning || '-')}</td>
+                        <td>${escapeHtml((result.originalExample || '').substring(0, 50))}</td>
+                        <td style="background:#e8f5e8;">${escapeHtml((result.aiExample || '').substring(0, 50))}</td>
+                        <td class="${statusClass}">${statusText}</td>
+                    </tr>
+                `;
+            }).join('');
+
+            tbody.innerHTML = rows;
+        }
+
+        // 导出结果
+        function exportResults() {
+            if (processedResults.length === 0) {
+                alert('暂无结果可导出');
+                return;
+            }
+
+            const exportData = processedResults.filter(r => r.status === 'success').map(result => ({
+                id: result.id,
+                phrase: result.phrase,
+                meaning: result.aiMeaning,
+                example: result.aiExample,
+                keywords: result.aiKeywords
+            }));
+
+            const dataStr = JSON.stringify({ phrases: exportData }, null, 2);
+            downloadFile(dataStr, 'completed-phrases.json', 'application/json');
+
+            addLog('success', `已导出 ${exportData.length} 条结果`);
+        }
+
+        // 应用到数据库
+        async function applyToDatabase() {
+            if (processedResults.length === 0) {
+                alert('暂无结果可应用');
+                return;
+            }
+
+            const successResults = processedResults.filter(r => r.status === 'success');
+            if (successResults.length === 0) {
+                alert('没有成功的结果可应用');
+                return;
+            }
+
+            if (!confirm(`确定要将 ${successResults.length} 条补全数据应用到数据库吗？`)) {
+                return;
+            }
+
+            try {
+                const transaction = db.transaction('phrases', 'readwrite');
+                const store = transaction.objectStore('phrases');
+
+                let appliedCount = 0;
+
+                for (const result of successResults) {
+                    const phrase = incompletePhrases.find(p => p.id === result.id);
+                    if (!phrase) continue;
+
+                    const updatedPhrase = {
+                        ...phrase,
+                        meaning: result.aiMeaning || phrase.meaning,
+                        example: result.aiExample || phrase.example,
+                        keywords: result.aiKeywords || phrase.keywords
+                    };
+
+                    await new Promise((resolve, reject) => {
+                        const request = store.put(updatedPhrase);
+                        request.onsuccess = () => {
+                            appliedCount++;
+                            resolve();
+                        };
+                        request.onerror = () => reject(request.error);
+                    });
+                }
+
+                addLog('success', `成功应用 ${appliedCount} 条数据到数据库！`);
+                alert(`已成功应用 ${appliedCount} 条数据到数据库！`);
+
+            } catch (error) {
+                addLog('error', `应用到数据库失败: ${error.message}`);
+                alert(`应用失败: ${error.message}`);
+            }
+        }
+
+        // 切换标签页
+        function switchTab(tabName) {
+            document.querySelectorAll('.tab-btn').forEach(btn => {
+                btn.classList.remove('active');
+            });
+            document.querySelectorAll('.tab-content').forEach(content => {
+                content.classList.remove('active');
+            });
+
+            event.target.classList.add('active');
+            document.getElementById(`tab-${tabName}`).classList.add('active');
+        }
+
+        // 添加日志
+        function addLog(type, message) {
+            const logSection = document.getElementById('log-section');
+            const time = new Date().toLocaleTimeString();
+            const logEntry = document.createElement('div');
+            logEntry.className = `log-entry ${type}`;
+            logEntry.textContent = `[${time}] ${message}`;
+            logSection.appendChild(logEntry);
+            logSection.scrollTop = logSection.scrollHeight;
+        }
+
+        // 转义HTML
+        function escapeHtml(text) {
+            const div = document.createElement('div');
+            div.textContent = text || '';
+            return div.innerHTML;
+        }
+
+        // 下载文件
+        function downloadFile(content, filename, type) {
+            const blob = new Blob([content], { type: type });
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = filename;
+            a.click();
+            URL.revokeObjectURL(url);
+        }
+
+        // 延迟函数
+        function sleep(ms) {
+            return new Promise(resolve => setTimeout(resolve, ms));
+        }
+
+        // 初始化
+        async function init() {
+            try {
+                await initDB();
+                addLog('info', '数据库连接成功');
+            } catch (error) {
+                addLog('error', `数据库初始化失败: ${error.message}`);
+            }
+        }
+
+        init();
+    </script>
+</body>
+</html>

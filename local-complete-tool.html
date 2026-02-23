@@ -1,0 +1,545 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>本地词典补全工具</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Microsoft YaHei', Arial, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 20px;
+            padding: 30px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+        }
+
+        h1 {
+            color: #667eea;
+            margin-bottom: 10px;
+        }
+
+        .help-text {
+            background: #e3f2fd;
+            border-left: 4px solid #2196f3;
+            padding: 15px;
+            border-radius: 5px;
+            margin-bottom: 20px;
+        }
+
+        .btn {
+            padding: 10px 20px;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            margin-right: 10px;
+            margin-bottom: 10px;
+        }
+
+        .btn-primary {
+            background: #667eea;
+            color: white;
+        }
+
+        .btn-success {
+            background: #28a745;
+            color: white;
+        }
+
+        .btn-secondary {
+            background: #6c757d;
+            color: white;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+
+        th, td {
+            border: 1px solid #ddd;
+            padding: 10px;
+            text-align: left;
+        }
+
+        th {
+            background: #667eea;
+            color: white;
+            position: sticky;
+            top: 0;
+        }
+
+        tr:nth-child(even) {
+            background: #f8f9fa;
+        }
+
+        tr:hover {
+            background: #e8f4fd;
+        }
+
+        input[type="text"], textarea {
+            width: 100%;
+            padding: 8px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-size: 14px;
+        }
+
+        textarea {
+            min-height: 60px;
+            resize: vertical;
+        }
+
+        .missing {
+            background: #fff3cd;
+        }
+
+        .stats {
+            display: flex;
+            gap: 15px;
+            margin: 20px 0;
+        }
+
+        .stat-box {
+            flex: 1;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 15px;
+            border-radius: 10px;
+            text-align: center;
+        }
+
+        .stat-box .number {
+            font-size: 28px;
+            font-weight: bold;
+        }
+
+        .batch-actions {
+            background: #f8f9fa;
+            padding: 15px;
+            border-radius: 10px;
+            margin: 20px 0;
+        }
+
+        .template-box {
+            background: #f0f0f0;
+            padding: 15px;
+            border-radius: 8px;
+            margin: 20px 0;
+        }
+
+        .template-box textarea {
+            min-height: 150px;
+            font-family: monospace;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>📝 本地词典补全工具</h1>
+        <p style="color: #666; margin-bottom: 20px;">手动或使用模板批量补全语块数据</p>
+
+        <div class="help-text">
+            <strong>💡 使用说明</strong><br>
+            1. 点击"加载数据"查看所有语块<br>
+            2. 黄色背景的行表示数据不完整<br>
+            3. 直接在表格中编辑，或使用下方模板批量导入<br>
+            4. 点击"保存更改"将数据应用到数据库
+        </div>
+
+        <div class="stats">
+            <div class="stat-box">
+                <div class="number" id="stat-total">0</div>
+                <div>总语块数</div>
+            </div>
+            <div class="stat-box">
+                <div class="number" id="stat-incomplete">0</div>
+                <div>需要补全</div>
+            </div>
+            <div class="stat-box">
+                <div class="number" id="stat-complete">0</div>
+                <div>已完整</div>
+            </div>
+        </div>
+
+        <button class="btn btn-primary" onclick="loadData()">📊 加载数据</button>
+        <button class="btn btn-success" onclick="saveChanges()">💾 保存更改</button>
+        <button class="btn btn-secondary" onclick="exportData()">📥 导出数据</button>
+        <button class="btn btn-secondary" onclick="document.getElementById('import-file').click()">📤 导入模板</button>
+        <input type="file" id="import-file" accept=".json" style="display:none" onchange="importTemplate(event)">
+
+        <div class="batch-actions">
+            <h3>📋 批量导入模板</h3>
+            <p style="color: #666; margin-bottom: 10px;">复制下方模板，在Excel或其他工具中编辑后粘贴回来</p>
+            <div class="template-box">
+                <textarea id="template-area" placeholder="粘贴JSON格式的数据...
+[
+  {
+    "id": 1,
+    "phrase": "be good at doing",
+    "meaning": "擅长做某事",
+    "example": "He is **good at** **playing** basketball.",
+    "keywords": ["good", "play"],
+    "level": "核心词汇",
+    "frequency": "高频",
+    "topic": "能力描述"
+  }
+]"></textarea>
+            </div>
+            <button class="btn btn-primary" onclick="applyTemplate()">应用模板</button>
+            <button class="btn btn-secondary" onclick="downloadEmptyTemplate()">📥 下载空模板</button>
+        </div>
+
+        <table id="data-table">
+            <thead>
+                <tr>
+                    <th style="width: 50px;">ID</th>
+                    <th style="width: 200px;">语块</th>
+                    <th style="width: 150px;">中文翻译</th>
+                    <th style="width: 300px;">例句</th>
+                    <th style="width: 150px;">关键词</th>
+                    <th style="width: 100px;">级别</th>
+                    <th style="width: 100px;">频率</th>
+                    <th style="width: 150px;">主题</th>
+                </tr>
+            </thead>
+            <tbody id="table-body">
+                <tr>
+                    <td colspan="8" style="text-align: center; padding: 40px;">
+                        点击"加载数据"开始
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <script>
+        const dbName = 'PhraseLearningDB';
+        const dbVersion = 1;
+        let db = null;
+        let phrases = [];
+
+        // 初始化数据库
+        async function initDB() {
+            return new Promise((resolve, reject) => {
+                const request = indexedDB.open(dbName, dbVersion);
+
+                request.onerror = () => reject(request.error);
+                request.onsuccess = () => {
+                    db = request.result;
+                    resolve(db);
+                };
+
+                request.onupgradeneeded = (event) => {
+                    const db = event.target.result;
+                    if (!db.objectStoreNames.contains('phrases')) {
+                        db.createObjectStore('phrases', { keyPath: 'id', autoIncrement: true });
+                    }
+                };
+            });
+        }
+
+        // 加载数据
+        async function loadData() {
+            try {
+                await initDB();
+
+                const transaction = db.transaction('phrases', 'readonly');
+                const store = transaction.objectStore('phrases');
+                const request = store.getAll();
+
+                request.onsuccess = () => {
+                    phrases = request.result;
+                    renderTable();
+                    updateStats();
+                };
+
+                request.onerror = () => {
+                    alert('加载数据失败: ' + request.error);
+                };
+            } catch (error) {
+                alert('初始化数据库失败: ' + error.message);
+            }
+        }
+
+        // 渲染表格
+        function renderTable() {
+            const tbody = document.getElementById('table-body');
+
+            if (phrases.length === 0) {
+                tbody.innerHTML = '<tr><td colspan="8" style="text-align: center;">暂无数据</td></tr>';
+                return;
+            }
+
+            const rows = phrases.map(phrase => {
+                const isMissing = !phrase.meaning || !phrase.example ||
+                                 (phrase.keywords && phrase.keywords.length === 0);
+                const rowClass = isMissing ? 'missing' : '';
+
+                return `
+                    <tr class="${rowClass}" data-id="${phrase.id}">
+                        <td>${phrase.id || ''}</td>
+                        <td>
+                            <input type="text" value="${escapeHtml(phrase.phrase || '')}"
+                                   onchange="updatePhrase(${phrase.id}, 'phrase', this.value)">
+                        </td>
+                        <td>
+                            <input type="text" value="${escapeHtml(phrase.meaning || '')}"
+                                   onchange="updatePhrase(${phrase.id}, 'meaning', this.value)"
+                                   style="${!phrase.meaning ? 'background:#fff3cd;' : ''}">
+                        </td>
+                        <td>
+                            <textarea onchange="updatePhrase(${phrase.id}, 'example', this.value)"
+                                      style="${!phrase.example ? 'background:#fff3cd;' : ''}">${escapeHtml(phrase.example || '')}</textarea>
+                        </td>
+                        <td>
+                            <input type="text" value="${Array.isArray(phrase.keywords) ? phrase.keywords.join(', ') : ''}"
+                                   onchange="updatePhrase(${phrase.id}, 'keywords', this.value)"
+                                   placeholder="keyword1, keyword2"
+                                   style="${!phrase.keywords || phrase.keywords.length === 0 ? 'background:#fff3cd;' : ''}">
+                        </td>
+                        <td>
+                            <input type="text" value="${escapeHtml(phrase.level || '')}"
+                                   onchange="updatePhrase(${phrase.id}, 'level', this.value)">
+                        </td>
+                        <td>
+                            <input type="text" value="${escapeHtml(phrase.frequency || '')}"
+                                   onchange="updatePhrase(${phrase.id}, 'frequency', this.value)">
+                        </td>
+                        <td>
+                            <input type="text" value="${escapeHtml(phrase.topic || '')}"
+                                   onchange="updatePhrase(${phrase.id}, 'topic', this.value)">
+                        </td>
+                    </tr>
+                `;
+            }).join('');
+
+            tbody.innerHTML = rows;
+        }
+
+        // 更新语块
+        function updatePhrase(id, field, value) {
+            const phrase = phrases.find(p => p.id === id);
+            if (phrase) {
+                if (field === 'keywords') {
+                    // 将逗号分隔的字符串转换为数组
+                    phrase.keywords = value ? value.split(',').map(k => k.trim()).filter(k => k) : [];
+                } else {
+                    phrase[field] = value;
+                }
+
+                // 更新统计
+                updateStats();
+
+                // 如果字段被填充，移除黄色背景
+                if (value && value.trim()) {
+                    const row = document.querySelector(`tr[data-id="${id}"]`);
+                    if (row) {
+                        const input = row.querySelector(`[onchange*="'${field}'"]`);
+                        if (input) {
+                            input.style.background = '';
+                        }
+                    }
+                }
+            }
+        }
+
+        // 更新统计
+        function updateStats() {
+            const total = phrases.length;
+            const incomplete = phrases.filter(p =>
+                !p.meaning || !p.example ||
+                (p.keywords && p.keywords.length === 0)
+            ).length;
+            const complete = total - incomplete;
+
+            document.getElementById('stat-total').textContent = total;
+            document.getElementById('stat-incomplete').textContent = incomplete;
+            document.getElementById('stat-complete').textContent = complete;
+        }
+
+        // 保存更改
+        async function saveChanges() {
+            if (phrases.length === 0) {
+                alert('没有数据可保存');
+                return;
+            }
+
+            if (!confirm(`确定要保存 ${phrases.length} 条语块数据吗？`)) {
+                return;
+            }
+
+            try {
+                const transaction = db.transaction('phrases', 'readwrite');
+                const store = transaction.objectStore('phrases');
+
+                let savedCount = 0;
+
+                for (const phrase of phrases) {
+                    await new Promise((resolve, reject) => {
+                        const request = store.put(phrase);
+                        request.onsuccess = () => {
+                            savedCount++;
+                            resolve();
+                        };
+                        request.onerror = () => reject(request.error);
+                    });
+                }
+
+                alert(`成功保存 ${savedCount} 条数据！`);
+                renderTable(); // 重新渲染以移除黄色背景
+            } catch (error) {
+                alert('保存失败: ' + error.message);
+            }
+        }
+
+        // 导出数据
+        function exportData() {
+            if (phrases.length === 0) {
+                alert('没有数据可导出');
+                return;
+            }
+
+            const dataStr = JSON.stringify({ phrases: phrases }, null, 2);
+            downloadFile(dataStr, 'vocabulary-export.json', 'application/json');
+        }
+
+        // 导入模板
+        function importTemplate(event) {
+            const file = event.target.files[0];
+            if (!file) return;
+
+            const reader = new FileReader();
+            reader.onload = function(e) {
+                try {
+                    const data = JSON.parse(e.target.result);
+                    if (data.phrases && Array.isArray(data.phrases)) {
+                        document.getElementById('template-area').value = JSON.stringify(data, null, 2);
+                        alert('模板加载成功！点击"应用模板"来应用数据');
+                    } else {
+                        alert('无效的文件格式');
+                    }
+                } catch (error) {
+                    alert('解析文件失败: ' + error.message);
+                }
+            };
+            reader.readAsText(file);
+        }
+
+        // 应用模板
+        function applyTemplate() {
+            const templateText = document.getElementById('template-area').value;
+            if (!templateText.trim()) {
+                alert('请先输入或导入模板数据');
+                return;
+            }
+
+            try {
+                const data = JSON.parse(templateText);
+                if (!data.phrases || !Array.isArray(data.phrases)) {
+                    throw new Error('无效的数据格式');
+                }
+
+                let updatedCount = 0;
+
+                data.phrases.forEach(item => {
+                    // 查找现有语块
+                    let phrase;
+                    if (item.id) {
+                        phrase = phrases.find(p => p.id === item.id);
+                    }
+
+                    if (phrase) {
+                        // 更新现有语块
+                        Object.assign(phrase, item);
+                    } else {
+                        // 添加新语块
+                        const newPhrase = {
+                            id: phrases.length > 0 ? Math.max(...phrases.map(p => p.id || 0)) + 1 : 1,
+                            phrase: item.phrase || '',
+                            meaning: item.meaning || '',
+                            example: item.example || '',
+                            keywords: item.keywords || [],
+                            level: item.level || '核心词汇',
+                            frequency: item.frequency || '中频',
+                            topic: item.topic || '其他'
+                        };
+                        phrases.push(newPhrase);
+                    }
+                    updatedCount++;
+                });
+
+                renderTable();
+                updateStats();
+                alert(`成功应用 ${updatedCount} 条数据！\n请点击"保存更改"保存到数据库。`);
+
+            } catch (error) {
+                alert('应用模板失败: ' + error.message);
+            }
+        }
+
+        // 下载空模板
+        function downloadEmptyTemplate() {
+            const template = {
+                "说明": "填写需要补全的语块数据，id对应现有语块则更新，不填id则添加新语块",
+                "phrases": [
+                  {
+                    "id": 1,
+                    "phrase": "be good at doing",
+                    "meaning": "擅长做某事",
+                    "example": "He is **good at** **playing** basketball.",
+                    "keywords": ["good", "play"],
+                    "level": "核心词汇",
+                    "frequency": "高频",
+                    "topic": "能力描述"
+                  },
+                  {
+                    "phrase": "新语块示例",
+                    "meaning": "新语块翻译",
+                    "example": "This is an **example** **sentence**.",
+                    "keywords": ["example", "sentence"],
+                    "level": "核心词汇",
+                    "frequency": "中频",
+                    "topic": "示例"
+                  }
+                ]
+            };
+
+            const dataStr = JSON.stringify(template, null, 2);
+            downloadFile(dataStr, 'vocabulary-template.json', 'application/json');
+        }
+
+        // 下载文件
+        function downloadFile(content, filename, type) {
+            const blob = new Blob([content], { type: type });
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = filename;
+            a.click();
+            URL.revokeObjectURL(url);
+        }
+
+        // 转义HTML
+        function escapeHtml(text) {
+            const div = document.createElement('div');
+            div.textContent = text || '';
+            return div.innerHTML;
+        }
+    </script>
+</body>
+</html>
