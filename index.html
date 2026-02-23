@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>英语语块学习系统 v6.0</title>
+    <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" href="css/learning.css">
+    <link rel="stylesheet" href="css/dashboard.css">
+    <link rel="stylesheet" href="css/editor.css">
+    <link rel="stylesheet" href="css/statistics.css">
+</head>
+<body>
+    <!-- Loading Screen -->
+    <div id="loading-screen" class="loading-screen">
+        <div class="loading-content">
+            <div class="loading-spinner"></div>
+            <h2>英语语块学习系统</h2>
+            <p>v6.0</p>
+            <p class="loading-text">正在初始化...</p>
+        </div>
+    </div>
+
+    <!-- Main App Container -->
+    <div id="app" class="app-container" style="display: none;">
+        <!-- Header -->
+        <header class="app-header">
+            <div class="header-left">
+                <h1 class="app-title">英语语块学习系统</h1>
+                <span class="app-version">v6.0</span>
+            </div>
+            <div class="header-center">
+                <div class="user-selector">
+                    <select id="user-select" class="user-select">
+                        <option value="default">默认用户</option>
+                    </select>
+                    <button id="add-user-btn" class="icon-btn" title="添加用户">+</button>
+                </div>
+            </div>
+            <div class="header-right">
+                <button id="settings-btn" class="icon-btn" title="设置">⚙️</button>
+                <button id="import-export-btn" class="icon-btn" title="导入/导出">📦</button>
+                <button id="backup-btn" class="icon-btn" title="备份">💾</button>
+            </div>
+        </header>
+
+        <!-- Main Content -->
+        <main class="app-main">
+            <!-- Navigation Tabs -->
+            <nav class="app-nav">
+                <button class="nav-tab active" data-tab="dashboard">
+                    <span class="tab-icon">📊</span>
+                    <span class="tab-label">今日计划</span>
+                </button>
+                <button class="nav-tab" data-tab="learning">
+                    <span class="tab-icon">📚</span>
+                    <span class="tab-label">学习</span>
+                </button>
+                <button class="nav-tab" data-tab="review">
+                    <span class="tab-icon">🔄</span>
+                    <span class="tab-label">复习</span>
+                </button>
+                <button class="nav-tab" data-tab="editor">
+                    <span class="tab-icon">✏️</span>
+                    <span class="tab-label">编辑器</span>
+                </button>
+                <button class="nav-tab" data-tab="statistics">
+                    <span class="tab-icon">📈</span>
+                    <span class="tab-label">统计</span>
+                </button>
+            </nav>
+
+            <!-- Tab Content -->
+            <div class="tab-content">
+                <!-- Dashboard Tab -->
+                <section id="dashboard-tab" class="tab-pane active">
+                    <div class="dashboard-container">
+                        <!-- Daily Plan Card -->
+                        <div class="card daily-plan-card">
+                            <div class="card-header">
+                                <h2>📅 今日学习计划</h2>
+                                <button id="plan-settings-btn" class="btn-icon">⚙️</button>
+                            </div>
+                            <div class="plan-stats">
+                                <div class="plan-stat">
+                                    <div class="stat-icon">⏰</div>
+                                    <div class="stat-label">预计用时</div>
+                                    <div class="stat-value" id="plan-time">--</div>
+                                </div>
+                                <div class="plan-stat">
+                                    <div class="stat-icon">📝</div>
+                                    <div class="stat-label">待复习</div>
+                                    <div class="stat-value" id="plan-review">--</div>
+                                </div>
+                                <div class="plan-stat">
+                                    <div class="stat-icon">🆕</div>
+                                    <div class="stat-label">新学习</div>
+                                    <div class="stat-value" id="plan-new">--</div>
+                                </div>
+                                <div class="plan-stat">
+                                    <div class="stat-icon">📊</div>
+                                    <div class="stat-label">总计</div>
+                                    <div class="stat-value" id="plan-total">--</div>
+                                </div>
+                            </div>
+                            <button id="start-learning-btn" class="btn-primary btn-large">
+                                🚀 开始今日学习
+                            </button>
+                        </div>
+
+                        <!-- Quick Stats -->
+                        <div class="card stats-card">
+                            <div class="card-header">
+                                <h2>📊 学习概览</h2>
+                            </div>
+                            <div class="stats-grid">
+                                <div class="stat-item">
+                                    <div class="stat-value" id="stat-total">0</div>
+                                    <div class="stat-label">总语块数</div>
+                                </div>
+                                <div class="stat-item">
+                                    <div class="stat-value" id="stat-learned">0</div>
+                                    <div class="stat-label">已学习</div>
+                                </div>
+                                <div class="stat-item">
+                                    <div class="stat-value" id="stat-mastered">0</div>
+                                    <div class="stat-label">已掌握</div>
+                                </div>
+                                <div class="stat-item">
+                                    <div class="stat-value" id="stat-due">0</div>
+                                    <div class="stat-label">待复习</div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Quick Actions -->
+                        <div class="card actions-card">
+                            <div class="card-header">
+                                <h2>⚡ 快捷操作</h2>
+                            </div>
+                            <div class="actions-grid">
+                                <button id="quick-learn-btn" class="btn-secondary">
+                                    <span class="btn-icon">📚</span>
+                                    随机学习
+                                </button>
+                                <button id="quick-review-btn" class="btn-secondary">
+                                    <span class="btn-icon">🔄</span>
+                                    立即复习
+                                </button>
+                                <button id="browse-all-btn" class="btn-secondary">
+                                    <span class="btn-icon">📖</span>
+                                    浏览全部
+                                </button>
+                                <button id="import-pdf-btn" class="btn-secondary">
+                                    <span class="btn-icon">📄</span>
+                                    导入PDF
+                                </button>
+                            </div>
+                        </div>
+
+                        <!-- Learning Tips -->
+                        <div class="card tips-card">
+                            <div class="card-header">
+                                <h2>💡 学习提示</h2>
+                            </div>
+                            <div class="tips-content">
+                                <p>✨ 坚持每天学习，效果更佳！</p>
+                                <p>📅 系统会根据您的记忆情况智能安排复习时间。</p>
+                                <p>⭐ 评分时请诚实评估自己的记忆状况。</p>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Learning Tab -->
+                <section id="learning-tab" class="tab-pane" style="display: none;">
+                    <div class="learning-container" id="learning-container">
+                        <!-- Learning content will be injected here -->
+                    </div>
+                </section>
+
+                <!-- Review Tab -->
+                <section id="review-tab" class="tab-pane" style="display: none;">
+                    <div class="review-container" id="review-container">
+                        <!-- Review content will be injected here -->
+                    </div>
+                </section>
+
+                <!-- Editor Tab -->
+                <section id="editor-tab" class="tab-pane" style="display: none;">
+                    <div class="editor-container">
+                        <div class="editor-header">
+                            <h2>✏️ 语块编辑器</h2>
+                            <div class="editor-actions">
+                                <button id="add-phrase-btn" class="btn-primary">➕ 添加语块</button>
+                                <button id="batch-edit-btn" class="btn-secondary">📝 批量编辑</button>
+                                <button id="export-editor-btn" class="btn-secondary">📤 导出</button>
+                            </div>
+                        </div>
+                        <div class="editor-filters">
+                            <input type="text" id="editor-search" placeholder="搜索语块..." class="search-input">
+                            <select id="editor-level-filter" class="filter-select">
+                                <option value="">全部等级</option>
+                                <option value="核心词汇">核心词汇</option>
+                                <option value="进阶词汇">进阶词汇</option>
+                            </select>
+                            <select id="editor-topic-filter" class="filter-select">
+                                <option value="">全部主题</option>
+                            </select>
+                        </div>
+                        <div id="editor-content" class="editor-content">
+                            <!-- Editor list will be rendered here -->
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Statistics Tab -->
+                <section id="statistics-tab" class="tab-pane" style="display: none;">
+                    <div class="statistics-container">
+                        <div class="card">
+                            <div class="card-header">
+                                <h2>📈 学习统计</h2>
+                            </div>
+                            <div id="statistics-content">
+                                <!-- Statistics will be rendered here -->
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            </div>
+        </main>
+
+        <!-- Footer -->
+        <footer class="app-footer">
+            <p>英语语块学习系统 v6.0 | 基于 SM-2 间隔重复算法</p>
+        </footer>
+    </div>
+
+    <!-- Modals -->
+    <!-- Settings Modal -->
+    <div id="settings-modal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>⚙️ 设置</h2>
+                <button class="modal-close">&times;</button>
+            </div>
+            <div class="modal-body">
+                <!-- Settings content -->
+            </div>
+        </div>
+    </div>
+
+    <!-- Import/Export Modal -->
+    <div id="import-export-modal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>📦 导入/导出</h2>
+                <button class="modal-close">&times;</button>
+            </div>
+            <div class="modal-body">
+                <!-- Import/Export content -->
+            </div>
+        </div>
+    </div>
+
+    <!-- Add User Modal -->
+    <div id="add-user-modal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>➕ 添加用户</h2>
+                <button class="modal-close">&times;</button>
+            </div>
+            <div class="modal-body">
+                <form id="add-user-form">
+                    <div class="form-group">
+                        <label for="new-user-name">用户名称</label>
+                        <input type="text" id="new-user-name" required placeholder="输入用户名称">
+                    </div>
+                    <div class="form-actions">
+                        <button type="submit" class="btn-primary">创建</button>
+                        <button type="button" class="btn-secondary modal-close">取消</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Learning Mode Modal -->
+    <div id="learning-modal" class="modal modal-large">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>📚 学习模式</h2>
+                <div class="learning-progress">
+                    <span id="learning-progress-text">0/0</span>
+                </div>
+            </div>
+            <div class="modal-body" id="learning-modal-body">
+                <!-- Learning card will be rendered here -->
+            </div>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script type="module" src="js/app.js"></script>
+</body>
+</html>

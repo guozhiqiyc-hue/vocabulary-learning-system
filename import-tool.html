@@ -1,0 +1,444 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>批量导入工具 - 七上教材</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Microsoft YaHei', Arial, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 20px;
+            padding: 40px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+        }
+        h1 { text-align: center; color: #667eea; margin-bottom: 10px; }
+        .subtitle { text-align: center; color: #666; margin-bottom: 30px; }
+
+        .import-area {
+            border: 3px dashed #667eea;
+            border-radius: 15px;
+            padding: 40px;
+            text-align: center;
+            margin-bottom: 30px;
+            background: #f8f9fa;
+        }
+
+        .file-input {
+            margin: 20px 0;
+        }
+
+        .file-input input {
+            display: none;
+        }
+
+        .file-input label {
+            display: inline-block;
+            padding: 15px 30px;
+            background: #667eea;
+            color: white;
+            border-radius: 10px;
+            cursor: pointer;
+            font-size: 16px;
+            transition: all 0.3s;
+        }
+
+        .file-input label:hover {
+            background: #5568d3;
+            transform: scale(1.05);
+        }
+
+        #file-name {
+            margin-top: 15px;
+            color: #666;
+            font-size: 14px;
+        }
+
+        .btn {
+            padding: 15px 30px;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+            font-size: 16px;
+            margin: 10px;
+            transition: all 0.3s;
+        }
+
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(102, 126, 234, 0.4);
+        }
+
+        .btn:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+            transform: none;
+        }
+
+        #result {
+            margin-top: 30px;
+            padding: 20px;
+            background: #f8f9fa;
+            border-radius: 10px;
+            min-height: 100px;
+        }
+
+        .success { color: #4caf50; }
+        .error { color: #f44336; }
+        .info { color: #2196f3; }
+        .warning { color: #ff9800; }
+
+        .stats {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 15px;
+            margin: 20px 0;
+        }
+
+        .stat-item {
+            text-align: center;
+            padding: 15px;
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+
+        .stat-number {
+            font-size: 32px;
+            font-weight: bold;
+            color: #667eea;
+        }
+
+        .stat-label {
+            font-size: 14px;
+            color: #666;
+            margin-top: 5px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>📚 七上教材数据批量导入</h1>
+        <p class="subtitle">英语语块学习系统 v6.0 - 导入工具</p>
+
+        <div class="import-area">
+            <p style="font-size: 16px; color: #666; margin-bottom: 20px;">
+                请选择 <strong>七上_system.json</strong> 文件进行导入
+            </p>
+
+            <div class="file-input">
+                <input type="file" id="file-input" accept=".json">
+                <label for="file-input">📁 选择文件</label>
+            </div>
+            <div id="file-name"></div>
+
+            <div style="margin-top: 20px;">
+                <button id="preview-btn" class="btn" disabled>👀 预览数据</button>
+                <button id="import-btn" class="btn" disabled>🚀 开始导入</button>
+            </div>
+        </div>
+
+        <div id="result"></div>
+    </div>
+
+    <script type="module">
+        // 打开主数据库
+        const DB_NAME = 'PhraseLearningDB';
+        const DB_VERSION = 1;
+
+        // 打开数据库
+        function openDB() {
+            return new Promise((resolve, reject) => {
+                const request = indexedDB.open(DB_NAME, DB_VERSION);
+
+                request.onerror = () => reject(request.error);
+                request.onsuccess = () => resolve(request.result);
+
+                request.onupgradeneeded = (event) => {
+                    const db = event.target.result;
+                    if (!db.objectStoreNames.contains('phrases')) {
+                        const store = db.createObjectStore('phrases', { keyPath: 'id', autoIncrement: true });
+                        store.createIndex('phrase', 'phrase', { unique: false });
+                    }
+                };
+            });
+        }
+
+        // 读取并预览文件
+        async function previewFile() {
+            const fileInput = document.getElementById('file-input');
+            const result = document.getElementById('result');
+            const previewBtn = document.getElementById('preview-btn');
+            const importBtn = document.getElementById('import-btn');
+
+            if (!fileInput.files || fileInput.files.length === 0) {
+                alert('请先选择文件');
+                return;
+            }
+
+            const file = fileInput.files[0];
+
+            result.innerHTML = '<p class="info">⏳ 正在读取文件...</p>';
+
+            const reader = new FileReader();
+            reader.onload = (e) => {
+                try {
+                    const data = JSON.parse(e.target.result);
+
+                    if (!data.cards || !Array.isArray(data.cards)) {
+                        result.innerHTML = '<p class="error">❌ 文件格式不正确</p>';
+                        return;
+                    }
+
+                    // 显示预览
+                    result.innerHTML = `
+                        <h3 style="margin-bottom:15px;">📋 数据预览</h3>
+                        <div class="stats">
+                            <div class="stat-item">
+                                <div class="stat-number">${data.total}</div>
+                                <div class="stat-label">总语块数</div>
+                            </div>
+                            <div class="stat-item">
+                                <div class="stat-number">8</div>
+                                <div class="stat-label">单元数</div>
+                            </div>
+                            <div class="stat-item">
+                                <div class="stat-number">${data.cards.filter(c => c.level === '核心词汇').length}</div>
+                                <div class="stat-label">核心词汇</div>
+                            </div>
+                            <div class="stat-item">
+                                <div class="stat-number">${data.cards.filter(c => c.level === '进阶词汇').length}</div>
+                                <div class="stat-label">进阶词汇</div>
+                            </div>
+                        </div>
+
+                        <h4 style="margin:15px 0;">前10条数据:</h4>
+                        <div style="max-height:300px;overflow-y:auto;background:white;padding:15px;border-radius:10px;">
+                            ${data.cards.slice(0, 10).map(card => `
+                                <div style="padding:10px;border-bottom:1px solid #eee;">
+                                    <strong>${escapeHTML(card.phrase)}</strong><br>
+                                    <span style="color:#666;font-size:12px;">${escapeHTML(card.unit || '')}</span>
+                                </div>
+                            `).join('')}
+                        </div>
+
+                        <p style="margin-top:15px;color:#4caf50;">✅ 文件格式正确，可以导入！</p>
+                    `;
+
+                    importBtn.disabled = false;
+
+                } catch (error) {
+                    result.innerHTML = `<p class="error">❌ 文件解析失败: ${error.message}</p>`;
+                }
+            };
+            reader.readAsText(file);
+        }
+
+        // 批量导入
+        async function importData() {
+            const fileInput = document.getElementById('file-input');
+            const result = document.getElementById('result');
+            const importBtn = document.getElementById('import-btn');
+
+            if (!fileInput.files || fileInput.files.length === 0) {
+                alert('请先选择文件');
+                return;
+            }
+
+            const file = fileInput.files[0];
+
+            result.innerHTML = '<p class="info">⏳ 正在导入，这可能需要几分钟时间...</p>';
+            importBtn.disabled = true;
+
+            const reader = new FileReader();
+            reader.onload = async (e) => {
+                try {
+                    const data = JSON.parse(e.target.result);
+
+                    if (!data.cards || !Array.isArray(data.cards)) {
+                        result.innerHTML = '<p class="error">❌ 文件格式不正确</p>';
+                        importBtn.disabled = false;
+                        return;
+                    }
+
+                    // 打开数据库
+                    const db = await openDB();
+
+                    // 检查现有数据
+                    const existingCount = await countPhrases(db);
+                    if (existingCount > 0) {
+                        if (!confirm(`数据库中已有 ${existingCount} 条语块。是否继续导入？\n\n点击"确定"将追加数据，点击"取消"将取消导入。`)) {
+                            result.innerHTML = '<p class="warning">⚠️ 导入已取消</p>';
+                            importBtn.disabled = false;
+                            return;
+                        }
+                    }
+
+                    // 导入数据
+                    let imported = 0;
+                    let skipped = 0;
+                    const total = data.cards.length;
+
+                    for (const card of data.cards) {
+                        if (!card.phrase || card.phrase.trim() === '') continue;
+
+                        const cleanPhrase = card.phrase.replace(/\r\n/g, ' ').replace(/\s+/g, ' ').trim();
+
+                        // 检查是否已存在
+                        const exists = await phraseExists(db, cleanPhrase);
+                        if (exists) {
+                            skipped++;
+                            continue;
+                        }
+
+                        const phrase = {
+                            phrase: cleanPhrase,
+                            meaning: card.meaning && card.meaning.trim() !== '' ? card.meaning.trim() : cleanPhrase,
+                            example: card.example && card.example.trim() !== '' ? card.example.trim() : cleanPhrase,
+                            keywords: card.keywords || [],
+                            level: card.level || '核心词汇',
+                            frequency: '高频',
+                            topic: extractTopic(card.unit || '')
+                        };
+
+                        await addPhrase(db, phrase);
+                        imported++;
+
+                        // 更新进度
+                        if (imported % 100 === 0 || imported === total) {
+                            result.innerHTML = `
+                                <h3>📊 导入进度</h3>
+                                <div class="stats">
+                                    <div class="stat-item">
+                                        <div class="stat-number">${imported}</div>
+                                        <div class="stat-label">已导入</div>
+                                    </div>
+                                    <div class="stat-item">
+                                        <div class="stat-number">${skipped}</div>
+                                        <div class="stat-label">已跳过</div>
+                                    </div>
+                                    <div class="stat-item">
+                                        <div class="stat-number">${Math.min(imported + skipped, total)}</div>
+                                        <div class="stat-label">已处理</div>
+                                    </div>
+                                    <div class="stat-item">
+                                        <div class="stat-number">${total}</div>
+                                        <div class="stat-label">总数</div>
+                                    </div>
+                                </div>
+                                <p style="margin-top:15px;" class="info">⏳ 进度: ${imported + skipped}/${total}</p>
+                            `;
+                        }
+                    }
+
+                    // 完成
+                    result.innerHTML = `
+                        <h2 class="success">🎉 导入完成！</h2>
+                        <div class="stats">
+                            <div class="stat-item">
+                                <div class="stat-number">${total}</div>
+                                <div class="stat-label">原始数据</div>
+                            </div>
+                            <div class="stat-item">
+                                <div class="stat-number">${imported}</div>
+                                <div class="stat-label">成功导入</div>
+                            </div>
+                            <div class="stat-item">
+                                <div class="stat-number">${skipped}</div>
+                                <div class="stat-label">跳过重复</div>
+                            </div>
+                            <div class="stat-item">
+                                <div class="stat-number">${existingCount + imported}</div>
+                                <div class="stat-label">数据库总量</div>
+                            </div>
+                        </div>
+                        <p style="margin-top:20px;" class="success">✅ 导入成功！现在可以到主系统开始学习了。</p>
+                        <button class="btn" onclick="window.location.href='index-standalone.html'">🏠 返回主系统</button>
+                    `;
+
+                } catch (error) {
+                    result.innerHTML = `<p class="error">❌ 导入失败: ${error.message}</p>`;
+                    importBtn.disabled = false;
+                }
+            };
+            reader.readAsText(file);
+        }
+
+        // 辅助函数
+        function escapeHTML(text) {
+            const div = document.createElement('div');
+            div.textContent = text;
+            return div.innerHTML;
+        }
+
+        function extractTopic(unit) {
+            const match = unit.match(/Unit (\d+)/);
+            if (match) {
+                const topics = {
+                    '1': '新学校新朋友',
+                    '2': '兴趣爱好',
+                    '3': '学校生活',
+                    '4': '日常活动',
+                    '5': '特殊日子',
+                    '6': '食物与健康',
+                    '7': '购物',
+                    '8': '自然世界'
+                };
+                return topics[match[1]] || 'Unit ' + match[1];
+            }
+            return '其他';
+        }
+
+        function countPhrases(db) {
+            return new Promise((resolve, reject) => {
+                const tx = db.transaction('phrases', 'readonly');
+                const request = tx.objectStore('phrases').count();
+                request.onsuccess = () => resolve(request.result);
+                request.onerror = () => reject(request.error);
+            });
+        }
+
+        function phraseExists(db, phraseText) {
+            return new Promise((resolve, reject) => {
+                const tx = db.transaction('phrases', 'readonly');
+                const index = tx.objectStore('phrases').index('phrase');
+                const request = index.get(phraseText);
+                request.onsuccess = () => resolve(!!request.result);
+                request.onerror = () => resolve(false);
+            });
+        }
+
+        function addPhrase(db, phrase) {
+            return new Promise((resolve, reject) => {
+                const tx = db.transaction('phrases', 'readwrite');
+                const store = tx.objectStore('phrases');
+                const request = store.add(phrase);
+                request.onsuccess = () => resolve(request.result);
+                request.onerror = () => reject(request.error);
+            });
+        }
+
+        // 事件监听
+        document.getElementById('file-input').addEventListener('change', () => {
+            const fileInput = document.getElementById('file-input');
+            if (fileInput.files.length > 0) {
+                document.getElementById('file-name').textContent = fileInput.files[0].name;
+                document.getElementById('preview-btn').disabled = false;
+            }
+        });
+
+        document.getElementById('preview-btn').addEventListener('click', previewFile);
+        document.getElementById('import-btn').addEventListener('click', importData);
+    </script>
+</body>
+</html>

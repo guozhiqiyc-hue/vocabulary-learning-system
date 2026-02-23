@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <title>测试导入功能</title>
+</head>
+<body>
+    <h1>七上教材数据导入测试</h1>
+
+    <div id="result"></div>
+
+    <script>
+        // 测试导入功能
+        async function testImport() {
+            const resultDiv = document.getElementById('result');
+            resultDiv.innerHTML = '<p>正在加载文件...</p>';
+
+            try {
+                const response = await fetch('file:///D:/XX/WL/英语项目需求文档/教材/提取数据/七上_system.json');
+
+                if (!response.ok) {
+                    throw new Error('文件加载失败');
+                }
+
+                const data = await response.json();
+
+                resultDiv.innerHTML = `
+                    <h2>文件读取成功！</h2>
+                    <p><strong>数据源:</strong> ${data.source}</p>
+                    <p><strong>总数:</strong> ${data.total}</p>
+                    <p><strong>cards数组:</strong> ${Array.isArray(data.cards) ? '是 (' + data.cards.length + '条)' : '否'}</p>
+
+                    <h3>前5条预览:</h3>
+                    <pre>${JSON.stringify(data.cards.slice(0, 5), null, 2)}</pre>
+                `;
+
+            } catch (error) {
+                resultDiv.innerHTML = `
+                    <p style="color:red;">错误: ${error.message}</p>
+                    <p>请确认:</p>
+                    <ul>
+                        <li>文件路径是否正确</li>
+                        <li>是否通过HTTP服务器运行</li>
+                        <li>浏览器是否支持fetch本地文件</li>
+                    </ul>
+                `;
+            }
+        }
+
+        // 页面加载后自动测试
+        window.onload = testImport;
+    </script>
+</body>
+</html>

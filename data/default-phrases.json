@@ -1,0 +1,204 @@
+{
+  "phrases": [
+    {
+      "id": 1,
+      "phrase": "be good at doing",
+      "meaning": "擅长做某事",
+      "example": "He is **good at** **playing** basketball.",
+      "keywords": ["good", "play"],
+      "level": "核心词汇",
+      "frequency": "高频",
+      "topic": "能力描述"
+    },
+    {
+      "id": 2,
+      "phrase": "be interested in doing",
+      "meaning": "对做某事感兴趣",
+      "example": "She is **interested in** **reading** novels.",
+      "keywords": ["interested", "read"],
+      "level": "核心词汇",
+      "frequency": "高频",
+      "topic": "兴趣表达"
+    },
+    {
+      "id": 3,
+      "phrase": "look forward to doing",
+      "meaning": "期待做某事",
+      "example": "I **look forward to** **seeing** you soon.",
+      "keywords": ["forward", "see"],
+      "level": "核心词汇",
+      "frequency": "高频",
+      "topic": "期待表达"
+    },
+    {
+      "id": 4,
+      "phrase": "be afraid of doing",
+      "meaning": "害怕做某事",
+      "example": "Don't be **afraid of** **making** mistakes.",
+      "keywords": ["afraid", "make", "mistake"],
+      "level": "核心词汇",
+      "frequency": "高频",
+      "topic": "情感表达"
+    },
+    {
+      "id": 5,
+      "phrase": "be proud of doing",
+      "meaning": "为做某事感到骄傲",
+      "example": "She is **proud of** **winning** the prize.",
+      "keywords": ["proud", "win"],
+      "level": "核心词汇",
+      "frequency": "中频",
+      "topic": "情感表达"
+    },
+    {
+      "id": 6,
+      "phrase": "be used to doing",
+      "meaning": "习惯于做某事",
+      "example": "I am **used to** **getting** up early.",
+      "keywords": ["used", "get"],
+      "level": "核心词汇",
+      "frequency": "高频",
+      "topic": "习惯表达"
+    },
+    {
+      "id": 7,
+      "phrase": "give up doing",
+      "meaning": "放弃做某事",
+      "example": "Don't **give up** **trying**.",
+      "keywords": ["give", "try"],
+      "level": "核心词汇",
+      "frequency": "高频",
+      "topic": "行动建议"
+    },
+    {
+      "id": 8,
+      "phrase": "keep doing",
+      "meaning": "一直做某事",
+      "example": "He **kept** **working** all night.",
+      "keywords": ["keep", "work"],
+      "level": "核心词汇",
+      "frequency": "高频",
+      "topic": "持续动作"
+    },
+    {
+      "id": 9,
+      "phrase": "finish doing",
+      "meaning": "完成做某事",
+      "example": "Have you **finished** **reading** the book?",
+      "keywords": ["finish", "read"],
+      "level": "核心词汇",
+      "frequency": "高频",
+      "topic": "完成动作"
+    },
+    {
+      "id": 10,
+      "phrase": "enjoy doing",
+      "meaning": "享受做某事",
+      "example": "I **enjoy** **listening** to music.",
+      "keywords": ["enjoy", "listen"],
+      "level": "核心词汇",
+      "frequency": "高频",
+      "topic": "喜好表达"
+    },
+    {
+      "id": 11,
+      "phrase": "practice doing",
+      "meaning": "练习做某事",
+      "example": "You need to **practice** **speaking** English every day.",
+      "keywords": ["practice", "speak"],
+      "level": "核心词汇",
+      "frequency": "高频",
+      "topic": "学习行动"
+    },
+    {
+      "id": 12,
+      "phrase": "avoid doing",
+      "meaning": "避免做某事",
+      "example": "You should **avoid** **eating** too much junk food.",
+      "keywords": ["avoid", "eat"],
+      "level": "核心词汇",
+      "frequency": "中频",
+      "topic": "建议劝告"
+    },
+    {
+      "id": 13,
+      "phrase": "mind doing",
+      "meaning": "介意做某事",
+      "example": "Do you **mind** **opening** the window?",
+      "keywords": ["mind", "open"],
+      "level": "核心词汇",
+      "frequency": "高频",
+      "topic": "礼貌询问"
+    },
+    {
+      "id": 14,
+      "phrase": "can't help doing",
+      "meaning": "忍不住做某事",
+      "example": "I **can't help** **laughing** when I see his face.",
+      "keywords": ["help", "laugh"],
+      "level": "进阶词汇",
+      "frequency": "中频",
+      "topic": "情感表达"
+    },
+    {
+      "id": 15,
+      "phrase": "spend time doing",
+      "meaning": "花时间做某事",
+      "example": "She **spends** hours **reading** every day.",
+      "keywords": ["spend", "read"],
+      "level": "核心词汇",
+      "frequency": "高频",
+      "topic": "时间使用"
+    },
+    {
+      "id": 16,
+      "phrase": "waste time doing",
+      "meaning": "浪费时间做某事",
+      "example": "Don't **waste** time **playing** video games all day.",
+      "keywords": ["waste", "play"],
+      "level": "核心词汇",
+      "frequency": "中频",
+      "topic": "时间使用"
+    },
+    {
+      "id": 17,
+      "phrase": "have trouble doing",
+      "meaning": "做某事有困难",
+      "example": "I **have trouble** **understanding** native speakers.",
+      "keywords": ["trouble", "understand"],
+      "level": "核心词汇",
+      "frequency": "高频",
+      "topic": "困难表达"
+    },
+    {
+      "id": 18,
+      "phrase": "have fun doing",
+      "meaning": "做某事很开心",
+      "example": "We **had fun** **playing** soccer yesterday.",
+      "keywords": ["fun", "play"],
+      "level": "核心词汇",
+      "frequency": "高频",
+      "topic": "情感表达"
+    },
+    {
+      "id": 19,
+      "phrase": "have a hard time doing",
+      "meaning": "做某事很困难",
+      "example": "She **had a hard time** **finding** a job.",
+      "keywords": ["find"],
+      "level": "进阶词汇",
+      "frequency": "中频",
+      "topic": "困难表达"
+    },
+    {
+      "id": 20,
+      "phrase": "be busy doing",
+      "meaning": "忙于做某事",
+      "example": "He is **busy** **preparing** for the exam.",
+      "keywords": ["busy", "prepare"],
+      "level": "核心词汇",
+      "frequency": "高频",
+      "topic": "状态描述"
+    }
+  ]
+}

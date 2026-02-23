@@ -1,0 +1,37 @@
+{
+  "name": "english-phrase-learning-system",
+  "version": "6.0.0",
+  "description": "English Phrase Learning System with Spaced Repetition (SM-2 Algorithm)",
+  "main": "js/app.js",
+  "scripts": {
+    "serve": "npx http-server -p 8080 -o",
+    "build": "echo 'No build step required - vanilla JavaScript'",
+    "test": "echo 'No tests configured yet'",
+    "lint": "eslint js/**/*.js"
+  },
+  "keywords": [
+    "learning",
+    "spaced-repetition",
+    "sm2",
+    "english",
+    "phrases",
+    "education",
+    "flashcards"
+  ],
+  "author": "English Learning System",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/yourusername/english-phrase-learning-system.git"
+  },
+  "devDependencies": {
+    "eslint": "^8.0.0",
+    "http-server": "^14.0.0"
+  },
+  "browser": "js/app.js",
+  "browserslist": [
+    "last 2 versions",
+    "not dead",
+    "> 0.2%"
+  ]
+}

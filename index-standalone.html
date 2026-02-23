@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>英语语块学习系统 v6.0</title>
+    <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" href="css/learning.css">
+    <link rel="stylesheet" href="css/dashboard.css">
+    <link rel="stylesheet" href="css/editor.css">
+    <link rel="stylesheet" href="css/statistics.css">
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+        }
+    </style>
+</head>
+<body>
+    <!-- Loading Screen -->
+    <div id="loading-screen" class="loading-screen">
+        <div class="loading-content">
+            <div class="loading-spinner"></div>
+            <h2>英语语块学习系统</h2>
+            <p>v6.0</p>
+            <p class="loading-text">正在初始化...</p>
+        </div>
+    </div>
+
+    <!-- Main App Container -->
+    <div id="app" class="app-container" style="display: none;">
+        <!-- Header -->
+        <header class="app-header">
+            <div class="header-left">
+                <h1 class="app-title">英语语块学习系统</h1>
+                <span class="app-version">v6.0</span>
+            </div>
+            <div class="header-center">
+                <div class="user-selector">
+                    <select id="user-select" class="user-select">
+                        <option value="default">默认用户</option>
+                    </select>
+                </div>
+            </div>
+            <div class="header-right">
+                <button id="settings-btn" class="icon-btn" title="设置">⚙️</button>
+                <button id="import-export-btn" class="icon-btn" title="导入/导出">📦</button>
+                <button id="backup-btn" class="icon-btn" title="备份">💾</button>
+            </div>
+        </header>
+
+        <!-- Main Content -->
+        <main class="app-main">
+            <!-- Navigation Tabs -->
+            <nav class="app-nav">
+                <button class="nav-tab active" data-tab="dashboard">
+                    <span class="tab-icon">📊</span>
+                    <span class="tab-label">今日计划</span>
+                </button>
+                <button class="nav-tab" data-tab="learning">
+                    <span class="tab-icon">📚</span>
+                    <span class="tab-label">学习</span>
+                </button>
+                <button class="nav-tab" data-tab="review">
+                    <span class="tab-icon">🔄</span>
+                    <span class="tab-label">复习</span>
+                </button>
+                <button class="nav-tab" data-tab="editor">
+                    <span class="tab-icon">✏️</span>
+                    <span class="tab-label">编辑器</span>
+                </button>
+                <button class="nav-tab" data-tab="statistics">
+                    <span class="tab-icon">📈</span>
+                    <span class="tab-label">统计</span>
+                </button>
+            </nav>
+
+            <!-- Tab Content -->
+            <div class="tab-content">
+                <!-- Dashboard Tab -->
+                <section id="dashboard-tab" class="tab-pane active">
+                    <div class="dashboard-container">
+                        <!-- Daily Plan Card -->
+                        <div class="card daily-plan-card">
+                            <div class="card-header">
+                                <h2>📅 今日学习计划</h2>
+                                <button class="settings-btn" onclick="window.app.showSettings()">
+                                    ⚙️ 设置
+                                </button>
+                            </div>
+                            <div class="config-info">
+                                <div class="config-info-item">
+                                    <div class="config-info-label">📚 每日复习</div>
+                                    <div class="config-info-value" id="info-review">40个</div>
+                                </div>
+                                <div class="config-info-item">
+                                    <div class="config-info-label">📖 每日新学</div>
+                                    <div class="config-info-value" id="info-new">20个</div>
+                                </div>
+                                <div class="config-info-item">
+                                    <div class="config-info-label">📊 总计</div>
+                                    <div class="config-info-value" id="info-total">60个</div>
+                                </div>
+                                <div class="config-info-time">
+                                    <div class="config-info-time-label">⏱️ 预计用时</div>
+                                    <div class="config-info-time-value" id="info-time">30-40分钟</div>
+                                </div>
+                            </div>
+                            <div class="plan-stats">
+                                <div class="plan-stat">
+                                    <div class="stat-icon">⏰</div>
+                                    <div class="stat-label">预计用时</div>
+                                    <div class="stat-value" id="plan-time">--</div>
+                                </div>
+                                <div class="plan-stat">
+                                    <div class="stat-icon">📝</div>
+                                    <div class="stat-label">待复习</div>
+                                    <div class="stat-value" id="plan-review">--</div>
+                                </div>
+                                <div class="plan-stat">
+                                    <div class="stat-icon">🆕</div>
+                                    <div class="stat-label">新学习</div>
+                                    <div class="stat-value" id="plan-new">--</div>
+                                </div>
+                                <div class="plan-stat">
+                                    <div class="stat-icon">📊</div>
+                                    <div class="stat-label">总计</div>
+                                    <div class="stat-value" id="plan-total">--</div>
+                                </div>
+                            </div>
+                            <button id="start-learning-btn" class="btn-primary btn-large">
+                                🚀 开始今日学习
+                            </button>
+                        </div>
+
+                        <!-- Quick Stats -->
+                        <div class="card stats-card">
+                            <div class="card-header">
+                                <h2>📊 学习概览</h2>
+                            </div>
+                            <div class="stats-grid">
+                                <div class="stat-item">
+                                    <div class="stat-value" id="stat-total">0</div>
+                                    <div class="stat-label">总语块数</div>
+                                </div>
+                                <div class="stat-item">
+                                    <div class="stat-value" id="stat-learned">0</div>
+                                    <div class="stat-label">已学习</div>
+                                </div>
+                                <div class="stat-item">
+                                    <div class="stat-value" id="stat-mastered">0</div>
+                                    <div class="stat-label">已掌握</div>
+                                </div>
+                                <div class="stat-item">
+                                    <div class="stat-value" id="stat-due">0</div>
+                                    <div class="stat-label">待复习</div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Quick Actions -->
+                        <div class="card actions-card">
+                            <div class="card-header">
+                                <h2>⚡ 快捷操作</h2>
+                            </div>
+                            <div class="actions-grid">
+                                <button id="quick-learn-btn" class="btn-secondary">
+                                    <span class="btn-icon">📚</span>
+                                    随机学习
+                                </button>
+                                <button id="quick-review-btn" class="btn-secondary">
+                                    <span class="btn-icon">🔄</span>
+                                    立即复习
+                                </button>
+                                <button id="browse-all-btn" class="btn-secondary">
+                                    <span class="btn-icon">📖</span>
+                                    浏览全部
+                                </button>
+                            </div>
+                        </div>
+
+                        <!-- Tips -->
+                        <div class="card tips-card">
+                            <div class="card-header">
+                                <h2>💡 学习提示</h2>
+                            </div>
+                            <div class="tips-content">
+                                <p>✨ 坚持每天学习，效果更佳！</p>
+                                <p>📅 系统会根据您的记忆情况智能安排复习时间。</p>
+                                <p>⭐ 评分时请诚实评估自己的记忆状况。</p>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Learning Tab -->
+                <section id="learning-tab" class="tab-pane" style="display: none;">
+                    <div class="learning-container" id="learning-container">
+                        <div class="empty-state">
+                            <div class="empty-state-icon">📚</div>
+                            <p>学习功能开发中...</p>
+                            <p>请使用"开始今日学习"按钮开始学习</p>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Review Tab -->
+                <section id="review-tab" class="tab-pane" style="display: none;">
+                    <div class="review-container" id="review-container">
+                        <div class="empty-state">
+                            <div class="empty-state-icon">🔄</div>
+                            <p>复习功能开发中...</p>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Editor Tab -->
+                <section id="editor-tab" class="tab-pane" style="display: none;">
+                    <div class="editor-container">
+                        <div class="empty-state">
+                            <div class="empty-state-icon">✏️</div>
+                            <p>编辑器功能开发中...</p>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Statistics Tab -->
+                <section id="statistics-tab" class="tab-pane" style="display: none;">
+                    <div class="statistics-container">
+                        <div class="card">
+                            <div class="card-header">
+                                <h2>📈 学习统计</h2>
+                            </div>
+                            <div id="statistics-content">
+                                <div class="empty-state">
+                                    <div class="empty-state-icon">📊</div>
+                                    <p>统计功能开发中...</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            </div>
+        </main>
+
+        <!-- Footer -->
+        <footer class="app-footer">
+            <p>英语语块学习系统 v6.0 | 基于 SM-2 间隔重复算法</p>
+        </footer>
+    </div>
+
+    <!-- Learning Modal -->
+    <div id="learning-modal" class="modal modal-large">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>📚 学习模式</h2>
+                <div class="learning-progress">
+                    <span id="learning-progress-text">0/0</span>
+                </div>
+                <button class="modal-close">&times;</button>
+            </div>
+            <div class="modal-body" id="learning-modal-body">
+                <!-- Learning card will be rendered here -->
+            </div>
+        </div>
+    </div>
+
+    <!-- Settings Modal -->
+    <div id="settings-modal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>⚙️ 学习设置</h2>
+                <button class="modal-close" onclick="window.app.closeSettings()">&times;</button>
+            </div>
+            <div class="modal-body">
+                <!-- 学习模式预设 -->
+                <div class="setting-group">
+                    <label>学习模式预设</label>
+                    <div class="mode-selection">
+                        <div class="mode-card active" id="mode-balanced" onclick="window.app.selectModePreset('balanced')">
+                            <div class="mode-icon">⚖️</div>
+                            <div class="mode-name">平衡模式</div>
+                            <div class="mode-description">复习40 + 新学20</div>
+                            <div class="mode-stats">30-40分钟/天<br>3个月明显提升</div>
+                        </div>
+                        <div class="mode-card" id="mode-review" onclick="window.app.selectModePreset('review')">
+                            <div class="mode-icon">🔄</div>
+                            <div class="mode-name">强化复习</div>
+                            <div class="mode-description">复习60 + 新学10</div>
+                            <div class="mode-stats">巩固基础优先<br>夯实已学内容</div>
+                        </div>
+                        <div class="mode-card" id="mode-new" onclick="window.app.selectModePreset('new')">
+                            <div class="mode-icon">📖</div>
+                            <div class="mode-name">快速扩充</div>
+                            <div class="mode-description">复习20 + 新学40</div>
+                            <div class="mode-stats">快速增加词汇<br>适合冲刺阶段</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 自定义调整 -->
+                <div class="setting-group">
+                    <label>自定义调整 (可选)</label>
+                    <div class="range-input">
+                        <label>每日复习上限:</label>
+                        <input type="range" id="setting-review-limit" min="10" max="100" value="40"
+                               oninput="window.app.updateSettingValue('review', this.value)">
+                        <span id="setting-review-value">40个</span>
+                    </div>
+                    <div class="range-input">
+                        <label>每日新学上限:</label>
+                        <input type="range" id="setting-new-limit" min="5" max="60" value="20"
+                               oninput="window.app.updateSettingValue('new', this.value)">
+                        <span id="setting-new-value">20个</span>
+                    </div>
+                </div>
+
+                <div class="setting-info">
+                    💡 <strong>使用提示</strong>: 点击上方卡片快速选择模式,或手动调整滑块自定义。
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button class="btn-secondary" onclick="window.app.closeSettings()">取消</button>
+                <button class="btn-primary" onclick="window.app.saveSettings()">保存设置</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="js/bundle.js"></script>
+</body>
+</html>
