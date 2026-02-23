@@ -1,0 +1,65 @@
+请为以下50个英语语块补全中文翻译和例句（第18批，第851-900条）：
+
+851. ideas
+852. idiom
+853. image
+854. imagine
+855. important
+856. include
+857. informal
+858. information
+859. inon
+860. inside
+861. insure
+862. integration
+863. interest
+864. interested
+865. interesting
+866. interests
+867. internet
+868. interview
+869. introduce
+870. introducing
+871. introduction
+872. introductions
+873. invited
+874. inviting
+875. involve
+876. isbn
+877. italicize
+878. jack
+879. jacket
+880. james
+881. january
+882. japan
+883. jeans
+884. jenny
+885. jiangsu
+886. jiaocai
+887. jiaozi
+888. jimmy
+889. jing
+890. jobs
+891. jogging
+892. john
+893. join
+894. joke
+895. juice
+896. july
+897. jump
+898. june
+899. juuli
+900. kant
+
+要求：
+1. 返回JSON数组格式
+2. 包含字段：phrase, meaning, example
+3. 例句中的关键词用 ** 包裹（如: He is **good at** **playing**）
+4. 翻译要准确简洁
+5. 例句要实用自然，适合初中生理解
+6. 不要有任何其他文字，只要JSON数组
+
+格式示例：
+[
+  {"phrase": "look at", "meaning": "看", "example": "Please **look at** the blackboard."}
+]

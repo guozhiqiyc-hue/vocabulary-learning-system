@@ -1,0 +1,356 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>批量补全数据处理工具</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Microsoft YaHei', Arial, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 20px;
+            padding: 30px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+        }
+        h1 { color: #667eea; margin-bottom: 20px; }
+        .stats {
+            display: flex;
+            gap: 15px;
+            margin-bottom: 20px;
+        }
+        .stat-box {
+            flex: 1;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 15px;
+            border-radius: 10px;
+            text-align: center;
+        }
+        .stat-box .number {
+            font-size: 28px;
+            font-weight: bold;
+        }
+        textarea {
+            width: 100%;
+            min-height: 400px;
+            padding: 15px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            font-family: 'Consolas', monospace;
+            font-size: 13px;
+            margin: 10px 0;
+        }
+        .btn {
+            padding: 12px 24px;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            margin-right: 10px;
+            font-size: 14px;
+        }
+        .btn-primary { background: #667eea; color: white; }
+        .btn-success { background: #28a745; color: white; }
+        .progress {
+            background: #f8f9fa;
+            padding: 20px;
+            border-radius: 10px;
+            margin-bottom: 20px;
+        }
+        .progress-bar {
+            width: 100%;
+            height: 30px;
+            background: #e0e0e0;
+            border-radius: 15px;
+            overflow: hidden;
+            margin-bottom: 10px;
+        }
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, #667eea 0%, #764ba2 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 12px;
+            font-weight: bold;
+        }
+        .log {
+            background: #1e1e1e;
+            color: #d4d4d4;
+            padding: 15px;
+            border-radius: 8px;
+            max-height: 300px;
+            overflow-y: auto;
+            font-family: 'Consolas', monospace;
+            font-size: 12px;
+        }
+        .log-entry {
+            margin-bottom: 5px;
+        }
+        .log-entry.success { color: #4ec9b0; }
+        .log-entry.error { color: #f48771; }
+        .log-entry.info { color: #569cd6; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🚀 批量补全数据处理工具</h1>
+
+        <div class="stats">
+            <div class="stat-box">
+                <div class="number" id="stat-total">944</div>
+                <div>总语块</div>
+            </div>
+            <div class="stat-box">
+                <div class="number" id="stat-completed">50</div>
+                <div>已完成</div>
+            </div>
+            <div class="stat-box">
+                <div class="number" id="stat-remaining">894</div>
+                <div>待处理</div>
+            </div>
+            <div class="stat-box">
+                <div class="number" id="stat-batches">19</div>
+                <div>总批次数</div>
+            </div>
+        </div>
+
+        <div class="progress">
+            <h3>📈 总体进度</h3>
+            <div class="progress-bar">
+                <div class="progress-fill" id="progress-fill" style="width: 5.3%">5.3%</div>
+            </div>
+            <p style="text-align: center;">当前批次: <strong id="current-batch">1</strong> / 19</p>
+        </div>
+
+        <div style="margin-bottom: 20px;">
+            <button class="btn btn-primary" onclick="loadNextBatch()">📊 加载下一批提示词</button>
+            <button class="btn btn-success" onclick="applyBatch()">✅ 应用本批次</button>
+            <button class="btn btn-success" onclick="downloadAll()">💾 下载完整数据</button>
+            <button class="btn btn-primary" onclick="showInstructions()">📖 使用说明</button>
+        </div>
+
+        <div id="instructions" style="display: none; background: #e3f2fd; padding: 15px; border-radius: 8px; margin-bottom: 20px;">
+            <h3>📖 使用说明</h3>
+            <ol>
+                <li>点击"📊 加载下一批提示词"</li>
+                <li>复制提示词，发送给Claude AI</li>
+                <li>将Claude返回的JSON粘贴到下方文本框</li>
+                <li>点击"✅ 应用本批次"</li>
+                <li>重复步骤1-4直到所有批次完成</li>
+                <li>点击"💾 下载完整数据"</li>
+            </ol>
+        </div>
+
+        <h3>📝 当前批次提示词（点击加载后显示）</h3>
+        <textarea id="prompt-text" readonly placeholder="点击"加载下一批提示词"后，这里会显示提示词..."></textarea>
+
+        <h3>📋 Claude返回的JSON数据</h3>
+        <textarea id="claude-response" placeholder="将Claude生成的JSON数组粘贴到这里...
+
+格式示例:
+[
+  {&quot;phrase&quot;: &quot;look at&quot;, &quot;meaning&quot;: &quot;看&quot;, &quot;example&quot;: &quot;Please **look at** this.&quot;},
+  ...
+]"></textarea>
+
+        <h3>📊 处理日志</h3>
+        <div class="log" id="log">
+            <div class="log-entry info">等待开始...</div>
+        </div>
+    </div>
+
+    <script src="../七上_system_unique.json"></script>
+    <script>
+        let currentData = window[0]; // 加载的去重数据
+        let currentBatchNum = 1;
+        let allCompletedData = [];
+        const BATCH_SIZE = 50;
+
+        // 初始化
+        function init() {
+            // 加载已完成的批次
+            try {
+                const batch1 = require('../completed/batch_1.json');
+                allCompletedData = batch1;
+                updateStats();
+                addLog('success', '已加载批次1 (50条)');
+            } catch (e) {
+                addLog('info', '未找到已完成的批次');
+            }
+        }
+
+        function addLog(type, message) {
+            const log = document.getElementById('log');
+            const time = new Date().toLocaleTimeString();
+            const entry = document.createElement('div');
+            entry.className = `log-entry ${type}`;
+            entry.textContent = `[${time}] ${message}`;
+            log.appendChild(entry);
+            log.scrollTop = log.scrollHeight;
+        }
+
+        function updateStats() {
+            const completed = allCompletedData.length;
+            const remaining = currentData.cards.length - completed;
+            const progress = ((completed / currentData.cards.length) * 100).toFixed(1);
+
+            document.getElementById('stat-completed').textContent = completed;
+            document.getElementById('stat-remaining').textContent = remaining;
+            document.getElementById('current-batch').textContent = currentBatchNum;
+            document.getElementById('progress-fill').style.width = progress + '%';
+            document.getElementById('progress-fill').textContent = progress + '%';
+        }
+
+        function loadNextBatch() {
+            // 找出未完成的语块
+            const completedPhrases = new Set(allCompletedData.map(item => item.phrase.replace(/\s+/g, ' ').trim()));
+
+            const incomplete = currentData.cards.filter(card => {
+                const cleanPhrase = card.phrase.replace(/\s+/g, ' ').trim();
+                return !completedPhrases.has(cleanPhrase);
+            });
+
+            if (incomplete.length === 0) {
+                alert('🎉 所有数据已完成！');
+                return;
+            }
+
+            const batch = incomplete.slice(0, BATCH_SIZE);
+            const startIdx = currentData.cards.length - incomplete.length + 1;
+            const endIdx = startIdx + batch.length - 1;
+
+            let prompt = `请为以下${batch.length}个英语语块补全中文翻译和例句（第${currentBatchNum + 1}批，第${startIdx}-${endIdx}条）：\n\n`;
+            batch.forEach((card, index) => {
+                prompt += `${startIdx + index}. ${card.phrase}\n`;
+            });
+
+            prompt += `\n要求：\n`;
+            prompt += `1. 返回JSON数组格式\n`;
+            prompt += `2. 包含字段：phrase, meaning, example\n`;
+            prompt += `3. 例句中的关键词用 ** 包裹\n`;
+            prompt += `4. 翻译要准确简洁，适合初中生\n`;
+            prompt += `5. 例句要实用自然\n`;
+            prompt += `6. 不要有任何其他文字，只要JSON数组\n`;
+
+            document.getElementById('prompt-text').value = prompt;
+
+            // 复制到剪贴板
+            navigator.clipboard.writeText(prompt).then(() => {
+                addLog('info', `批次${currentBatchNum + 1}提示词已生成并复制到剪贴板`);
+                alert(`✅ 提示词已复制！\n\n批次: ${currentBatchNum + 1}\n条数: ${batch.length}\n范围: ${startIdx}-${endIdx}\n\n请发送给Claude AI`);
+            }).catch(err => {
+                addLog('error', '复制失败: ' + err);
+            });
+        }
+
+        function applyBatch() {
+            const responseText = document.getElementById('claude-response').value.trim();
+            if (!responseText) {
+                alert('请先粘贴Claude生成的JSON数据');
+                return;
+            }
+
+            try {
+                addLog('info', '正在解析数据...');
+
+                let jsonData = responseText;
+                const jsonMatch = responseText.match(/```(?:json)?\s*(\[[\s\S]*\])\s*```/);
+                if (jsonMatch) jsonData = jsonMatch[1];
+                const arrayMatch = responseText.match(/\[[\s\S]*\]/);
+                if (arrayMatch && !jsonMatch) jsonData = arrayMatch[0];
+
+                const batchData = JSON.parse(jsonData);
+
+                if (!Array.isArray(batchData)) {
+                    throw new Error('数据格式错误：应该是JSON数组');
+                }
+
+                addLog('success', `✅ 解析成功: ${batchData.length} 条`);
+
+                // 添加到总数据
+                allCompletedData = allCompletedData.concat(batchData);
+                currentBatchNum++;
+
+                updateStats();
+                addLog('success', `✅ 已应用批次${currentBatchNum}，总计完成: ${allCompletedData.length}条`);
+
+                // 清空输入框
+                document.getElementById('claude-response').value = '';
+
+                // 检查是否还有剩余
+                const completedPhrases = new Set(allCompletedData.map(item => item.phrase.replace(/\s+/g, ' ').trim()));
+                const incomplete = currentData.cards.filter(card => {
+                    const cleanPhrase = card.phrase.replace(/\s+/g, ' ').trim();
+                    return !completedPhrases.has(cleanPhrase);
+                });
+
+                if (incomplete.length === 0) {
+                    alert('🎉 所有批次已完成！\n\n现在可以点击"下载完整数据"');
+                } else {
+                    alert(`✅ 批次应用成功！\n\n已完成: ${allCompletedData.length}\n剩余: ${incomplete.length}`);
+                }
+
+            } catch (error) {
+                addLog('error', '解析失败: ' + error.message);
+                alert('JSON解析失败：\n' + error.message);
+            }
+        }
+
+        function downloadAll() {
+            // 应用所有数据到原始数据
+            const completedMap = new Map();
+            allCompletedData.forEach(item => {
+                const cleanPhrase = item.phrase.replace(/\s+/g, ' ').trim();
+                completedMap.set(cleanPhrase, item);
+            });
+
+            let updatedCount = 0;
+            currentData.cards.forEach(card => {
+                const cleanPhrase = card.phrase.replace(/\s+/g, ' ').trim();
+                if (completedMap.has(cleanPhrase)) {
+                    const completed = completedMap.get(cleanPhrase);
+                    if (!card.meaning || card.meaning.trim() === '') {
+                        card.meaning = completed.meaning;
+                    }
+                    if (!card.example || card.example.trim() === '') {
+                        card.example = completed.example;
+                    }
+                    updatedCount++;
+                }
+            });
+
+            addLog('success', `✅ 成功更新 ${updatedCount} 条数据`);
+
+            // 下载
+            const dataStr = JSON.stringify(currentData, null, 2);
+            const blob = new Blob([dataStr], { type: 'application/json' });
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = '七上_system_全部完成.json';
+            a.click();
+            URL.revokeObjectURL(url);
+
+            addLog('success', '✅ 文件已下载');
+            alert(`✅ 文件已下载！\n\n完成: ${allCompletedData.length}/${currentData.cards.length}\n更新: ${updatedCount}`);
+        }
+
+        function showInstructions() {
+            const instructions = document.getElementById('instructions');
+            instructions.style.display = instructions.style.display === 'none' ? 'block' : 'none';
+        }
+
+        // 页面加载时初始化
+        window.onload = init;
+    </script>
+</body>
+</html>

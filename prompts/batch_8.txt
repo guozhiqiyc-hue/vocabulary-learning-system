@@ -1,0 +1,65 @@
+请为以下50个英语语块补全中文翻译和例句（第8批，第351-400条）：
+
+351. change
+352. changes
+353. character
+354. chart
+355. charts
+356. chat
+357. chats
+358. chatting
+359. check
+360. cheese
+361. chen
+362. chess
+363. chicken
+364. child
+365. children
+366. china
+367. chinese
+368. chip
+369. chips
+370. chocolate
+371. choices
+372. chongyang
+373. choose
+374. choosing
+375. chore
+376. chores
+377. christmas
+378. christmasat
+379. chshss
+380. ciation
+381. cinema
+382. circle
+383. city
+384. class
+385. classes
+386. classmate
+387. classmates
+388. classroom
+389. classrooms
+390. clean
+391. cleaning
+392. cleans
+393. clear
+394. clearly
+395. climb
+396. climbing
+397. clock
+398. close
+399. closely
+400. closing
+
+要求：
+1. 返回JSON数组格式
+2. 包含字段：phrase, meaning, example
+3. 例句中的关键词用 ** 包裹（如: He is **good at** **playing**）
+4. 翻译要准确简洁
+5. 例句要实用自然，适合初中生理解
+6. 不要有任何其他文字，只要JSON数组
+
+格式示例：
+[
+  {"phrase": "look at", "meaning": "看", "example": "Please **look at** the blackboard."}
+]

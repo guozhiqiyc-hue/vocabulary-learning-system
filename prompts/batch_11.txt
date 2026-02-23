@@ -1,0 +1,65 @@
+请为以下50个英语语块补全中文翻译和例句（第11批，第501-550条）：
+
+501. design
+502. designer
+503. desk
+504. deskmate
+505. deskmates
+506. details
+507. devd
+508. dfrnt
+509. diary
+510. diet
+511. differences
+512. different
+513. dining
+514. dinner
+515. dinners
+516. dinz
+517. dirfi
+518. discuss
+519. discussing
+520. dish
+521. dishes
+522. djuti
+523. dmnezim
+524. dmpl
+525. doctor
+526. doctors
+527. documentary
+528. doesdo
+529. doesn
+530. dogs
+531. doing
+532. dollar
+533. dolls
+534. door
+535. doorstep
+536. double
+537. down
+538. dpend
+539. draft
+540. dragon
+541. draw
+542. drawing
+543. dream
+544. dreams
+545. dress
+546. dressed
+547. dresses
+548. dressing
+549. drim
+550. drink
+
+要求：
+1. 返回JSON数组格式
+2. 包含字段：phrase, meaning, example
+3. 例句中的关键词用 ** 包裹（如: He is **good at** **playing**）
+4. 翻译要准确简洁
+5. 例句要实用自然，适合初中生理解
+6. 不要有任何其他文字，只要JSON数组
+
+格式示例：
+[
+  {"phrase": "look at", "meaning": "看", "example": "Please **look at** the blackboard."}
+]

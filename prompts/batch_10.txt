@@ -1,0 +1,65 @@
+请为以下50个英语语块补全中文翻译和例句（第10批，第451-500条）：
+
+451. country
+452. couplets
+453. course
+454. cousin
+455. cover
+456. cream
+457. cries
+458. crossword
+459. cucumber
+460. cucumbers
+461. cuisines
+462. culture
+463. cultures
+464. cups
+465. curd
+466. cute
+467. cuts
+468. cutting
+469. dads
+470. daily
+471. daisy
+472. dance
+473. dancer
+474. dances
+475. dancing
+476. daniel
+477. dark
+478. date
+479. dates
+480. david
+481. days
+482. dead
+483. deal
+484. dear
+485. december
+486. decide
+487. decorate
+488. decorations
+489. dekret
+490. deli
+491. delicious
+492. demz
+493. deni
+494. denmark
+495. denmk
+496. dentlmn
+497. depend
+498. depends
+499. describe
+500. descriptions
+
+要求：
+1. 返回JSON数组格式
+2. 包含字段：phrase, meaning, example
+3. 例句中的关键词用 ** 包裹（如: He is **good at** **playing**）
+4. 翻译要准确简洁
+5. 例句要实用自然，适合初中生理解
+6. 不要有任何其他文字，只要JSON数组
+
+格式示例：
+[
+  {"phrase": "look at", "meaning": "看", "example": "Please **look at** the blackboard."}
+]

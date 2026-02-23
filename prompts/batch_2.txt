@@ -1,0 +1,72 @@
+请为以下50个英语语块补全中文翻译和例句（第2批，第51-100条）：
+
+51. Here are my new
+        classmates
+52. We also use
+53. He is always full of energy
+54. He is good at sport
+55. He often plays football after school
+56. She is tall and slim
+57. She has long hair
+58. She is very polite
+59. She likes music and she can
+60. He is not tall
+61. He wears glasses
+62. He is smart and always ready
+63. He is interested in science
+64. Match the new students in
+65. Then correct the false one
+66. Millie is interested in reading
+67. Simon is not tall
+68. Simon loves science
+69. Sandy is a tall
+70. Daniel wear glasses
+71. Daniel is very helpful
+72. Wu is making some notes about
+73. Complete his notes with the
+     correct
+74. She has short hair
+75. She loves reading
+76. Simon is a tall boy
+77. He likes sport and
+78. He is
+             always
+79. Sandy is a tall and
+80. She is interested
+             in music
+81. She is very
+82. She always says
+83. Daniel is not tall
+84. He likes
+             learning about
+85. He is very nice and always
+86. My new students are all very
+87. Write some sentences about yourself or
+88. You can write them
+   in the
+89. Millie sends a message to her
+90. Jenny about her new classmates
+91. Read the
+message and pay attention
+92. It is a nice school
+93. They are all very friendly
+94. Sandy is a tall girl
+95. Simon is tall too
+96. We are friends now
+97. How about you
+98. Are you happy at your new
+99. We use the simple present tense
+100. We make positive and negative sentences
+
+要求：
+1. 返回JSON数组格式
+2. 包含字段：phrase, meaning, example
+3. 例句中的关键词用 ** 包裹（如: He is **good at** **playing**）
+4. 翻译要准确简洁
+5. 例句要实用自然，适合初中生理解
+6. 不要有任何其他文字，只要JSON数组
+
+格式示例：
+[
+  {"phrase": "look at", "meaning": "看", "example": "Please **look at** the blackboard."}
+]

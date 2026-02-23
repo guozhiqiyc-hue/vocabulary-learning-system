@@ -1,0 +1,65 @@
+请为以下50个英语语块补全中文翻译和例句（第13批，第601-650条）：
+
+601. evening
+602. evenings
+603. event
+604. events
+605. everybody
+606. everyone
+607. everything
+608. evriwn
+609. example
+610. examples
+611. exceptions
+612. excited
+613. exciting
+614. exclamation
+615. exercise
+616. exercises
+617. exists
+618. expect
+619. expensive
+620. express
+621. expressions
+622. eyes
+623. face
+624. fact
+625. facts
+626. fahmouisley
+627. fair
+628. false
+629. famifloyodbudgehtoliidsayfsor
+630. families
+631. family
+632. famisslpayvoirntbgsudgeostatvhiiensrgsfor
+633. famous
+634. farm
+635. fashion
+636. fast
+637. father
+638. favourite
+639. fear
+640. feature
+641. features
+642. february
+643. feel
+644. feeling
+645. feelings
+646. feels
+647. feet
+648. feng
+649. festival
+650. festivals
+
+要求：
+1. 返回JSON数组格式
+2. 包含字段：phrase, meaning, example
+3. 例句中的关键词用 ** 包裹（如: He is **good at** **playing**）
+4. 翻译要准确简洁
+5. 例句要实用自然，适合初中生理解
+6. 不要有任何其他文字，只要JSON数组
+
+格式示例：
+[
+  {"phrase": "look at", "meaning": "看", "example": "Please **look at** the blackboard."}
+]

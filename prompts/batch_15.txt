@@ -1,0 +1,65 @@
+请为以下50个英语语块补全中文翻译和例句（第15批，第701-750条）：
+
+701. free
+702. frendli
+703. frequency
+704. fresh
+705. frev
+706. friday
+707. fridays
+708. friend
+709. friendly
+710. friends
+711. frns
+712. front
+713. fruit
+714. fruits
+715. full
+716. further
+717. futai
+718. future
+719. gala
+720. game
+721. garden
+722. gate
+723. gather
+724. general
+725. gentleman
+726. gentlemen
+727. geography
+728. george
+729. gets
+730. getting
+731. giant
+732. gift
+733. gifts
+734. girl
+735. girls
+736. given
+737. gives
+738. giving
+739. glad
+740. glass
+741. glasses
+742. goals
+743. goes
+744. going
+745. goodbye
+746. grade
+747. grammar
+748. grandfather
+749. grandma
+750. grandpa
+
+要求：
+1. 返回JSON数组格式
+2. 包含字段：phrase, meaning, example
+3. 例句中的关键词用 ** 包裹（如: He is **good at** **playing**）
+4. 翻译要准确简洁
+5. 例句要实用自然，适合初中生理解
+6. 不要有任何其他文字，只要JSON数组
+
+格式示例：
+[
+  {"phrase": "look at", "meaning": "看", "example": "Please **look at** the blackboard."}
+]

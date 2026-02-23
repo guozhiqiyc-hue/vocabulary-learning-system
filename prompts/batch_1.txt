@@ -1,0 +1,67 @@
+请为以下50个英语语块补全中文翻译和例句（第1批，第1-50条）：
+
+1. Look at the
+2. look at the
+3. be ready to
+4. be good for
+5. Welcome to the unit
+6. Getting to know each other
+7. Simple present tense
+8. What do you like to
+9. Places at school
+10. Our wonderful school
+11. Welcome to our
+12. Prepositions of time
+13. Adverbs of frequency
+14. All kinds of food
+15. Countable and uncountable
+16. Gifts around the
+17. Be wise with      world                 management
+18. Using there be
+19. Festivals around the
+20. Meeting my new
+21. Great places at school
+22. Learning by doing
+23. Different types of
+24. All about money
+25. Festivals for the
+26. Millie and her new classmates
+27. In this unit
+28. This is our first day at
+29. Here are some students from
+30. Read what they say
+31. Daniel is my
+32. Please greet and introduce            is
+33. You can call me
+34. Chinese name is
+35. Millie is greeting
+36. Work in pairs
+37. Greet your partner and then introduce
+38. Use the conversation below as a
+39. The sentences in the box may
+40. The same goes for
+41. Nice to meet you
+42. Glad to meet you too
+43. Which class are you in
+44. Do you have any
+
+           hobbies
+45. What about you
+46. What other greetings do you know
+47. Think of a different greeting and
+48. Millie is introducing herself and her
+49. What do you want to tell
+50. What do you know about your
+
+要求：
+1. 返回JSON数组格式
+2. 包含字段：phrase, meaning, example
+3. 例句中的关键词用 ** 包裹（如: He is **good at** **playing**）
+4. 翻译要准确简洁
+5. 例句要实用自然，适合初中生理解
+6. 不要有任何其他文字，只要JSON数组
+
+格式示例：
+[
+  {"phrase": "look at", "meaning": "看", "example": "Please **look at** the blackboard."}
+]

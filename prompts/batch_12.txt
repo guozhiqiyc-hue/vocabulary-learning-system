@@ -1,0 +1,65 @@
+请为以下50个英语语块补全中文翻译和例句（第12批，第551-600条）：
+
+551. drinks
+552. drive
+553. driver
+554. drivers
+555. dstep
+556. duck
+557. dumpling
+558. dumplings
+559. during
+560. duties
+561. duty
+562. dvas
+563. dying
+564. dzan
+565. early
+566. earth
+567. easy
+568. eats
+569. edit
+570. education
+571. eduken
+572. eggs
+573. eight
+574. eksp
+575. elder
+576. elders
+577. elizabeth
+578. else
+579. email
+580. emily
+581. empti
+582. empty
+583. encourages
+584. endi
+585. ending
+586. endless
+587. endls
+588. ends
+589. energy
+590. english
+591. enjoy
+592. enjoying
+593. enjoys
+594. enough
+595. enter
+596. entry
+597. eraser
+598. erasers
+599. especially
+600. euro
+
+要求：
+1. 返回JSON数组格式
+2. 包含字段：phrase, meaning, example
+3. 例句中的关键词用 ** 包裹（如: He is **good at** **playing**）
+4. 翻译要准确简洁
+5. 例句要实用自然，适合初中生理解
+6. 不要有任何其他文字，只要JSON数组
+
+格式示例：
+[
+  {"phrase": "look at", "meaning": "看", "example": "Please **look at** the blackboard."}
+]

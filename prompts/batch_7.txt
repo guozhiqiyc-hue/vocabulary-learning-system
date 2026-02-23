@@ -1,0 +1,65 @@
+请为以下50个英语语块补全中文翻译和例句（第7批，第301-350条）：
+
+301. brother
+302. brown
+303. btusiasndfotrarinfood
+304. bubbles
+305. budcgare
+306. budget
+307. budgets
+308. build
+309. building
+310. buildings
+311. burns
+312. buses
+313. busy
+314. buying
+315. buys
+316. cabbages
+317. cafe
+318. cake
+319. cakes
+320. call
+321. called
+322. calling
+323. calm
+324. camera
+325. cannot
+326. capitalize
+327. caps
+328. card
+329. cards
+330. care
+331. carefully
+332. carries
+333. carrot
+334. carrots
+335. carry
+336. carrying
+337. carton
+338. cartons
+339. casual
+340. catch
+341. cats
+342. celebrate
+343. celebrating
+344. celebration
+345. celebrations
+346. cent
+347. centre
+348. chair
+349. chairs
+350. chalk
+
+要求：
+1. 返回JSON数组格式
+2. 包含字段：phrase, meaning, example
+3. 例句中的关键词用 ** 包裹（如: He is **good at** **playing**）
+4. 翻译要准确简洁
+5. 例句要实用自然，适合初中生理解
+6. 不要有任何其他文字，只要JSON数组
+
+格式示例：
+[
+  {"phrase": "look at", "meaning": "看", "example": "Please **look at** the blackboard."}
+]

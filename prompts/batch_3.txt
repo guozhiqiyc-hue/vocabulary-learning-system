@@ -1,0 +1,72 @@
+请为以下50个英语语块补全中文翻译和例句（第3批，第101-150条）：
+
+101. They are     happy
+102. They are not happy
+103. It     is not
+104. We ask and answer questions using
+105. Here are some pictures of
+106. Complete what they are saying with
+107. The girls over there
+108. Kitty
+     you good at football
+109. They both love sport
+110. Millie is talking to her new
+111. Complete their conversation with the correct
+112. English easy for you
+113. Talk with your partner about people
+114. Read the following words
+115. Pay attention to the sounds of
+116. Read the words below
+117. Then put them in the correct
+118. Look at the groups of words
+119. Try to read the new words
+120. Read the following sentences
+121. We have the same hobbies
+122. My classmates are all very nice
+123. Sandy likes listening to piano music
+124. Amy go to school by bike
+125. These students go home by bus
+126. Meeting my new friends
+127. Millie is writing about her new
+128. Read her introductions
+129. Circle
+     the correct words in the
+130. English
+    name is
+131. She is pretty and has
+    lovely
+132. She is shy and
+    quiet
+133. She likes dancing
+134. Her hair is short
+135. She is small and cute
+136. She is
+                                       always happy
+137. Looks  long hair
+138. Millie is showing her mum a
+139. Listen to their conversation and
+    complete
+140. Kitty is only
+141. She is good at
+142. She has dance classes every week
+143. She also likes
+144. She is small
+145. abbr
+146. above
+147. academy
+148. according
+149. account
+150. across
+
+要求：
+1. 返回JSON数组格式
+2. 包含字段：phrase, meaning, example
+3. 例句中的关键词用 ** 包裹（如: He is **good at** **playing**）
+4. 翻译要准确简洁
+5. 例句要实用自然，适合初中生理解
+6. 不要有任何其他文字，只要JSON数组
+
+格式示例：
+[
+  {"phrase": "look at", "meaning": "看", "example": "Please **look at** the blackboard."}
+]

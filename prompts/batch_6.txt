@@ -1,0 +1,65 @@
+请为以下50个英语语块补全中文翻译和例句（第6批，第251-300条）：
+
+251. best
+252. better
+253. between
+254. biggest
+255. bike
+256. bill
+257. bins
+258. biology
+259. bird
+260. birds
+261. birth
+262. birthday
+263. bits
+264. bjuti
+265. black
+266. blackboard
+267. blanks
+268. blaz
+269. block
+270. blog
+271. blouse
+272. blow
+273. blue
+274. board
+275. boards
+276. boat
+277. body
+278. bold
+279. bones
+280. book
+281. books
+282. bookshop
+283. boots
+284. borrow
+285. bottle
+286. bottles
+287. bought
+288. bowl
+289. boxes
+290. boys
+291. brackets
+292. brat
+293. bread
+294. break
+295. breakfast
+296. bridge
+297. brief
+298. bright
+299. bring
+300. british
+
+要求：
+1. 返回JSON数组格式
+2. 包含字段：phrase, meaning, example
+3. 例句中的关键词用 ** 包裹（如: He is **good at** **playing**）
+4. 翻译要准确简洁
+5. 例句要实用自然，适合初中生理解
+6. 不要有任何其他文字，只要JSON数组
+
+格式示例：
+[
+  {"phrase": "look at", "meaning": "看", "example": "Please **look at** the blackboard."}
+]

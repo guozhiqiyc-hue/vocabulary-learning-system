@@ -1,0 +1,65 @@
+请为以下50个英语语块补全中文翻译和例句（第14批，第651-700条）：
+
+651. festvl
+652. field
+653. fields
+654. fifteen
+655. fight
+656. fild
+657. fill
+658. film
+659. filmed
+660. filming
+661. finds
+662. fine
+663. finish
+664. finishes
+665. fire
+666. firework
+667. fireworks
+668. first
+669. fish
+670. fits
+671. fitting
+672. five
+673. fixes
+674. fjut
+675. flat
+676. flew
+677. flies
+678. flock
+679. floor
+680. floors
+681. flower
+682. flowers
+683. focus
+684. follow
+685. following
+686. follows
+687. food
+688. foods
+689. foot
+690. football
+691. forever
+692. forget
+693. form
+694. formal
+695. forms
+696. forsploirthua
+697. forward
+698. found
+699. four
+700. france
+
+要求：
+1. 返回JSON数组格式
+2. 包含字段：phrase, meaning, example
+3. 例句中的关键词用 ** 包裹（如: He is **good at** **playing**）
+4. 翻译要准确简洁
+5. 例句要实用自然，适合初中生理解
+6. 不要有任何其他文字，只要JSON数组
+
+格式示例：
+[
+  {"phrase": "look at", "meaning": "看", "example": "Please **look at** the blackboard."}
+]

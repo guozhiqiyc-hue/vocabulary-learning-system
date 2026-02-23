@@ -1,0 +1,59 @@
+请为以下44个英语语块补全中文翻译和例句（第19批，第901-944条）：
+
+901. kate
+902. keep
+903. kevin
+904. keywords
+905. kids
+906. kilo
+907. kilogram
+908. kilos
+909. kilt
+910. kind
+911. kinds
+912. kingdom
+913. kitchen
+914. kite
+915. kites
+916. kitty
+917. kjukmb
+918. klam
+919. klfl
+920. klmbi
+921. klsmet
+922. kmftbl
+923. knife
+924. knives
+925. knows
+926. knowunderstandlovelikewant
+927. knst
+928. kntri
+929. kong
+930. kplts
+931. krsms
+932. ksat
+933. kspensv
+934. ktvti
+935. kung
+936. kwat
+937. kwestne
+938. label
+939. laboratory
+940. ladies
+941. lady
+942. lafstal
+943. landscape
+944. language
+
+要求：
+1. 返回JSON数组格式
+2. 包含字段：phrase, meaning, example
+3. 例句中的关键词用 ** 包裹（如: He is **good at** **playing**）
+4. 翻译要准确简洁
+5. 例句要实用自然，适合初中生理解
+6. 不要有任何其他文字，只要JSON数组
+
+格式示例：
+[
+  {"phrase": "look at", "meaning": "看", "example": "Please **look at** the blackboard."}
+]

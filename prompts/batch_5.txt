@@ -1,0 +1,65 @@
+请为以下50个英语语块补全中文翻译和例句（第5批，第201-250条）：
+
+201. asking
+202. assess
+203. assessment
+204. astronauts
+205. atat
+206. atch
+207. atsad
+208. attention
+209. attractive
+210. audience
+211. august
+212. aunt
+213. autumn
+214. away
+215. aznd
+216. bags
+217. baldi
+218. ball
+219. banana
+220. bananas
+221. bank
+222. baozi
+223. baseball
+224. based
+225. basketball
+226. bean
+227. beans
+228. bear
+229. beautiful
+230. beauty
+231. because
+232. become
+233. beef
+234. beer
+235. beforehand
+236. begin
+237. beginning
+238. begins
+239. behind
+240. beihong
+241. beijing
+242. bell
+243. below
+244. belt
+245. bench
+246. benches
+247. beni
+248. benny
+249. besbl
+250. beside
+
+要求：
+1. 返回JSON数组格式
+2. 包含字段：phrase, meaning, example
+3. 例句中的关键词用 ** 包裹（如: He is **good at** **playing**）
+4. 翻译要准确简洁
+5. 例句要实用自然，适合初中生理解
+6. 不要有任何其他文字，只要JSON数组
+
+格式示例：
+[
+  {"phrase": "look at", "meaning": "看", "example": "Please **look at** the blackboard."}
+]

@@ -1,0 +1,65 @@
+请为以下50个英语语块补全中文翻译和例句（第16批，第751-800条）：
+
+751. grandparent
+752. grandparents
+753. graph
+754. grass
+755. gray
+756. great
+757. greatest
+758. greece
+759. greek
+760. green
+761. greet
+762. greeting
+763. greetings
+764. grey
+765. ground
+766. group
+767. groups
+768. grow
+769. guan
+770. guangdong
+771. guess
+772. guesses
+773. gymnasium
+774. habit
+775. habits
+776. haggis
+777. haipeng
+778. hair
+779. half
+780. hall
+781. halves
+782. hamburger
+783. hand
+784. hands
+785. hanfu
+786. hang
+787. hanging
+788. happen
+789. happening
+790. happy
+791. hard
+792. haswk
+793. having
+794. head
+795. heading
+796. headings
+797. health
+798. healthcare
+799. healthy
+800. healthyhappy
+
+要求：
+1. 返回JSON数组格式
+2. 包含字段：phrase, meaning, example
+3. 例句中的关键词用 ** 包裹（如: He is **good at** **playing**）
+4. 翻译要准确简洁
+5. 例句要实用自然，适合初中生理解
+6. 不要有任何其他文字，只要JSON数组
+
+格式示例：
+[
+  {"phrase": "look at", "meaning": "看", "example": "Please **look at** the blackboard."}
+]

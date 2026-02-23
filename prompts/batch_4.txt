@@ -1,0 +1,65 @@
+请为以下50个英语语块补全中文翻译和例句（第4批，第151-200条）：
+
+151. action
+152. activities
+153. activity
+154. address
+155. adds
+156. adverb
+157. adverbs
+158. advice
+159. advise
+160. afternoon
+161. afternoons
+162. again
+163. agree
+164. agreement
+165. ahead
+166. alex
+167. almost
+168. alphabetical
+169. always
+170. amazing
+171. america
+172. amisare
+173. amount
+174. amynoradavid
+175. andrew
+176. andy
+177. animals
+178. annie
+179. another
+180. answer
+181. answering
+182. answers
+183. anthe
+184. anyone
+185. apart
+186. appendices
+187. apple
+188. apples
+189. apps
+190. april
+191. area
+192. aren
+193. around
+194. arrive
+195. article
+196. articles
+197. artist
+198. artists
+199. asanvdingas
+200. asked
+
+要求：
+1. 返回JSON数组格式
+2. 包含字段：phrase, meaning, example
+3. 例句中的关键词用 ** 包裹（如: He is **good at** **playing**）
+4. 翻译要准确简洁
+5. 例句要实用自然，适合初中生理解
+6. 不要有任何其他文字，只要JSON数组
+
+格式示例：
+[
+  {"phrase": "look at", "meaning": "看", "example": "Please **look at** the blackboard."}
+]

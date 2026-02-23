@@ -1,0 +1,65 @@
+请为以下50个英语语块补全中文翻译和例句（第9批，第401-450条）：
+
+401. clothes
+402. clothing
+403. cloudy
+404. club
+405. clubs
+406. coat
+407. coats
+408. code
+409. coffee
+410. coin
+411. coins
+412. cold
+413. colombia
+414. colorful
+415. colour
+416. colourful
+417. colours
+418. comes
+419. comfortable
+420. coming
+421. comma
+422. common
+423. compare
+424. complete
+425. computer
+426. computers
+427. concert
+428. conj
+429. connect
+430. consonant
+431. consonants
+432. content
+433. continuous
+434. conversation
+435. conversations
+436. cook
+437. cooking
+438. cooks
+439. cool
+440. corner
+441. correct
+442. correctly
+443. cost
+444. costs
+445. cotton
+446. cough
+447. couldn
+448. count
+449. countable
+450. countries
+
+要求：
+1. 返回JSON数组格式
+2. 包含字段：phrase, meaning, example
+3. 例句中的关键词用 ** 包裹（如: He is **good at** **playing**）
+4. 翻译要准确简洁
+5. 例句要实用自然，适合初中生理解
+6. 不要有任何其他文字，只要JSON数组
+
+格式示例：
+[
+  {"phrase": "look at", "meaning": "看", "example": "Please **look at** the blackboard."}
+]

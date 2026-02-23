@@ -1,0 +1,65 @@
+请为以下50个英语语块补全中文翻译和例句（第17批，第801-850条）：
+
+801. hear
+802. hearsee
+803. heart
+804. hearts
+805. heavy
+806. helen
+807. hello
+808. help
+809. helpful
+810. helping
+811. helps
+812. here
+813. hero
+814. heroes
+815. herself
+816. heshe
+817. hide
+818. high
+819. himher
+820. history
+821. hmbdi
+822. hmwk
+823. hobbies
+824. hobby
+825. hold
+826. holiday
+827. holidays
+828. home
+829. homebody
+830. homes
+831. hometown
+832. homework
+833. honest
+834. hong
+835. hope
+836. hoping
+837. horses
+838. hour
+839. hours
+840. house
+841. housework
+842. however
+843. hstri
+844. huang
+845. hunan
+846. hundred
+847. hungry
+848. hurry
+849. hurt
+850. idea
+
+要求：
+1. 返回JSON数组格式
+2. 包含字段：phrase, meaning, example
+3. 例句中的关键词用 ** 包裹（如: He is **good at** **playing**）
+4. 翻译要准确简洁
+5. 例句要实用自然，适合初中生理解
+6. 不要有任何其他文字，只要JSON数组
+
+格式示例：
+[
+  {"phrase": "look at", "meaning": "看", "example": "Please **look at** the blackboard."}
+]
