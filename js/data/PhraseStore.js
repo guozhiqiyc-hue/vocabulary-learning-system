@@ -142,6 +142,15 @@ class PhraseStore {
     }
 
     /**
+     * 获取语块总数
+     * @returns {Promise<number>}
+     */
+    async count() {
+        const allPhrases = await this.getAll();
+        return allPhrases.length;
+    }
+
+    /**
      * ========== 查询功能 ==========
 
     /**
@@ -338,7 +347,7 @@ class PhraseStore {
      * @param {Object[]} phrases
      * @returns {string}
      */
-    exportToJSON(phrases = null) {
+    async exportToJSON(phrases = null) {
         const dataToExport = phrases || await this.getAll();
         return JSON.stringify(dataToExport, null, 2);
     }
@@ -348,7 +357,7 @@ class PhraseStore {
      * @param {Object[]} phrases
      * @returns {string}
      */
-    exportToCSV(phrases = null) {
+    async exportToCSV(phrases = null) {
         const dataToExport = phrases || await this.getAll();
 
         if (dataToExport.length === 0) return '';
@@ -699,3 +708,6 @@ class VersionStore {
         });
     }
 }
+
+// 导出
+export { PhraseStore, ProgressStore, UserStore, VersionStore };

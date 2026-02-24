@@ -1,0 +1,1794 @@
+{
+  "source": "七下.pdf",
+  "total": 149,
+  "cards": [
+    {
+      "id": "七下_001",
+      "phrase": "be good at",
+      "meaning": "擅长",
+      "example": "I **am good at** playing basketball.",
+      "level": "核心词汇",
+      "keywords": [
+        "be"
+      ],
+      "unit": "Unit 1-8 (七年级下册)",
+      "type": "phrase"
+    },
+    {
+      "id": "七下_002",
+      "phrase": "be interested in",
+      "meaning": "对...感兴趣",
+      "example": "She **is interested in** learning English.",
+      "level": "核心词汇",
+      "keywords": [
+        "be"
+      ],
+      "unit": "Unit 1-8 (七年级下册)",
+      "type": "phrase"
+    },
+    {
+      "id": "七下_003",
+      "phrase": "be friendly to",
+      "meaning": "对...友好",
+      "example": "Our teacher **is friendly to** everyone.",
+      "level": "核心词汇",
+      "keywords": [
+        "be"
+      ],
+      "unit": "Unit 1-8 (七年级下册)",
+      "type": "phrase"
+    },
+    {
+      "id": "七下_004",
+      "phrase": "be late for",
+      "meaning": "迟到",
+      "example": "Don't **be late for** school.",
+      "level": "核心词汇",
+      "keywords": [
+        "be"
+      ],
+      "unit": "Unit 1-8 (七年级下册)",
+      "type": "phrase"
+    },
+    {
+      "id": "七下_005",
+      "phrase": "join",
+      "meaning": "加入；参加",
+      "example": "I want to **join** the English club.",
+      "level": "核心词汇",
+      "keywords": [
+        "join"
+      ],
+      "unit": "Unit 1-8 (七年级下册)",
+      "type": "phrase"
+    },
+    {
+      "id": "七下_006",
+      "phrase": "dance",
+      "meaning": "跳舞",
+      "example": "Can you **dance** to the music?",
+      "level": "核心词汇",
+      "keywords": [
+        "dance"
+      ],
+      "unit": "Unit 1-8 (七年级下册)",
+      "type": "phrase"
+    },
+    {
+      "id": "七下_007",
+      "phrase": "swim",
+      "meaning": "游泳",
+      "example": "They **swim** in the pool every summer.",
+      "level": "核心词汇",
+      "keywords": [
+        "swim"
+      ],
+      "unit": "Unit 1-8 (七年级下册)",
+      "type": "phrase"
+    },
+    {
+      "id": "七下_008",
+      "phrase": "sing",
+      "meaning": "唱歌",
+      "example": "She likes to **sing** English songs.",
+      "level": "核心词汇",
+      "keywords": [
+        "sing"
+      ],
+      "unit": "Unit 1-8 (七年级下册)",
+      "type": "phrase"
+    },
+    {
+      "id": "七下_009",
+      "phrase": "chess",
+      "meaning": "国际象棋",
+      "example": "Let's play **chess** together.",
+      "level": "核心词汇",
+      "keywords": [
+        "chess"
+      ],
+      "unit": "Unit 1-8 (七年级下册)",
+      "type": "phrase"
+    },
+    {
+      "id": "七下_010",
+      "phrase": "paint",
+      "meaning": "画画；绘画",
+      "example": "He likes to **paint** pictures of animals.",
+      "level": "核心词汇",
+      "keywords": [
+        "paint"
+      ],
+      "unit": "Unit 1-8 (七年级下册)",
+      "type": "phrase"
+    },
+    {
+      "id": "七下_011",
+      "phrase": "speak",
+      "meaning": "说；说话",
+      "example": "Please **speak** loudly.",
+      "level": "核心词汇",
+      "keywords": [
+        "speak"
+      ],
+      "unit": "Unit 1-8 (七年级下册)",
+      "type": "phrase"
+    },
+    {
+      "id": "七下_012",
+      "phrase": "club",
+      "meaning": "俱乐部",
+      "example": "Our school has many **clubs**.",
+      "level": "核心词汇",
+      "keywords": [
+        "club"
+      ],
+      "unit": "Unit 1-8 (七年级下册)",
+      "type": "phrase"
+    },
+    {
+      "id": "七下_013",
+      "phrase": "tell",
+      "meaning": "告诉；讲述",
+      "example": "Can you **tell** me the time?",
+      "level": "核心词汇",
+      "keywords": [
+        "tell"
+      ],
+      "unit": "Unit 1-8 (七年级下册)",
+      "type": "phrase"
+    },
+    {
+      "id": "七下_014",
+      "phrase": "write",
+      "meaning": "写；写作",
+      "example": "Students **write** their homework every day.",
+      "level": "核心词汇",
+      "keywords": [
+        "write"
+      ],
+      "unit": "Unit 1-8 (七年级下册)",
+      "type": "phrase"
+    },
+    {
+      "id": "七下_015",
+      "phrase": "show",
+      "meaning": "展示；给...看",
+      "example": "**Show** me your homework, please.",
+      "level": "核心词汇",
+      "keywords": [
+        "show"
+      ],
+      "unit": "Unit 1-8 (七年级下册)",
+      "type": "phrase"
+    },
+    {
+      "id": "七下_016",
+      "phrase": "or",
+      "meaning": "或者；也不",
+      "example": "You can have tea **or** coffee.",
+      "level": "核心词汇",
+      "keywords": [
+        "or"
+      ],
+      "unit": "Unit 1-8 (七年级下册)",
+      "type": "phrase"
+    },
+    {
+      "id": "七下_017",
+      "phrase": "talk",
+      "meaning": "谈话；交谈",
+      "example": "Let's **talk** about your weekend.",
+      "level": "核心词汇",
+      "keywords": [
+        "talk"
+      ],
+      "unit": "Unit 1-8 (七年级下册)",
+      "type": "phrase"
+    },
+    {
+      "id": "七下_018",
+      "phrase": "to",
+      "meaning": "到；向；直到",
+      "example": "I go **to** school by bus.",
+      "level": "核心词汇",
+      "keywords": [
+        "to"
+      ],
+      "unit": "Unit 1-8 (七年级下册)",
+      "type": "phrase"
+    },
+    {
+      "id": "七下_019",
+      "phrase": "kung fu",
+      "meaning": "功夫（中国武术）",
+      "example": "My brother practices **kung fu** every morning.",
+      "level": "核心词汇",
+      "keywords": [
+        "kung"
+      ],
+      "unit": "Unit 1-8 (七年级下册)",
+      "type": "phrase"
+    },
+    {
+      "id": "七下_020",
+      "phrase": "drum",
+      "meaning": "鼓",
+      "example": "He plays the **drum** in the band.",
+      "level": "核心词汇",
+      "keywords": [
+        "drum"
+      ],
+      "unit": "Unit 1-8 (七年级下册)",
+      "type": "phrase"
+    },
+    {
+      "id": "七下_021",
+      "phrase": "piano",
+      "meaning": "钢琴",
+      "example": "She plays the **piano** very well.",
+      "level": "核心词汇",
+      "keywords": [
+        "piano"
+      ],
+      "unit": "Unit 1-8 (七年级下册)",
+      "type": "phrase"
+    },
+    {
+      "id": "七下_022",
+      "phrase": "violin",
+      "meaning": "小提琴",
+      "example": "I want to learn the **violin**.",
+      "level": "核心词汇",
+      "keywords": [
+        "violin"
+      ],
+      "unit": "Unit 1-8 (七年级下册)",
+      "type": "phrase"
+    },
+    {
+      "id": "七下_023",
+      "phrase": "get up",
+      "meaning": "起床",
+      "example": "I usually **get up** at 6:30.",
+      "level": "核心词汇",
+      "keywords": [
+        "get"
+      ],
+      "unit": "Unit 1-8 (七年级下册)",
+      "type": "phrase"
+    },
+    {
+      "id": "七下_024",
+      "phrase": "go to school",
+      "meaning": "去上学",
+      "example": "We **go to school** from Monday to Friday.",
+      "level": "核心词汇",
+      "keywords": [
+        "go"
+      ],
+      "unit": "Unit 1-8 (七年级下册)",
+      "type": "phrase"
+    },
+    {
+      "id": "七下_025",
+      "phrase": "get dressed",
+      "meaning": "穿衣服",
+      "example": "It's time to **get dressed**.",
+      "level": "核心词汇",
+      "keywords": [
+        "get"
+      ],
+      "unit": "Unit 1-8 (七年级下册)",
+      "type": "phrase"
+    },
+    {
+      "id": "七下_026",
+      "phrase": "brush teeth",
+      "meaning": "刷牙",
+      "example": "**Brush your teeth** before breakfast.",
+      "level": "核心词汇",
+      "keywords": [
+        "brush"
+      ],
+      "unit": "Unit 1-8 (七年级下册)",
+      "type": "phrase"
+    },
+    {
+      "id": "七下_027",
+      "phrase": "eat breakfast",
+      "meaning": "吃早餐",
+      "example": "I **eat breakfast** with my family.",
+      "level": "核心词汇",
+      "keywords": [
+        "eat"
+      ],
+      "unit": "Unit 1-8 (七年级下册)",
+      "type": "phrase"
+    },
+    {
+      "id": "七下_028",
+      "phrase": "take a shower",
+      "meaning": "洗澡",
+      "example": "He **takes a shower** every evening.",
+      "level": "核心词汇",
+      "keywords": [
+        "take"
+      ],
+      "unit": "Unit 1-8 (七年级下册)",
+      "type": "phrase"
+    },
+    {
+      "id": "七下_029",
+      "phrase": "usually",
+      "meaning": "通常",
+      "example": "I **usually** walk to school.",
+      "level": "核心词汇",
+      "keywords": [
+        "usually"
+      ],
+      "unit": "Unit 1-8 (七年级下册)",
+      "type": "phrase"
+    },
+    {
+      "id": "七下_030",
+      "phrase": "o'clock",
+      "meaning": "...点钟",
+      "example": "School starts at eight **o'clock**.",
+      "level": "核心词汇",
+      "keywords": [
+        "o'clock"
+      ],
+      "unit": "Unit 1-8 (七年级下册)",
+      "type": "phrase"
+    },
+    {
+      "id": "七下_031",
+      "phrase": "never",
+      "meaning": "从不；绝不",
+      "example": "I **never** eat spicy food.",
+      "level": "核心词汇",
+      "keywords": [
+        "never"
+      ],
+      "unit": "Unit 1-8 (七年级下册)",
+      "type": "phrase"
+    },
+    {
+      "id": "七下_032",
+      "phrase": "half",
+      "meaning": "一半；半数",
+      "example": "**Half** of the students are girls.",
+      "level": "核心词汇",
+      "keywords": [
+        "half"
+      ],
+      "unit": "Unit 1-8 (七年级下册)",
+      "type": "phrase"
+    },
+    {
+      "id": "七下_033",
+      "phrase": "past",
+      "meaning": "晚于；过",
+      "example": "It's ten **past** six.",
+      "level": "核心词汇",
+      "keywords": [
+        "past"
+      ],
+      "unit": "Unit 1-8 (七年级下册)",
+      "type": "phrase"
+    },
+    {
+      "id": "七下_034",
+      "phrase": "quarter",
+      "meaning": "一刻钟；四分之一",
+      "example": "It's a **quarter** to seven.",
+      "level": "核心词汇",
+      "keywords": [
+        "quarter"
+      ],
+      "unit": "Unit 1-8 (七年级下册)",
+      "type": "phrase"
+    },
+    {
+      "id": "七下_035",
+      "phrase": "homework",
+      "meaning": "家庭作业",
+      "example": "Did you finish your **homework**?",
+      "level": "核心词汇",
+      "keywords": [
+        "homework"
+      ],
+      "unit": "Unit 1-8 (七年级下册)",
+      "type": "phrase"
+    },
+    {
+      "id": "七下_036",
+      "phrase": "run",
+      "meaning": "跑；奔跑",
+      "example": "They **run** in the park every morning.",
+      "level": "核心词汇",
+      "keywords": [
+        "run"
+      ],
+      "unit": "Unit 1-8 (七年级下册)",
+      "type": "phrase"
+    },
+    {
+      "id": "七下_037",
+      "phrase": "clean",
+      "meaning": "打扫；清洁",
+      "example": "Please **clean** your room.",
+      "level": "核心词汇",
+      "keywords": [
+        "clean"
+      ],
+      "unit": "Unit 1-8 (七年级下册)",
+      "type": "phrase"
+    },
+    {
+      "id": "七下_038",
+      "phrase": "walk",
+      "meaning": "步行；走",
+      "example": "I **walk** to school every day.",
+      "level": "核心词汇",
+      "keywords": [
+        "walk"
+      ],
+      "unit": "Unit 1-8 (七年级下册)",
+      "type": "phrase"
+    },
+    {
+      "id": "七下_039",
+      "phrase": "quickly",
+      "meaning": "迅速地；快地",
+      "example": "She finishes her work **quickly**.",
+      "level": "核心词汇",
+      "keywords": [
+        "quickly"
+      ],
+      "unit": "Unit 1-8 (七年级下册)",
+      "type": "phrase"
+    },
+    {
+      "id": "七下_040",
+      "phrase": "either",
+      "meaning": "或者；也",
+      "example": "You can take **either** bus.",
+      "level": "核心词汇",
+      "keywords": [
+        "either"
+      ],
+      "unit": "Unit 1-8 (七年级下册)",
+      "type": "phrase"
+    },
+    {
+      "id": "七下_041",
+      "phrase": "lot",
+      "meaning": "大量；许多",
+      "example": "There are a **lot of** books.",
+      "level": "核心词汇",
+      "keywords": [
+        "lot"
+      ],
+      "unit": "Unit 1-8 (七年级下册)",
+      "type": "phrase"
+    },
+    {
+      "id": "七下_042",
+      "phrase": "sometimes",
+      "meaning": "有时",
+      "example": "I **sometimes** play football.",
+      "level": "核心词汇",
+      "keywords": [
+        "sometimes"
+      ],
+      "unit": "Unit 1-8 (七年级下册)",
+      "type": "phrase"
+    },
+    {
+      "id": "七下_043",
+      "phrase": "taste",
+      "meaning": "有...的味道；品尝",
+      "example": "This cake **tastes** delicious.",
+      "level": "核心词汇",
+      "keywords": [
+        "taste"
+      ],
+      "unit": "Unit 1-8 (七年级下册)",
+      "type": "phrase"
+    },
+    {
+      "id": "七下_044",
+      "phrase": "life",
+      "meaning": "生活；生命",
+      "example": "I love my **life** in this city.",
+      "level": "核心词汇",
+      "keywords": [
+        "life"
+      ],
+      "unit": "Unit 1-8 (七年级下册)",
+      "type": "phrase"
+    },
+    {
+      "id": "七下_045",
+      "phrase": "train",
+      "meaning": "火车；训练",
+      "example": "The **train** arrives at 9 o'clock.",
+      "level": "核心词汇",
+      "keywords": [
+        "train"
+      ],
+      "unit": "Unit 1-8 (七年级下册)",
+      "type": "phrase"
+    },
+    {
+      "id": "七下_046",
+      "phrase": "bus",
+      "meaning": "公共汽车",
+      "example": "We take the **bus** to work.",
+      "level": "核心词汇",
+      "keywords": [
+        "bus"
+      ],
+      "unit": "Unit 1-8 (七年级下册)",
+      "type": "phrase"
+    },
+    {
+      "id": "七下_047",
+      "phrase": "subway",
+      "meaning": "地铁",
+      "example": "The **subway** is very fast.",
+      "level": "核心词汇",
+      "keywords": [
+        "subway"
+      ],
+      "unit": "Unit 1-8 (七年级下册)",
+      "type": "phrase"
+    },
+    {
+      "id": "七下_048",
+      "phrase": "ride",
+      "meaning": "骑乘；旅程",
+      "example": "I **ride** my bike to school.",
+      "level": "核心词汇",
+      "keywords": [
+        "ride"
+      ],
+      "unit": "Unit 1-8 (七年级下册)",
+      "type": "phrase"
+    },
+    {
+      "id": "七下_049",
+      "phrase": "bike",
+      "meaning": "自行车",
+      "example": "This is my new **bike**.",
+      "level": "核心词汇",
+      "keywords": [
+        "bike"
+      ],
+      "unit": "Unit 1-8 (七年级下册)",
+      "type": "phrase"
+    },
+    {
+      "id": "七下_050",
+      "phrase": "sixty",
+      "meaning": "六十",
+      "example": "My grandfather is **sixty** years old.",
+      "level": "核心词汇",
+      "keywords": [
+        "sixty"
+      ],
+      "unit": "Unit 1-8 (七年级下册)",
+      "type": "phrase"
+    },
+    {
+      "id": "七下_051",
+      "phrase": "seventy",
+      "meaning": "七十",
+      "example": "There are **seventy** students in our class.",
+      "level": "核心词汇",
+      "keywords": [
+        "seventy"
+      ],
+      "unit": "Unit 1-8 (七年级下册)",
+      "type": "phrase"
+    },
+    {
+      "id": "七下_052",
+      "phrase": "eighty",
+      "meaning": "八十",
+      "example": "It's **eighty** degrees today.",
+      "level": "核心词汇",
+      "keywords": [
+        "eighty"
+      ],
+      "unit": "Unit 1-8 (七年级下册)",
+      "type": "phrase"
+    },
+    {
+      "id": "七下_053",
+      "phrase": "ninety",
+      "meaning": "九十",
+      "example": "**Ninety** percent of students pass the exam.",
+      "level": "核心词汇",
+      "keywords": [
+        "ninety"
+      ],
+      "unit": "Unit 1-8 (七年级下册)",
+      "type": "phrase"
+    },
+    {
+      "id": "七下_054",
+      "phrase": "hundred",
+      "meaning": "一百",
+      "example": "There are **hundred** people in the hall.",
+      "level": "核心词汇",
+      "keywords": [
+        "hundred"
+      ],
+      "unit": "Unit 1-8 (七年级下册)",
+      "type": "phrase"
+    },
+    {
+      "id": "七下_055",
+      "phrase": "minute",
+      "meaning": "分钟",
+      "example": "It's twenty **minutes** past three.",
+      "level": "核心词汇",
+      "keywords": [
+        "minute"
+      ],
+      "unit": "Unit 1-8 (七年级下册)",
+      "type": "phrase"
+    },
+    {
+      "id": "七下_056",
+      "phrase": "kilometer",
+      "meaning": "公里；千米",
+      "example": "My school is one **kilometer** from my home.",
+      "level": "核心词汇",
+      "keywords": [
+        "kilometer"
+      ],
+      "unit": "Unit 1-8 (七年级下册)",
+      "type": "phrase"
+    },
+    {
+      "id": "七下_057",
+      "phrase": "new",
+      "meaning": "新的",
+      "example": "I have a **new** book.",
+      "level": "核心词汇",
+      "keywords": [
+        "new"
+      ],
+      "unit": "Unit 1-8 (七年级下册)",
+      "type": "phrase"
+    },
+    {
+      "id": "七下_058",
+      "phrase": "drive",
+      "meaning": "开车；驾驶",
+      "example": "Can you **drive** a car?",
+      "level": "核心词汇",
+      "keywords": [
+        "drive"
+      ],
+      "unit": "Unit 1-8 (七年级下册)",
+      "type": "phrase"
+    },
+    {
+      "id": "七下_059",
+      "phrase": "live",
+      "meaning": "居住；生活",
+      "example": "I **live** in Beijing.",
+      "level": "核心词汇",
+      "keywords": [
+        "live"
+      ],
+      "unit": "Unit 1-8 (七年级下册)",
+      "type": "phrase"
+    },
+    {
+      "id": "七下_060",
+      "phrase": "stop",
+      "meaning": "停止；车站",
+      "example": "Where is the bus **stop**?",
+      "level": "核心词汇",
+      "keywords": [
+        "stop"
+      ],
+      "unit": "Unit 1-8 (七年级下册)",
+      "type": "phrase"
+    },
+    {
+      "id": "七下_061",
+      "phrase": "transportation",
+      "meaning": "运输；交通",
+      "example": "Public **transportation** is convenient.",
+      "level": "核心词汇",
+      "keywords": [
+        "transportation"
+      ],
+      "unit": "Unit 1-8 (七年级下册)",
+      "type": "phrase"
+    },
+    {
+      "id": "七下_062",
+      "phrase": "rule",
+      "meaning": "规则；规章",
+      "example": "Follow the **rules** of the school.",
+      "level": "核心词汇",
+      "keywords": [
+        "rule"
+      ],
+      "unit": "Unit 1-8 (七年级下册)",
+      "type": "phrase"
+    },
+    {
+      "id": "七下_063",
+      "phrase": "arrive",
+      "meaning": "到达",
+      "example": "When will you **arrive**?",
+      "level": "核心词汇",
+      "keywords": [
+        "arrive"
+      ],
+      "unit": "Unit 1-8 (七年级下册)",
+      "type": "phrase"
+    },
+    {
+      "id": "七下_064",
+      "phrase": "be on time",
+      "meaning": "准时",
+      "example": "Please **be on time** for class.",
+      "level": "核心词汇",
+      "keywords": [
+        "be"
+      ],
+      "unit": "Unit 1-8 (七年级下册)",
+      "type": "phrase"
+    },
+    {
+      "id": "七下_065",
+      "phrase": "hallway",
+      "meaning": "走廊；门厅",
+      "example": "Students talk in the **hallway**.",
+      "level": "核心词汇",
+      "keywords": [
+        "hallway"
+      ],
+      "unit": "Unit 1-8 (七年级下册)",
+      "type": "phrase"
+    },
+    {
+      "id": "七下_066",
+      "phrase": "dining hall",
+      "meaning": "餐厅；食堂",
+      "example": "We eat lunch in the **dining hall**.",
+      "level": "核心词汇",
+      "keywords": [
+        "dining"
+      ],
+      "unit": "Unit 1-8 (七年级下册)",
+      "type": "phrase"
+    },
+    {
+      "id": "七下_067",
+      "phrase": "listen to",
+      "meaning": "听；倾听",
+      "example": "Please **listen to** the teacher.",
+      "level": "核心词汇",
+      "keywords": [
+        "listen"
+      ],
+      "unit": "Unit 1-8 (七年级下册)",
+      "type": "phrase"
+    },
+    {
+      "id": "七下_068",
+      "phrase": "fight",
+      "meaning": "打架；战斗",
+      "example": "Don't **fight** with others.",
+      "level": "核心词汇",
+      "keywords": [
+        "fight"
+      ],
+      "unit": "Unit 1-8 (七年级下册)",
+      "type": "phrase"
+    },
+    {
+      "id": "七下_069",
+      "phrase": "sorry",
+      "meaning": "抱歉的；难过的",
+      "example": "I'm **sorry** I'm late.",
+      "level": "核心词汇",
+      "keywords": [
+        "sorry"
+      ],
+      "unit": "Unit 1-8 (七年级下册)",
+      "type": "phrase"
+    },
+    {
+      "id": "七下_070",
+      "phrase": "outside",
+      "meaning": "在外面",
+      "example": "Children are playing **outside**.",
+      "level": "核心词汇",
+      "keywords": [
+        "outside"
+      ],
+      "unit": "Unit 1-8 (七年级下册)",
+      "type": "phrase"
+    },
+    {
+      "id": "七下_071",
+      "phrase": "wear",
+      "meaning": "穿；戴",
+      "example": "He **wears** glasses.",
+      "level": "核心词汇",
+      "keywords": [
+        "wear"
+      ],
+      "unit": "Unit 1-8 (七年级下册)",
+      "type": "phrase"
+    },
+    {
+      "id": "七下_072",
+      "phrase": "important",
+      "meaning": "重要的",
+      "example": "English is very **important**.",
+      "level": "核心词汇",
+      "keywords": [
+        "important"
+      ],
+      "unit": "Unit 1-8 (七年级下册)",
+      "type": "phrase"
+    },
+    {
+      "id": "七下_073",
+      "phrase": "bring",
+      "meaning": "带来；拿去",
+      "example": "**Bring** your book tomorrow.",
+      "level": "核心词汇",
+      "keywords": [
+        "bring"
+      ],
+      "unit": "Unit 1-8 (七年级下册)",
+      "type": "phrase"
+    },
+    {
+      "id": "七下_074",
+      "phrase": "uniform",
+      "meaning": "制服；校服",
+      "example": "Students wear **uniforms** to school.",
+      "level": "核心词汇",
+      "keywords": [
+        "uniform"
+      ],
+      "unit": "Unit 1-8 (七年级下册)",
+      "type": "phrase"
+    },
+    {
+      "id": "七下_075",
+      "phrase": "sports shoes",
+      "meaning": "运动鞋",
+      "example": "I wear **sports shoes** for PE class.",
+      "level": "核心词汇",
+      "keywords": [
+        "sports"
+      ],
+      "unit": "Unit 1-8 (七年级下册)",
+      "type": "phrase"
+    },
+    {
+      "id": "七下_076",
+      "phrase": "go out",
+      "meaning": "出去；外出",
+      "example": "Let's **go out** for dinner.",
+      "level": "核心词汇",
+      "keywords": [
+        "go"
+      ],
+      "unit": "Unit 1-8 (七年级下册)",
+      "type": "phrase"
+    },
+    {
+      "id": "七下_077",
+      "phrase": "practice",
+      "meaning": "练习",
+      "example": "You need to **practice** every day.",
+      "level": "核心词汇",
+      "keywords": [
+        "practice"
+      ],
+      "unit": "Unit 1-8 (七年级下册)",
+      "type": "phrase"
+    },
+    {
+      "id": "七下_078",
+      "phrase": "panda",
+      "meaning": "熊猫",
+      "example": "The **panda** eats bamboo.",
+      "level": "核心词汇",
+      "keywords": [
+        "panda"
+      ],
+      "unit": "Unit 1-8 (七年级下册)",
+      "type": "phrase"
+    },
+    {
+      "id": "七下_079",
+      "phrase": "zoo",
+      "meaning": "动物园",
+      "example": "We go to the **zoo** on Sunday.",
+      "level": "核心词汇",
+      "keywords": [
+        "zoo"
+      ],
+      "unit": "Unit 1-8 (七年级下册)",
+      "type": "phrase"
+    },
+    {
+      "id": "七下_080",
+      "phrase": "tiger",
+      "meaning": "老虎",
+      "example": "The **tiger** is a big cat.",
+      "level": "核心词汇",
+      "keywords": [
+        "tiger"
+      ],
+      "unit": "Unit 1-8 (七年级下册)",
+      "type": "phrase"
+    },
+    {
+      "id": "七下_081",
+      "phrase": "elephant",
+      "meaning": "大象",
+      "example": "The **elephant** has a long nose.",
+      "level": "核心词汇",
+      "keywords": [
+        "elephant"
+      ],
+      "unit": "Unit 1-8 (七年级下册)",
+      "type": "phrase"
+    },
+    {
+      "id": "七下_082",
+      "phrase": "lion",
+      "meaning": "狮子",
+      "example": "The **lion** is the king of animals.",
+      "level": "核心词汇",
+      "keywords": [
+        "lion"
+      ],
+      "unit": "Unit 1-8 (七年级下册)",
+      "type": "phrase"
+    },
+    {
+      "id": "七下_083",
+      "phrase": "giraffe",
+      "meaning": "长颈鹿",
+      "example": "The **giraffe** has a long neck.",
+      "level": "核心词汇",
+      "keywords": [
+        "giraffe"
+      ],
+      "unit": "Unit 1-8 (七年级下册)",
+      "type": "phrase"
+    },
+    {
+      "id": "七下_084",
+      "phrase": "animal",
+      "meaning": "动物",
+      "example": "I love all **animals**.",
+      "level": "核心词汇",
+      "keywords": [
+        "animal"
+      ],
+      "unit": "Unit 1-8 (七年级下册)",
+      "type": "phrase"
+    },
+    {
+      "id": "七下_085",
+      "phrase": "cute",
+      "meaning": "可爱的；聪明的",
+      "example": "The cat is very **cute**.",
+      "level": "核心词汇",
+      "keywords": [
+        "cute"
+      ],
+      "unit": "Unit 1-8 (七年级下册)",
+      "type": "phrase"
+    },
+    {
+      "id": "七下_086",
+      "phrase": "friendly",
+      "meaning": "友好的",
+      "example": "Our neighbors are **friendly**.",
+      "level": "核心词汇",
+      "keywords": [
+        "friendly"
+      ],
+      "unit": "Unit 1-8 (七年级下册)",
+      "type": "phrase"
+    },
+    {
+      "id": "七下_087",
+      "phrase": "beautiful",
+      "meaning": "美丽的",
+      "example": "The flower is **beautiful**.",
+      "level": "核心词汇",
+      "keywords": [
+        "beautiful"
+      ],
+      "unit": "Unit 1-8 (七年级下册)",
+      "type": "phrase"
+    },
+    {
+      "id": "七下_088",
+      "phrase": "scary",
+      "meaning": "恐怖的",
+      "example": "The movie is too **scary**.",
+      "level": "核心词汇",
+      "keywords": [
+        "scary"
+      ],
+      "unit": "Unit 1-8 (七年级下册)",
+      "type": "phrase"
+    },
+    {
+      "id": "七下_089",
+      "phrase": "kind",
+      "meaning": "友好的；仁慈的",
+      "example": "She is **kind** to everyone.",
+      "level": "核心词汇",
+      "keywords": [
+        "kind"
+      ],
+      "unit": "Unit 1-8 (七年级下册)",
+      "type": "phrase"
+    },
+    {
+      "id": "七下_090",
+      "phrase": "Australia",
+      "meaning": "澳大利亚",
+      "example": "Koalas live in **Australia**.",
+      "level": "核心词汇",
+      "keywords": [
+        "Australia"
+      ],
+      "unit": "Unit 1-8 (七年级下册)",
+      "type": "phrase"
+    },
+    {
+      "id": "七下_091",
+      "phrase": "south",
+      "meaning": "南；南方",
+      "example": "China is in the **south** of Asia.",
+      "level": "核心词汇",
+      "keywords": [
+        "south"
+      ],
+      "unit": "Unit 1-8 (七年级下册)",
+      "type": "phrase"
+    },
+    {
+      "id": "七下_092",
+      "phrase": "Africa",
+      "meaning": "非洲",
+      "example": "Lions live in **Africa**.",
+      "level": "核心词汇",
+      "keywords": [
+        "Africa"
+      ],
+      "unit": "Unit 1-8 (七年级下册)",
+      "type": "phrase"
+    },
+    {
+      "id": "七下_093",
+      "phrase": "be made of",
+      "meaning": "由...制成",
+      "example": "The table **is made of** wood.",
+      "level": "核心词汇",
+      "keywords": [
+        "be"
+      ],
+      "unit": "Unit 1-8 (七年级下册)",
+      "type": "phrase"
+    },
+    {
+      "id": "七下_094",
+      "phrase": "newspaper",
+      "meaning": "报纸",
+      "example": "I read the **newspaper** every morning.",
+      "level": "核心词汇",
+      "keywords": [
+        "newspaper"
+      ],
+      "unit": "Unit 1-8 (七年级下册)",
+      "type": "phrase"
+    },
+    {
+      "id": "七下_095",
+      "phrase": "use",
+      "meaning": "使用；用途",
+      "example": "Can I **use** your pen?",
+      "level": "核心词汇",
+      "keywords": [
+        "use"
+      ],
+      "unit": "Unit 1-8 (七年级下册)",
+      "type": "phrase"
+    },
+    {
+      "id": "七下_096",
+      "phrase": "soup",
+      "meaning": "汤",
+      "example": "The **soup** is hot.",
+      "level": "核心词汇",
+      "keywords": [
+        "soup"
+      ],
+      "unit": "Unit 1-8 (七年级下册)",
+      "type": "phrase"
+    },
+    {
+      "id": "七下_097",
+      "phrase": "wash",
+      "meaning": "洗；洗涤",
+      "example": "**Wash** your hands before eating.",
+      "level": "核心词汇",
+      "keywords": [
+        "wash"
+      ],
+      "unit": "Unit 1-8 (七年级下册)",
+      "type": "phrase"
+    },
+    {
+      "id": "七下_098",
+      "phrase": "movie",
+      "meaning": "电影",
+      "example": "Let's watch a **movie** tonight.",
+      "level": "核心词汇",
+      "keywords": [
+        "movie"
+      ],
+      "unit": "Unit 1-8 (七年级下册)",
+      "type": "phrase"
+    },
+    {
+      "id": "七下_099",
+      "phrase": "house",
+      "meaning": "房子；住宅",
+      "example": "This is my **house**.",
+      "level": "核心词汇",
+      "keywords": [
+        "house"
+      ],
+      "unit": "Unit 1-8 (七年级下册)",
+      "type": "phrase"
+    },
+    {
+      "id": "七下_100",
+      "phrase": "drink",
+      "meaning": "喝；饮",
+      "example": "I **drink** water every day.",
+      "level": "核心词汇",
+      "keywords": [
+        "drink"
+      ],
+      "unit": "Unit 1-8 (七年级下册)",
+      "type": "phrase"
+    },
+    {
+      "id": "七下_101",
+      "phrase": "tea",
+      "meaning": "茶",
+      "example": "Would you like some **tea**?",
+      "level": "核心词汇",
+      "keywords": [
+        "tea"
+      ],
+      "unit": "Unit 1-8 (七年级下册)",
+      "type": "phrase"
+    },
+    {
+      "id": "七下_102",
+      "phrase": "tomorrow",
+      "meaning": "明天",
+      "example": "See you **tomorrow**!",
+      "level": "核心词汇",
+      "keywords": [
+        "tomorrow"
+      ],
+      "unit": "Unit 1-8 (七年级下册)",
+      "type": "phrase"
+    },
+    {
+      "id": "七下_103",
+      "phrase": "weather",
+      "meaning": "天气",
+      "example": "The **weather** is nice today.",
+      "level": "核心词汇",
+      "keywords": [
+        "weather"
+      ],
+      "unit": "Unit 1-8 (七年级下册)",
+      "type": "phrase"
+    },
+    {
+      "id": "七下_104",
+      "phrase": "rain",
+      "meaning": "雨；下雨",
+      "example": "It's going to **rain**.",
+      "level": "核心词汇",
+      "keywords": [
+        "rain"
+      ],
+      "unit": "Unit 1-8 (七年级下册)",
+      "type": "phrase"
+    },
+    {
+      "id": "七下_105",
+      "phrase": "windy",
+      "meaning": "有风的；多风的",
+      "example": "It's **windy** today.",
+      "level": "核心词汇",
+      "keywords": [
+        "windy"
+      ],
+      "unit": "Unit 1-8 (七年级下册)",
+      "type": "phrase"
+    },
+    {
+      "id": "七下_106",
+      "phrase": "cloudy",
+      "meaning": "多云的",
+      "example": "It's **cloudy** and cool.",
+      "level": "核心词汇",
+      "keywords": [
+        "cloudy"
+      ],
+      "unit": "Unit 1-8 (七年级下册)",
+      "type": "phrase"
+    },
+    {
+      "id": "七下_107",
+      "phrase": "sunny",
+      "meaning": "晴朗的",
+      "example": "The **sunny** sky is blue.",
+      "level": "核心词汇",
+      "keywords": [
+        "sunny"
+      ],
+      "unit": "Unit 1-8 (七年级下册)",
+      "type": "phrase"
+    },
+    {
+      "id": "七下_108",
+      "phrase": "snow",
+      "meaning": "雪；下雪",
+      "example": "Does it **snow** in your city?",
+      "level": "核心词汇",
+      "keywords": [
+        "snow"
+      ],
+      "unit": "Unit 1-8 (七年级下册)",
+      "type": "phrase"
+    },
+    {
+      "id": "七下_109",
+      "phrase": "winter",
+      "meaning": "冬天",
+      "example": "I like **winter** because I can ski.",
+      "level": "核心词汇",
+      "keywords": [
+        "winter"
+      ],
+      "unit": "Unit 1-8 (七年级下册)",
+      "type": "phrase"
+    },
+    {
+      "id": "七下_110",
+      "phrase": "hot",
+      "meaning": "热的；辣的",
+      "example": "It's very **hot** in summer.",
+      "level": "核心词汇",
+      "keywords": [
+        "hot"
+      ],
+      "unit": "Unit 1-8 (七年级下册)",
+      "type": "phrase"
+    },
+    {
+      "id": "七下_111",
+      "phrase": "cold",
+      "meaning": "冷的",
+      "example": "It's **cold** in winter.",
+      "level": "核心词汇",
+      "keywords": [
+        "cold"
+      ],
+      "unit": "Unit 1-8 (七年级下册)",
+      "type": "phrase"
+    },
+    {
+      "id": "七下_112",
+      "phrase": "warm",
+      "meaning": "温暖的",
+      "example": "The **warm** sun feels good.",
+      "level": "核心词汇",
+      "keywords": [
+        "warm"
+      ],
+      "unit": "Unit 1-8 (七年级下册)",
+      "type": "phrase"
+    },
+    {
+      "id": "七下_113",
+      "phrase": "visit",
+      "meaning": "参观；访问",
+      "example": "We **visit** our grandparents on Sunday.",
+      "level": "核心词汇",
+      "keywords": [
+        "visit"
+      ],
+      "unit": "Unit 1-8 (七年级下册)",
+      "type": "phrase"
+    },
+    {
+      "id": "七下_114",
+      "phrase": "summer",
+      "meaning": "夏天；夏季",
+      "example": "I love **summer** vacation.",
+      "level": "核心词汇",
+      "keywords": [
+        "summer"
+      ],
+      "unit": "Unit 1-8 (七年级下册)",
+      "type": "phrase"
+    },
+    {
+      "id": "七下_115",
+      "phrase": "sit",
+      "meaning": "坐",
+      "example": "Please **sit** down.",
+      "level": "核心词汇",
+      "keywords": [
+        "sit"
+      ],
+      "unit": "Unit 1-8 (七年级下册)",
+      "type": "phrase"
+    },
+    {
+      "id": "七下_116",
+      "phrase": "juice",
+      "meaning": "果汁",
+      "example": "I drink orange **juice** for breakfast.",
+      "level": "核心词汇",
+      "keywords": [
+        "juice"
+      ],
+      "unit": "Unit 1-8 (七年级下册)",
+      "type": "phrase"
+    },
+    {
+      "id": "七下_117",
+      "phrase": "ice",
+      "meaning": "冰",
+      "example": "Would you like some **ice** in your drink?",
+      "level": "核心词汇",
+      "keywords": [
+        "ice"
+      ],
+      "unit": "Unit 1-8 (七年级下册)",
+      "type": "phrase"
+    },
+    {
+      "id": "七下_118",
+      "phrase": "post office",
+      "meaning": "邮局",
+      "example": "The **post office** is near the bank.",
+      "level": "核心词汇",
+      "keywords": [
+        "post"
+      ],
+      "unit": "Unit 1-8 (七年级下册)",
+      "type": "phrase"
+    },
+    {
+      "id": "七下_119",
+      "phrase": "police office",
+      "meaning": "警察局",
+      "example": "The **police office** is over there.",
+      "level": "核心词汇",
+      "keywords": [
+        "police"
+      ],
+      "unit": "Unit 1-8 (七年级下册)",
+      "type": "phrase"
+    },
+    {
+      "id": "七下_120",
+      "phrase": "hotel",
+      "meaning": "旅馆；酒店",
+      "example": "We stay at a **hotel**.",
+      "level": "核心词汇",
+      "keywords": [
+        "hotel"
+      ],
+      "unit": "Unit 1-8 (七年级下册)",
+      "type": "phrase"
+    },
+    {
+      "id": "七下_121",
+      "phrase": "restaurant",
+      "meaning": "餐馆；饭店",
+      "example": "The **restaurant** serves good food.",
+      "level": "核心词汇",
+      "keywords": [
+        "restaurant"
+      ],
+      "unit": "Unit 1-8 (七年级下册)",
+      "type": "phrase"
+    },
+    {
+      "id": "七下_122",
+      "phrase": "bank",
+      "meaning": "银行",
+      "example": "I need to go to the **bank**.",
+      "level": "核心词汇",
+      "keywords": [
+        "bank"
+      ],
+      "unit": "Unit 1-8 (七年级下册)",
+      "type": "phrase"
+    },
+    {
+      "id": "七下_123",
+      "phrase": "hospital",
+      "meaning": "医院",
+      "example": "She works in a **hospital**.",
+      "level": "核心词汇",
+      "keywords": [
+        "hospital"
+      ],
+      "unit": "Unit 1-8 (七年级下册)",
+      "type": "phrase"
+    },
+    {
+      "id": "七下_124",
+      "phrase": "street",
+      "meaning": "街道",
+      "example": "My house is on Main **Street**.",
+      "level": "核心词汇",
+      "keywords": [
+        "street"
+      ],
+      "unit": "Unit 1-8 (七年级下册)",
+      "type": "phrase"
+    },
+    {
+      "id": "七下_125",
+      "phrase": "pay",
+      "meaning": "支付；付钱",
+      "example": "How much do I **pay**?",
+      "level": "核心词汇",
+      "keywords": [
+        "pay"
+      ],
+      "unit": "Unit 1-8 (七年级下册)",
+      "type": "phrase"
+    },
+    {
+      "id": "七下_126",
+      "phrase": "near",
+      "meaning": "在...附近",
+      "example": "The school is **near** my house.",
+      "level": "核心词汇",
+      "keywords": [
+        "near"
+      ],
+      "unit": "Unit 1-8 (七年级下册)",
+      "type": "phrase"
+    },
+    {
+      "id": "七下_127",
+      "phrase": "across from",
+      "meaning": "在...对面",
+      "example": "The park is **across from** the school.",
+      "level": "核心词汇",
+      "keywords": [
+        "across"
+      ],
+      "unit": "Unit 1-8 (七年级下册)",
+      "type": "phrase"
+    },
+    {
+      "id": "七下_128",
+      "phrase": "between",
+      "meaning": "在...之间",
+      "example": "I sit **between** Tom and Jack.",
+      "level": "核心词汇",
+      "keywords": [
+        "between"
+      ],
+      "unit": "Unit 1-8 (七年级下册)",
+      "type": "phrase"
+    },
+    {
+      "id": "七下_129",
+      "phrase": "front",
+      "meaning": "前面",
+      "example": "The teacher is in the **front** of the class.",
+      "level": "核心词汇",
+      "keywords": [
+        "front"
+      ],
+      "unit": "Unit 1-8 (七年级下册)",
+      "type": "phrase"
+    },
+    {
+      "id": "七下_130",
+      "phrase": "behind",
+      "meaning": "在...后面",
+      "example": "The cat is **behind** the door.",
+      "level": "核心词汇",
+      "keywords": [
+        "behind"
+      ],
+      "unit": "Unit 1-8 (七年级下册)",
+      "type": "phrase"
+    },
+    {
+      "id": "七下_131",
+      "phrase": "town",
+      "meaning": "城镇；市镇",
+      "example": "Our **town** is small but beautiful.",
+      "level": "核心词汇",
+      "keywords": [
+        "town"
+      ],
+      "unit": "Unit 1-8 (七年级下册)",
+      "type": "phrase"
+    },
+    {
+      "id": "七下_132",
+      "phrase": "around",
+      "meaning": "在周围；大约",
+      "example": "There are many trees **around** the school.",
+      "level": "核心词汇",
+      "keywords": [
+        "around"
+      ],
+      "unit": "Unit 1-8 (七年级下册)",
+      "type": "phrase"
+    },
+    {
+      "id": "七下_133",
+      "phrase": "straight",
+      "meaning": "直的；直接",
+      "example": "She has **straight** hair.",
+      "level": "核心词汇",
+      "keywords": [
+        "straight"
+      ],
+      "unit": "Unit 1-8 (七年级下册)",
+      "type": "phrase"
+    },
+    {
+      "id": "七下_134",
+      "phrase": "left",
+      "meaning": "左；左边",
+      "example": "Turn **left** at the corner.",
+      "level": "核心词汇",
+      "keywords": [
+        "left"
+      ],
+      "unit": "Unit 1-8 (七年级下册)",
+      "type": "phrase"
+    },
+    {
+      "id": "七下_135",
+      "phrase": "right",
+      "meaning": "右；右边",
+      "example": "Turn **right** at the traffic light.",
+      "level": "核心词汇",
+      "keywords": [
+        "right"
+      ],
+      "unit": "Unit 1-8 (七年级下册)",
+      "type": "phrase"
+    },
+    {
+      "id": "七下_136",
+      "phrase": "tall",
+      "meaning": "高的",
+      "example": "He is very **tall**.",
+      "level": "核心词汇",
+      "keywords": [
+        "tall"
+      ],
+      "unit": "Unit 1-8 (七年级下册)",
+      "type": "phrase"
+    },
+    {
+      "id": "七下_137",
+      "phrase": "short",
+      "meaning": "矮的；短的",
+      "example": "She is **short** and cute.",
+      "level": "核心词汇",
+      "keywords": [
+        "short"
+      ],
+      "unit": "Unit 1-8 (七年级下册)",
+      "type": "phrase"
+    },
+    {
+      "id": "七下_138",
+      "phrase": "thin",
+      "meaning": "瘦的",
+      "example": "He is **thin** but strong.",
+      "level": "核心词汇",
+      "keywords": [
+        "thin"
+      ],
+      "unit": "Unit 1-8 (七年级下册)",
+      "type": "phrase"
+    },
+    {
+      "id": "七下_139",
+      "phrase": "heavy",
+      "meaning": "重的",
+      "example": "The box is too **heavy**.",
+      "level": "核心词汇",
+      "keywords": [
+        "heavy"
+      ],
+      "unit": "Unit 1-8 (七年级下册)",
+      "type": "phrase"
+    },
+    {
+      "id": "七下_140",
+      "phrase": "build",
+      "meaning": "建设；建造",
+      "example": "Birds **build** nests in trees.",
+      "level": "核心词汇",
+      "keywords": [
+        "build"
+      ],
+      "unit": "Unit 1-8 (七年级下册)",
+      "type": "phrase"
+    },
+    {
+      "id": "七下_141",
+      "phrase": "curly",
+      "meaning": "卷曲的",
+      "example": "She has **curly** hair.",
+      "level": "核心词汇",
+      "keywords": [
+        "curly"
+      ],
+      "unit": "Unit 1-8 (七年级下册)",
+      "type": "phrase"
+    },
+    {
+      "id": "七下_142",
+      "phrase": "straight",
+      "meaning": "直的",
+      "example": "She has **straight** hair.",
+      "level": "核心词汇",
+      "keywords": [
+        "straight"
+      ],
+      "unit": "Unit 1-8 (七年级下册)",
+      "type": "phrase"
+    },
+    {
+      "id": "七下_143",
+      "phrase": "blonde",
+      "meaning": "金发的",
+      "example": "She has **blonde** hair.",
+      "level": "核心词汇",
+      "keywords": [
+        "blonde"
+      ],
+      "unit": "Unit 1-8 (七年级下册)",
+      "type": "phrase"
+    },
+    {
+      "id": "七下_144",
+      "phrase": "nose",
+      "meaning": "鼻子",
+      "example": "He has a big **nose**.",
+      "level": "核心词汇",
+      "keywords": [
+        "nose"
+      ],
+      "unit": "Unit 1-8 (七年级下册)",
+      "type": "phrase"
+    },
+    {
+      "id": "七下_145",
+      "phrase": "mouth",
+      "meaning": "嘴巴",
+      "example": "Cover your **mouth** when you cough.",
+      "level": "核心词汇",
+      "keywords": [
+        "mouth"
+      ],
+      "unit": "Unit 1-8 (七年级下册)",
+      "type": "phrase"
+    },
+    {
+      "id": "七下_146",
+      "phrase": "round face",
+      "meaning": "圆脸",
+      "example": "She has a **round face**.",
+      "level": "核心词汇",
+      "keywords": [
+        "round"
+      ],
+      "unit": "Unit 1-8 (七年级下册)",
+      "type": "phrase"
+    },
+    {
+      "id": "七下_147",
+      "phrase": "big eyes",
+      "meaning": "大眼睛",
+      "example": "She has **big eyes**.",
+      "level": "核心词汇",
+      "keywords": [
+        "big"
+      ],
+      "unit": "Unit 1-8 (七年级下册)",
+      "type": "phrase"
+    },
+    {
+      "id": "七下_148",
+      "phrase": "wear glasses",
+      "meaning": "戴眼镜",
+      "example": "He **wears glasses**.",
+      "level": "核心词汇",
+      "keywords": [
+        "wear"
+      ],
+      "unit": "Unit 1-8 (七年级下册)",
+      "type": "phrase"
+    },
+    {
+      "id": "七下_149",
+      "phrase": "look like",
+      "meaning": "看起来像",
+      "example": "What does he **look like**?",
+      "level": "核心词汇",
+      "keywords": [
+        "look"
+      ],
+      "unit": "Unit 1-8 (七年级下册)",
+      "type": "phrase"
+    }
+  ]
+}

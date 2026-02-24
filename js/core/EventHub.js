@@ -184,3 +184,6 @@ const Events = {
 
 // 导出单例实例
 const eventHub = new EventHub();
+
+// 导出
+export { eventHub, Events, EventHub };

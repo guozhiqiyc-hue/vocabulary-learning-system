@@ -3,6 +3,8 @@
  * 语块编辑器功能模块
  */
 
+import { Utils } from '../core/Utils.js';
+
 class Editor {
     constructor(storage, phraseStore) {
         this.storage = storage;
@@ -14,16 +16,58 @@ class Editor {
             level: '',
             topic: ''
         };
+        this.eventListeners = [];
+        this.isInitialized = false;
     }
 
     /**
      * 初始化编辑器
      */
     async init() {
+        // 清除旧的事件监听器
+        this.removeEventListeners();
+
         await this.loadPhrases();
         await this.loadTopics();
         this.render();
         this.setupEventListeners();
+        this.setupKeyboardShortcuts();
+        this.isInitialized = true;
+    }
+
+    /**
+     * 移除事件监听器
+     */
+    removeEventListeners() {
+        this.eventListeners.forEach(({ element, event, handler }) => {
+            element.removeEventListener(event, handler);
+        });
+        this.eventListeners = [];
+    }
+
+    /**
+     * 添加事件监听器（追踪）
+     */
+    addTrackedListener(element, event, handler) {
+        element.addEventListener(event, handler);
+        this.eventListeners.push({ element, event, handler });
+    }
+
+    /**
+     * 设置键盘快捷键
+     */
+    setupKeyboardShortcuts() {
+        // ESC 键关闭模态框
+        const escHandler = (e) => {
+            if (e.key === 'Escape') {
+                const modal = document.getElementById('editor-modal');
+                if (modal) {
+                    this.closeModal();
+                }
+            }
+        };
+        document.addEventListener('keydown', escHandler);
+        this.eventListeners.push({ element: document, event: 'keydown', handler: escHandler });
     }
 
     /**
@@ -129,37 +173,55 @@ class Editor {
         // 搜索框
         const searchInput = document.getElementById('editor-search');
         if (searchInput) {
-            searchInput.addEventListener('input', Utils.debounce((e) => {
+            const debouncedSearch = Utils.debounce((e) => {
                 this.filter.search = e.target.value;
                 this.loadPhrases();
                 this.render();
-            }, 300));
+            }, 300);
+            this.addTrackedListener(searchInput, 'input', debouncedSearch);
         }
 
         // 等级筛选
         const levelFilter = document.getElementById('editor-level-filter');
         if (levelFilter) {
-            levelFilter.addEventListener('change', (e) => {
+            const handler = (e) => {
                 this.filter.level = e.target.value;
                 this.loadPhrases();
                 this.render();
-            });
+            };
+            this.addTrackedListener(levelFilter, 'change', handler);
         }
 
         // 主题筛选
         const topicFilter = document.getElementById('editor-topic-filter');
         if (topicFilter) {
-            topicFilter.addEventListener('change', (e) => {
+            const handler = (e) => {
                 this.filter.topic = e.target.value;
                 this.loadPhrases();
                 this.render();
-            });
+            };
+            this.addTrackedListener(topicFilter, 'change', handler);
         }
 
         // 添加按钮
         const addBtn = document.getElementById('add-phrase-btn');
         if (addBtn) {
-            addBtn.addEventListener('click', () => this.showAddForm());
+            const handler = () => this.showAddForm();
+            this.addTrackedListener(addBtn, 'click', handler);
+        }
+
+        // 批量编辑按钮（预留）
+        const batchEditBtn = document.getElementById('batch-edit-btn');
+        if (batchEditBtn) {
+            const handler = () => alert('批量编辑功能即将推出！');
+            this.addTrackedListener(batchEditBtn, 'click', handler);
+        }
+
+        // 导出按钮（预留）
+        const exportBtn = document.getElementById('export-editor-btn');
+        if (exportBtn) {
+            const handler = () => alert('导出功能即将推出！');
+            this.addTrackedListener(exportBtn, 'click', handler);
         }
     }
 
@@ -340,6 +402,13 @@ class Editor {
             return;
         }
 
+        // 获取提交按钮并显示加载状态
+        const submitBtn = document.querySelector('#phrase-form button[type="submit"]');
+        const originalText = submitBtn.textContent;
+
+        submitBtn.disabled = true;
+        submitBtn.textContent = '保存中...';
+
         try {
             if (id) {
                 // 更新
@@ -358,10 +427,15 @@ class Editor {
 
             // 更新仪表盘
             if (window.app) {
-                window.app.updateDashboard();
+                await window.app.updateDashboard();
             }
         } catch (error) {
+            console.error('[Editor] Save error:', error);
             alert('保存失败: ' + error.message);
+        } finally {
+            // 恢复按钮状态
+            submitBtn.disabled = false;
+            submitBtn.textContent = originalText;
         }
     }
 
@@ -384,3 +458,6 @@ class Editor {
         return div.innerHTML;
     }
 }
+
+// 导出
+export { Editor };

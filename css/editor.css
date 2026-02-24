@@ -443,3 +443,59 @@
         flex: 1;
     }
 }
+
+/* ========== Editor List ========== */
+.editor-list {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-sm);
+}
+
+/* ========== Editor Modal Form ========== */
+#editor-modal .modal-content {
+    max-width: 700px;
+}
+
+#editor-modal .form-group {
+    margin-bottom: var(--spacing-md);
+}
+
+#editor-modal .form-group label {
+    display: block;
+    font-weight: 600;
+    margin-bottom: var(--spacing-xs);
+    color: var(--text-primary);
+}
+
+#editor-modal .form-group input,
+#editor-modal .form-group select,
+#editor-modal .form-group textarea {
+    width: 100%;
+    padding: 10px 12px;
+    border: 1px solid var(--border-color);
+    border-radius: var(--border-radius);
+    font-size: 14px;
+    font-family: inherit;
+}
+
+#editor-modal .form-group input:focus,
+#editor-modal .form-group select:focus,
+#editor-modal .form-group textarea:focus {
+    outline: none;
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+}
+
+#editor-modal .form-group small {
+    display: block;
+    margin-top: var(--spacing-xs);
+    color: var(--text-tertiary);
+    font-size: 12px;
+}
+
+#editor-modal .form-actions {
+    display: flex;
+    gap: var(--spacing-sm);
+    justify-content: flex-end;
+    margin-top: var(--spacing-lg);
+}

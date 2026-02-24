@@ -17,6 +17,8 @@ import { SuperMemo2 } from './algorithms/SuperMemo2.js';
 // Import features
 import { DataMigration } from './features/DataMigration.js';
 import { LearningMode } from './features/LearningMode.js';
+import { ReviewMode } from './features/ReviewMode.js';
+import { Editor } from './features/Editor.js';
 
 /**
  * Main Application Class
@@ -31,6 +33,8 @@ class App {
         this.currentUserId = 'default';
         this.isInitialized = false;
         this.learningMode = null;
+        this.reviewMode = null;
+        this.editor = null;
     }
 
     /**
@@ -65,6 +69,19 @@ class App {
                 this.storage,
                 this.phraseStore,
                 this.progressStore
+            );
+
+            // Initialize ReviewMode
+            this.reviewMode = new ReviewMode(
+                this.storage,
+                this.phraseStore,
+                this.progressStore
+            );
+
+            // Initialize Editor
+            this.editor = new Editor(
+                this.storage,
+                this.phraseStore
             );
 
             // Check if data migration is needed
@@ -164,6 +181,9 @@ class App {
      * Initialize UI components
      */
     initUI() {
+        // Initialize config info display
+        this.updateConfigInfo();
+
         // Initialize dashboard
         this.updateDashboard();
 
@@ -398,12 +418,22 @@ class App {
      */
     async getTodayPlan() {
         const config = this.getUserConfig();
+
         const duePhrases = await this.phraseStore.getDuePhrases(this.currentUserId);
         const sorted = this.phraseStore.sortByPriority(duePhrases);
         const todayReview = sorted.slice(0, config.dailyReviewLimit);
 
-        const newPhrases = await this.phraseStore.getByStatus('new');
+        // Get new phrases (phrases without progress records)
+        const allPhrases = await this.phraseStore.getAll();
+        const allProgress = await this.progressStore.getAll(this.currentUserId);
+        const learnedPhraseIds = new Set(allProgress.map(p => p.phraseId));
+
+        const newPhrases = allPhrases.filter(p => !learnedPhraseIds.has(p.id));
         const todayNew = newPhrases.slice(0, config.dailyNewLimit);
+
+        console.log('[App] getTodayPlan - allPhrases:', allPhrases.length);
+        console.log('[App] getTodayPlan - duePhrases:', duePhrases.length);
+        console.log('[App] getTodayPlan - newPhrases:', newPhrases.length);
 
         return {
             review: todayReview,
@@ -441,7 +471,8 @@ class App {
             dailyNewLimit: 20,
             avgTimePerReview: 30,
             avgTimePerNew: 60,
-            scheduleStrategy: 'balanced'
+            scheduleStrategy: 'balanced',
+            selectedPreset: 'balanced'
         });
     }
 
@@ -524,8 +555,163 @@ class App {
      * Show settings
      */
     showSettings() {
-        // TODO: Implement settings modal
-        console.log('[App] Show settings');
+        const modal = document.getElementById('settings-modal');
+        if (modal) {
+            modal.classList.add('active');
+            this.initSettingsValues();
+        }
+    }
+
+    /**
+     * Close settings
+     */
+    closeSettings() {
+        const modal = document.getElementById('settings-modal');
+        if (modal) {
+            modal.classList.remove('active');
+        }
+    }
+
+    /**
+     * Initialize settings values
+     */
+    initSettingsValues() {
+        const config = this.getUserConfig();
+        const reviewInput = document.getElementById('setting-review-limit');
+        const newInput = document.getElementById('setting-new-limit');
+
+        if (reviewInput) reviewInput.value = config.dailyReviewLimit;
+        if (newInput) newInput.value = config.dailyNewLimit;
+
+        const reviewValue = document.getElementById('setting-review-value');
+        const newValue = document.getElementById('setting-new-value');
+
+        if (reviewValue) reviewValue.textContent = config.dailyReviewLimit + '个';
+        if (newValue) newValue.textContent = config.dailyNewLimit + '个';
+
+        this.updateConfigInfo();
+
+        // Update mode card selection
+        document.querySelectorAll('.mode-card').forEach(card => {
+            card.classList.remove('active');
+        });
+        if (config.selectedPreset) {
+            const activeCard = document.getElementById(`mode-${config.selectedPreset}`);
+            if (activeCard) {
+                activeCard.classList.add('active');
+            }
+        }
+    }
+
+    /**
+     * Select mode preset
+     */
+    selectModePreset(mode) {
+        const presets = {
+            balanced: { dailyReviewLimit: 40, dailyNewLimit: 20, dailyTime: '30-40分钟' },
+            review: { dailyReviewLimit: 60, dailyNewLimit: 10, dailyTime: '35-45分钟' },
+            new: { dailyReviewLimit: 20, dailyNewLimit: 40, dailyTime: '35-50分钟' }
+        };
+
+        const preset = presets[mode];
+        if (!preset) return;
+
+        const config = this.getUserConfig();
+        config.dailyReviewLimit = preset.dailyReviewLimit;
+        config.dailyNewLimit = preset.dailyNewLimit;
+        config.scheduleStrategy = mode;
+        config.selectedPreset = mode;
+
+        const reviewInput = document.getElementById('setting-review-limit');
+        const newInput = document.getElementById('setting-new-limit');
+
+        if (reviewInput) reviewInput.value = preset.dailyReviewLimit;
+        if (newInput) newInput.value = preset.dailyNewLimit;
+
+        const reviewValue = document.getElementById('setting-review-value');
+        const newValue = document.getElementById('setting-new-value');
+
+        if (reviewValue) reviewValue.textContent = preset.dailyReviewLimit + '个';
+        if (newValue) newValue.textContent = preset.dailyNewLimit + '个';
+
+        document.querySelectorAll('.mode-card').forEach(card => {
+            card.classList.remove('active');
+        });
+        const activeCard = document.getElementById(`mode-${mode}`);
+        if (activeCard) {
+            activeCard.classList.add('active');
+        }
+
+        this.updateConfigInfo();
+    }
+
+    /**
+     * Update setting value display
+     */
+    updateSettingValue(type, value) {
+        if (type === 'review') {
+            const reviewValue = document.getElementById('setting-review-value');
+            if (reviewValue) reviewValue.textContent = value + '个';
+        } else if (type === 'new') {
+            const newValue = document.getElementById('setting-new-value');
+            if (newValue) newValue.textContent = value + '个';
+        }
+
+        document.querySelectorAll('.mode-card').forEach(card => {
+            card.classList.remove('active');
+        });
+    }
+
+    /**
+     * Update config info display
+     */
+    updateConfigInfo() {
+        const config = this.getUserConfig();
+        const review = config.dailyReviewLimit;
+        const newCount = config.dailyNewLimit;
+        const total = review + newCount;
+
+        let timeText = '30-40分钟';
+        if (config.selectedPreset) {
+            const presets = {
+                balanced: '30-40分钟',
+                review: '35-45分钟',
+                new: '35-50分钟'
+            };
+            timeText = presets[config.selectedPreset] || '30-40分钟';
+        }
+
+        const infoReview = document.getElementById('info-review');
+        const infoNew = document.getElementById('info-new');
+        const infoTotal = document.getElementById('info-total');
+        const infoTime = document.getElementById('info-time');
+
+        if (infoReview) infoReview.textContent = review + '个';
+        if (infoNew) infoNew.textContent = newCount + '个';
+        if (infoTotal) infoTotal.textContent = total + '个';
+        if (infoTime) infoTime.textContent = timeText;
+    }
+
+    /**
+     * Save settings
+     */
+    saveSettings() {
+        const config = this.getUserConfig();
+
+        const reviewInput = document.getElementById('setting-review-limit');
+        const newInput = document.getElementById('setting-new-limit');
+
+        if (reviewInput) config.dailyReviewLimit = parseInt(reviewInput.value);
+        if (newInput) config.dailyNewLimit = parseInt(newInput.value);
+
+        const prefix = this.storage.getUserPrefix(this.currentUserId);
+        this.storage.setLocalStorage(prefix + 'config', config);
+
+        this.updateConfigInfo();
+        this.updateDashboard();
+        this.closeSettings();
+
+        console.log('[App] Settings saved:', config);
     }
 
     /**
@@ -554,7 +740,10 @@ class App {
      * Start learning
      */
     async startLearning() {
+        console.log('[App] Starting today\'s learning...');
         const plan = await this.getTodayPlan();
+
+        console.log('[App] Today\'s plan:', plan);
 
         if (plan.total === 0) {
             alert('今天没有需要学习的内容！');
@@ -588,7 +777,14 @@ class App {
             return;
         }
 
-        await this.showLearningModal(duePhrases.slice(0, 20));
+        await this.showReviewModal(duePhrases.slice(0, 50));
+    }
+
+    /**
+     * Show review modal
+     */
+    async showReviewModal(phrases) {
+        await this.reviewMode.start(phrases, this.currentUserId);
     }
 
     /**
@@ -599,13 +795,136 @@ class App {
     }
 
     /**
+     * Speak text using Text-to-Speech
+     * @param {string} text - Text to speak
+     * @param {string} lang - Language code (default: 'en-US')
+     */
+    speakPhrase(text, lang = 'en-US') {
+        if ('speechSynthesis' in window) {
+            // Cancel any ongoing speech
+            window.speechSynthesis.cancel();
+
+            const utterance = new SpeechSynthesisUtterance(text);
+            utterance.lang = lang;
+            utterance.rate = 0.9;
+            utterance.pitch = 1;
+            utterance.volume = 1;
+
+            // Try to get a good English voice
+            const voices = window.speechSynthesis.getVoices();
+            const englishVoice = voices.find(v => v.lang.startsWith('en')) || voices[0];
+            if (englishVoice) {
+                utterance.voice = englishVoice;
+            }
+
+            window.speechSynthesis.speak(utterance);
+        } else {
+            console.warn('Speech synthesis not supported');
+        }
+    }
+
+    /**
      * Load learning content
      */
     async loadLearningContent() {
         const container = document.getElementById('learning-container');
         if (container) {
-            // TODO: Implement learning interface
-            container.innerHTML = '<p>学习功能开发中...</p>';
+            // Get phrases to learn (new phrases not yet learned)
+            const allPhrases = await this.phraseStore.getAll();
+            const allProgress = await this.progressStore.getAll(this.currentUserId);
+            const learnedPhraseIds = new Set(allProgress.map(p => p.phraseId));
+
+            // New phrases - no progress record
+            const newPhrases = allPhrases.filter(p => !learnedPhraseIds.has(p.id));
+
+            // In progress phrases
+            const inProgressPhrases = allProgress.filter(p => p.status === 'learning' || p.status === 'reviewing');
+            const learningPhrases = [];
+
+            for (const progress of inProgressPhrases) {
+                const phrase = await this.phraseStore.get(progress.phraseId);
+                if (phrase) {
+                    learningPhrases.push({ ...phrase, progress });
+                }
+            }
+
+            container.innerHTML = `
+                <div class="learning-content">
+                    <div class="learning-header">
+                        <h2>📚 学习中心</h2>
+                        <p class="subtitle">选择一个学习模式开始</p>
+                    </div>
+
+                    <div class="learning-cards">
+                        <div class="learning-card" data-mode="new">
+                            <div class="card-icon">🆕</div>
+                            <h3>学习新语块</h3>
+                            <p class="card-description">开始学习新的语块，扩展你的词汇量</p>
+                            <div class="card-stats">
+                                <span class="stat">待学习: ${newPhrases.length} 个</span>
+                            </div>
+                            <button class="btn-primary" id="learn-new-btn" ${newPhrases.length === 0 ? 'disabled' : ''}>
+                                开始学习
+                            </button>
+                        </div>
+
+                        <div class="learning-card" data-mode="continue">
+                            <div class="card-icon">📖</div>
+                            <h3>继续学习</h3>
+                            <p class="card-description">继续学习正在进行的语块</p>
+                            <div class="card-stats">
+                                <span class="stat">学习中: ${learningPhrases.length} 个</span>
+                            </div>
+                            <button class="btn-primary" id="continue-learning-btn" ${learningPhrases.length === 0 ? 'disabled' : ''}>
+                                继续学习
+                            </button>
+                        </div>
+
+                        <div class="learning-card" data-mode="random">
+                            <div class="card-icon">🎲</div>
+                            <h3>随机学习</h3>
+                            <p class="card-description">随机选择一个语块进行学习</p>
+                            <div class="card-stats">
+                                <span class="stat">总语块数: ${await this.phraseStore.count()}</span>
+                            </div>
+                            <button class="btn-primary" id="random-learn-btn">
+                                随机学习
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="learning-tips">
+                        <h4>💡 学习提示</h4>
+                        <ul>
+                            <li>建议每天学习 10-20 个新语块</li>
+                            <li>使用 <kbd>空格</kbd> 或 <kbd>回车</kbd> 显示答案</li>
+                            <li>使用 <kbd>1-5</kbd> 数字键快速评分</li>
+                            <li>诚实评分有助于系统更好地安排复习</li>
+                        </ul>
+                    </div>
+                </div>
+            `;
+
+            // Attach event listeners
+            const learnNewBtn = document.getElementById('learn-new-btn');
+            if (learnNewBtn && newPhrases.length > 0) {
+                learnNewBtn.addEventListener('click', () => {
+                    const config = this.getUserConfig();
+                    this.showLearningModal(newPhrases.slice(0, config.dailyNewLimit));
+                });
+            }
+
+            const continueBtn = document.getElementById('continue-learning-btn');
+            if (continueBtn && learningPhrases.length > 0) {
+                continueBtn.addEventListener('click', () => {
+                    this.showLearningModal(learningPhrases.slice(0, 20));
+                });
+            }
+
+            const randomBtn = document.getElementById('random-learn-btn');
+            if (randomBtn) {
+                randomBtn.addEventListener('click', () => this.startRandomLearning());
+            }
         }
     }
 
@@ -615,8 +934,111 @@ class App {
     async loadReviewContent() {
         const container = document.getElementById('review-container');
         if (container) {
-            // TODO: Implement review interface
-            container.innerHTML = '<p>复习功能开发中...</p>';
+            const duePhrases = await this.phraseStore.getDuePhrases(this.currentUserId);
+            const progressStats = await this.progressStore.getStatistics(this.currentUserId);
+
+            // Sort by priority
+            const sortedDue = this.phraseStore.sortByPriority(duePhrases);
+
+            container.innerHTML = `
+                <div class="review-content">
+                    <div class="review-header">
+                        <h2>🔄 复习中心</h2>
+                        <p class="subtitle">复习到期的语块，巩固记忆</p>
+                    </div>
+
+                    <div class="review-summary-cards">
+                        <div class="summary-card due">
+                            <div class="card-icon">⏰</div>
+                            <div class="card-value">${progressStats.dueToday}</div>
+                            <div class="card-label">待复习</div>
+                        </div>
+                        <div class="summary-card learning">
+                            <div class="card-icon">📚</div>
+                            <div class="card-value">${progressStats.learning}</div>
+                            <div class="card-label">学习中</div>
+                        </div>
+                        <div class="summary-card reviewing">
+                            <div class="card-icon">🔄</div>
+                            <div class="card-value">${progressStats.reviewing}</div>
+                            <div class="card-label">复习中</div>
+                        </div>
+                        <div class="summary-card mastered">
+                            <div class="card-icon">⭐</div>
+                            <div class="card-value">${progressStats.mastered}</div>
+                            <div class="card-label">已掌握</div>
+                        </div>
+                    </div>
+
+                    ${duePhrases.length > 0 ? `
+                        <div class="review-action-section">
+                            <div class="review-alert">
+                                <span class="alert-icon">📢</span>
+                                <span class="alert-text">有 <strong>${duePhrases.length}</strong> 个语块需要复习</span>
+                            </div>
+                            <button class="btn-primary btn-large" id="start-review-btn">
+                                🚀 开始复习 (${duePhrases.length} 个)
+                            </button>
+                        </div>
+
+                        <div class="review-list">
+                            <h3>待复习列表</h3>
+                            <div class="phrase-list">
+                                ${sortedDue.slice(0, 10).map(item => {
+                                    const phrase = item;
+                                    const progress = item.progress || {};
+                                    const timeUntil = SuperMemo2.getTimeUntilReview(progress.nextReview);
+                                    return `
+                                        <div class="phrase-list-item">
+                                            <div class="phrase-info">
+                                                <span class="phrase-text">${phrase.phrase}</span>
+                                                <span class="phrase-meaning">${phrase.meaning}</span>
+                                            </div>
+                                            <div class="phrase-meta">
+                                                <span class="review-count">${progress.repetitions || 0}次</span>
+                                                ${timeUntil.isDue ?
+                                                    '<span class="due-badge">到期</span>' :
+                                                    `<span class="next-review">${SuperMemo2.formatReviewTime(progress.nextReview)}</span>`
+                                                }
+                                            </div>
+                                        </div>
+                                    `;
+                                }).join('')}
+                                ${duePhrases.length > 10 ? `
+                                    <div class="more-items">
+                                        还有 ${duePhrases.length - 10} 个语块...
+                                    </div>
+                                ` : ''}
+                            </div>
+                        </div>
+                    ` : `
+                        <div class="review-empty">
+                            <div class="empty-icon">🎉</div>
+                            <h3>太棒了！</h3>
+                            <p>暂时没有需要复习的内容</p>
+                            <p class="empty-hint">当有语块到期复习时，会在这里显示</p>
+                        </div>
+                    `}
+
+                    <div class="review-tips">
+                        <h4>💡 复习提示</h4>
+                        <ul>
+                            <li>按时复习能有效巩固长期记忆</li>
+                            <li>评分标准：5=完美, 4=良好, 3=勉强, 2=困难, 1=忘记</li>
+                            <li>系统会根据你的评分自动调整下次复习时间</li>
+                            <li>连续5次评分4+的语块会被标记为"已掌握"</li>
+                        </ul>
+                    </div>
+                </div>
+            `;
+
+            // Attach event listeners
+            const startReviewBtn = document.getElementById('start-review-btn');
+            if (startReviewBtn) {
+                startReviewBtn.addEventListener('click', () => {
+                    this.showReviewModal(sortedDue.slice(0, 50));
+                });
+            }
         }
     }
 
@@ -624,10 +1046,9 @@ class App {
      * Load editor content
      */
     async loadEditorContent() {
-        const container = document.getElementById('editor-content');
-        if (container) {
-            // TODO: Implement editor interface
-            container.innerHTML = '<p>编辑器功能开发中...</p>';
+        // Initialize editor if needed
+        if (this.editor) {
+            await this.editor.init();
         }
     }
 

@@ -5,7 +5,7 @@
   "main": "js/app.js",
   "scripts": {
     "serve": "npx http-server -p 8080 -o",
-    "build": "echo 'No build step required - vanilla JavaScript'",
+    "build": "npx esbuild js/app.js --bundle --format=iife --outfile=js/bundle.js --banner:js=\"/** English Phrase Learning System v6.0 - Bundled Version */\"",
     "test": "echo 'No tests configured yet'",
     "lint": "eslint js/**/*.js"
   },
@@ -25,6 +25,7 @@
     "url": "https://github.com/yourusername/english-phrase-learning-system.git"
   },
   "devDependencies": {
+    "esbuild": "^0.27.3",
     "eslint": "^8.0.0",
     "http-server": "^14.0.0"
   },

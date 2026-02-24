@@ -352,3 +352,6 @@ class Storage {
 
 // 导出单例实例
 const storage = new Storage();
+
+// 导出
+export { storage, Storage };

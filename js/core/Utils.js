@@ -600,3 +600,6 @@ const Utils = {
         return this.readFile(file).then(content => JSON.parse(content));
     }
 };
+
+// 导出
+export { Utils };

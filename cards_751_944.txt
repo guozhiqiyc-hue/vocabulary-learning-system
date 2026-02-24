@@ -1,0 +1,973 @@
+Extracting cards 751-944: 194
+[
+  {
+    "id": "七上_757",
+    "phrase": "grandparent",
+    "type": "word"
+  },
+  {
+    "id": "七上_758",
+    "phrase": "grandparents",
+    "type": "word"
+  },
+  {
+    "id": "七上_759",
+    "phrase": "graph",
+    "type": "word"
+  },
+  {
+    "id": "七上_760",
+    "phrase": "grass",
+    "type": "word"
+  },
+  {
+    "id": "七上_761",
+    "phrase": "gray",
+    "type": "word"
+  },
+  {
+    "id": "七上_762",
+    "phrase": "great",
+    "type": "word"
+  },
+  {
+    "id": "七上_763",
+    "phrase": "greatest",
+    "type": "word"
+  },
+  {
+    "id": "七上_764",
+    "phrase": "greece",
+    "type": "word"
+  },
+  {
+    "id": "七上_765",
+    "phrase": "greek",
+    "type": "word"
+  },
+  {
+    "id": "七上_766",
+    "phrase": "green",
+    "type": "word"
+  },
+  {
+    "id": "七上_767",
+    "phrase": "greet",
+    "type": "word"
+  },
+  {
+    "id": "七上_768",
+    "phrase": "greeting",
+    "type": "word"
+  },
+  {
+    "id": "七上_769",
+    "phrase": "greetings",
+    "type": "word"
+  },
+  {
+    "id": "七上_770",
+    "phrase": "grey",
+    "type": "word"
+  },
+  {
+    "id": "七上_771",
+    "phrase": "ground",
+    "type": "word"
+  },
+  {
+    "id": "七上_772",
+    "phrase": "group",
+    "type": "word"
+  },
+  {
+    "id": "七上_773",
+    "phrase": "groups",
+    "type": "word"
+  },
+  {
+    "id": "七上_774",
+    "phrase": "grow",
+    "type": "word"
+  },
+  {
+    "id": "七上_775",
+    "phrase": "guan",
+    "type": "word"
+  },
+  {
+    "id": "七上_776",
+    "phrase": "guangdong",
+    "type": "word"
+  },
+  {
+    "id": "七上_777",
+    "phrase": "guess",
+    "type": "word"
+  },
+  {
+    "id": "七上_778",
+    "phrase": "guesses",
+    "type": "word"
+  },
+  {
+    "id": "七上_779",
+    "phrase": "gymnasium",
+    "type": "word"
+  },
+  {
+    "id": "七上_780",
+    "phrase": "habit",
+    "type": "word"
+  },
+  {
+    "id": "七上_781",
+    "phrase": "habits",
+    "type": "word"
+  },
+  {
+    "id": "七上_782",
+    "phrase": "haggis",
+    "type": "word"
+  },
+  {
+    "id": "七上_783",
+    "phrase": "haipeng",
+    "type": "word"
+  },
+  {
+    "id": "七上_784",
+    "phrase": "hair",
+    "type": "word"
+  },
+  {
+    "id": "七上_785",
+    "phrase": "half",
+    "type": "word"
+  },
+  {
+    "id": "七上_786",
+    "phrase": "hall",
+    "type": "word"
+  },
+  {
+    "id": "七上_787",
+    "phrase": "halves",
+    "type": "word"
+  },
+  {
+    "id": "七上_788",
+    "phrase": "hamburger",
+    "type": "word"
+  },
+  {
+    "id": "七上_789",
+    "phrase": "hand",
+    "type": "word"
+  },
+  {
+    "id": "七上_790",
+    "phrase": "hands",
+    "type": "word"
+  },
+  {
+    "id": "七上_791",
+    "phrase": "hanfu",
+    "type": "word"
+  },
+  {
+    "id": "七上_792",
+    "phrase": "hang",
+    "type": "word"
+  },
+  {
+    "id": "七上_793",
+    "phrase": "hanging",
+    "type": "word"
+  },
+  {
+    "id": "七上_794",
+    "phrase": "happen",
+    "type": "word"
+  },
+  {
+    "id": "七上_795",
+    "phrase": "happening",
+    "type": "word"
+  },
+  {
+    "id": "七上_796",
+    "phrase": "happy",
+    "type": "word"
+  },
+  {
+    "id": "七上_797",
+    "phrase": "hard",
+    "type": "word"
+  },
+  {
+    "id": "七上_798",
+    "phrase": "haswk",
+    "type": "word"
+  },
+  {
+    "id": "七上_799",
+    "phrase": "having",
+    "type": "word"
+  },
+  {
+    "id": "七上_800",
+    "phrase": "head",
+    "type": "word"
+  },
+  {
+    "id": "七上_801",
+    "phrase": "heading",
+    "type": "word"
+  },
+  {
+    "id": "七上_802",
+    "phrase": "headings",
+    "type": "word"
+  },
+  {
+    "id": "七上_803",
+    "phrase": "health",
+    "type": "word"
+  },
+  {
+    "id": "七上_804",
+    "phrase": "healthcare",
+    "type": "word"
+  },
+  {
+    "id": "七上_805",
+    "phrase": "healthy",
+    "type": "word"
+  },
+  {
+    "id": "七上_806",
+    "phrase": "healthyhappy",
+    "type": "word"
+  },
+  {
+    "id": "七上_807",
+    "phrase": "hear",
+    "type": "word"
+  },
+  {
+    "id": "七上_808",
+    "phrase": "hearsee",
+    "type": "word"
+  },
+  {
+    "id": "七上_809",
+    "phrase": "heart",
+    "type": "word"
+  },
+  {
+    "id": "七上_810",
+    "phrase": "hearts",
+    "type": "word"
+  },
+  {
+    "id": "七上_811",
+    "phrase": "heavy",
+    "type": "word"
+  },
+  {
+    "id": "七上_812",
+    "phrase": "helen",
+    "type": "word"
+  },
+  {
+    "id": "七上_813",
+    "phrase": "hello",
+    "type": "word"
+  },
+  {
+    "id": "七上_814",
+    "phrase": "help",
+    "type": "word"
+  },
+  {
+    "id": "七上_815",
+    "phrase": "helpful",
+    "type": "word"
+  },
+  {
+    "id": "七上_816",
+    "phrase": "helping",
+    "type": "word"
+  },
+  {
+    "id": "七上_817",
+    "phrase": "helps",
+    "type": "word"
+  },
+  {
+    "id": "七上_818",
+    "phrase": "here",
+    "type": "word"
+  },
+  {
+    "id": "七上_819",
+    "phrase": "hero",
+    "type": "word"
+  },
+  {
+    "id": "七上_820",
+    "phrase": "heroes",
+    "type": "word"
+  },
+  {
+    "id": "七上_821",
+    "phrase": "herself",
+    "type": "word"
+  },
+  {
+    "id": "七上_822",
+    "phrase": "heshe",
+    "type": "word"
+  },
+  {
+    "id": "七上_823",
+    "phrase": "hide",
+    "type": "word"
+  },
+  {
+    "id": "七上_824",
+    "phrase": "high",
+    "type": "word"
+  },
+  {
+    "id": "七上_825",
+    "phrase": "himher",
+    "type": "word"
+  },
+  {
+    "id": "七上_826",
+    "phrase": "history",
+    "type": "word"
+  },
+  {
+    "id": "七上_827",
+    "phrase": "hmbdi",
+    "type": "word"
+  },
+  {
+    "id": "七上_828",
+    "phrase": "hmwk",
+    "type": "word"
+  },
+  {
+    "id": "七上_829",
+    "phrase": "hobbies",
+    "type": "word"
+  },
+  {
+    "id": "七上_830",
+    "phrase": "hobby",
+    "type": "word"
+  },
+  {
+    "id": "七上_831",
+    "phrase": "hold",
+    "type": "word"
+  },
+  {
+    "id": "七上_832",
+    "phrase": "holiday",
+    "type": "word"
+  },
+  {
+    "id": "七上_833",
+    "phrase": "holidays",
+    "type": "word"
+  },
+  {
+    "id": "七上_834",
+    "phrase": "home",
+    "type": "word"
+  },
+  {
+    "id": "七上_835",
+    "phrase": "homebody",
+    "type": "word"
+  },
+  {
+    "id": "七上_836",
+    "phrase": "homes",
+    "type": "word"
+  },
+  {
+    "id": "七上_837",
+    "phrase": "hometown",
+    "type": "word"
+  },
+  {
+    "id": "七上_838",
+    "phrase": "homework",
+    "type": "word"
+  },
+  {
+    "id": "七上_839",
+    "phrase": "honest",
+    "type": "word"
+  },
+  {
+    "id": "七上_840",
+    "phrase": "hong",
+    "type": "word"
+  },
+  {
+    "id": "七上_841",
+    "phrase": "hope",
+    "type": "word"
+  },
+  {
+    "id": "七上_842",
+    "phrase": "hoping",
+    "type": "word"
+  },
+  {
+    "id": "七上_843",
+    "phrase": "horses",
+    "type": "word"
+  },
+  {
+    "id": "七上_844",
+    "phrase": "hour",
+    "type": "word"
+  },
+  {
+    "id": "七上_845",
+    "phrase": "hours",
+    "type": "word"
+  },
+  {
+    "id": "七上_846",
+    "phrase": "house",
+    "type": "word"
+  },
+  {
+    "id": "七上_847",
+    "phrase": "housework",
+    "type": "word"
+  },
+  {
+    "id": "七上_848",
+    "phrase": "however",
+    "type": "word"
+  },
+  {
+    "id": "七上_849",
+    "phrase": "hstri",
+    "type": "word"
+  },
+  {
+    "id": "七上_850",
+    "phrase": "huang",
+    "type": "word"
+  },
+  {
+    "id": "七上_851",
+    "phrase": "hunan",
+    "type": "word"
+  },
+  {
+    "id": "七上_852",
+    "phrase": "hundred",
+    "type": "word"
+  },
+  {
+    "id": "七上_853",
+    "phrase": "hungry",
+    "type": "word"
+  },
+  {
+    "id": "七上_854",
+    "phrase": "hurry",
+    "type": "word"
+  },
+  {
+    "id": "七上_855",
+    "phrase": "hurt",
+    "type": "word"
+  },
+  {
+    "id": "七上_856",
+    "phrase": "idea",
+    "type": "word"
+  },
+  {
+    "id": "七上_857",
+    "phrase": "ideas",
+    "type": "word"
+  },
+  {
+    "id": "七上_858",
+    "phrase": "idiom",
+    "type": "word"
+  },
+  {
+    "id": "七上_859",
+    "phrase": "image",
+    "type": "word"
+  },
+  {
+    "id": "七上_860",
+    "phrase": "imagine",
+    "type": "word"
+  },
+  {
+    "id": "七上_861",
+    "phrase": "important",
+    "type": "word"
+  },
+  {
+    "id": "七上_862",
+    "phrase": "include",
+    "type": "word"
+  },
+  {
+    "id": "七上_863",
+    "phrase": "informal",
+    "type": "word"
+  },
+  {
+    "id": "七上_864",
+    "phrase": "information",
+    "type": "word"
+  },
+  {
+    "id": "七上_865",
+    "phrase": "inon",
+    "type": "word"
+  },
+  {
+    "id": "七上_866",
+    "phrase": "inside",
+    "type": "word"
+  },
+  {
+    "id": "七上_867",
+    "phrase": "insure",
+    "type": "word"
+  },
+  {
+    "id": "七上_868",
+    "phrase": "integration",
+    "type": "word"
+  },
+  {
+    "id": "七上_869",
+    "phrase": "interest",
+    "type": "word"
+  },
+  {
+    "id": "七上_870",
+    "phrase": "interested",
+    "type": "word"
+  },
+  {
+    "id": "七上_871",
+    "phrase": "interesting",
+    "type": "word"
+  },
+  {
+    "id": "七上_872",
+    "phrase": "interests",
+    "type": "word"
+  },
+  {
+    "id": "七上_873",
+    "phrase": "internet",
+    "type": "word"
+  },
+  {
+    "id": "七上_874",
+    "phrase": "interview",
+    "type": "word"
+  },
+  {
+    "id": "七上_875",
+    "phrase": "introduce",
+    "type": "word"
+  },
+  {
+    "id": "七上_876",
+    "phrase": "introducing",
+    "type": "word"
+  },
+  {
+    "id": "七上_877",
+    "phrase": "introduction",
+    "type": "word"
+  },
+  {
+    "id": "七上_878",
+    "phrase": "introductions",
+    "type": "word"
+  },
+  {
+    "id": "七上_879",
+    "phrase": "invited",
+    "type": "word"
+  },
+  {
+    "id": "七上_880",
+    "phrase": "inviting",
+    "type": "word"
+  },
+  {
+    "id": "七上_881",
+    "phrase": "involve",
+    "type": "word"
+  },
+  {
+    "id": "七上_882",
+    "phrase": "isbn",
+    "type": "word"
+  },
+  {
+    "id": "七上_883",
+    "phrase": "italicize",
+    "type": "word"
+  },
+  {
+    "id": "七上_884",
+    "phrase": "jack",
+    "type": "word"
+  },
+  {
+    "id": "七上_885",
+    "phrase": "jacket",
+    "type": "word"
+  },
+  {
+    "id": "七上_886",
+    "phrase": "james",
+    "type": "word"
+  },
+  {
+    "id": "七上_887",
+    "phrase": "january",
+    "type": "word"
+  },
+  {
+    "id": "七上_888",
+    "phrase": "japan",
+    "type": "word"
+  },
+  {
+    "id": "七上_889",
+    "phrase": "jeans",
+    "type": "word"
+  },
+  {
+    "id": "七上_890",
+    "phrase": "jenny",
+    "type": "word"
+  },
+  {
+    "id": "七上_891",
+    "phrase": "jiangsu",
+    "type": "word"
+  },
+  {
+    "id": "七上_892",
+    "phrase": "jiaocai",
+    "type": "word"
+  },
+  {
+    "id": "七上_893",
+    "phrase": "jiaozi",
+    "type": "word"
+  },
+  {
+    "id": "七上_894",
+    "phrase": "jimmy",
+    "type": "word"
+  },
+  {
+    "id": "七上_895",
+    "phrase": "jing",
+    "type": "word"
+  },
+  {
+    "id": "七上_896",
+    "phrase": "jobs",
+    "type": "word"
+  },
+  {
+    "id": "七上_897",
+    "phrase": "jogging",
+    "type": "word"
+  },
+  {
+    "id": "七上_898",
+    "phrase": "john",
+    "type": "word"
+  },
+  {
+    "id": "七上_899",
+    "phrase": "join",
+    "type": "word"
+  },
+  {
+    "id": "七上_900",
+    "phrase": "joke",
+    "type": "word"
+  },
+  {
+    "id": "七上_901",
+    "phrase": "juice",
+    "type": "word"
+  },
+  {
+    "id": "七上_902",
+    "phrase": "july",
+    "type": "word"
+  },
+  {
+    "id": "七上_903",
+    "phrase": "jump",
+    "type": "word"
+  },
+  {
+    "id": "七上_904",
+    "phrase": "june",
+    "type": "word"
+  },
+  {
+    "id": "七上_905",
+    "phrase": "juuli",
+    "type": "word"
+  },
+  {
+    "id": "七上_906",
+    "phrase": "kant",
+    "type": "word"
+  },
+  {
+    "id": "七上_907",
+    "phrase": "kate",
+    "type": "word"
+  },
+  {
+    "id": "七上_908",
+    "phrase": "keep",
+    "type": "word"
+  },
+  {
+    "id": "七上_909",
+    "phrase": "kevin",
+    "type": "word"
+  },
+  {
+    "id": "七上_910",
+    "phrase": "keywords",
+    "type": "word"
+  },
+  {
+    "id": "七上_911",
+    "phrase": "kids",
+    "type": "word"
+  },
+  {
+    "id": "七上_912",
+    "phrase": "kilo",
+    "type": "word"
+  },
+  {
+    "id": "七上_913",
+    "phrase": "kilogram",
+    "type": "word"
+  },
+  {
+    "id": "七上_914",
+    "phrase": "kilos",
+    "type": "word"
+  },
+  {
+    "id": "七上_915",
+    "phrase": "kilt",
+    "type": "word"
+  },
+  {
+    "id": "七上_916",
+    "phrase": "kind",
+    "type": "word"
+  },
+  {
+    "id": "七上_917",
+    "phrase": "kinds",
+    "type": "word"
+  },
+  {
+    "id": "七上_918",
+    "phrase": "kingdom",
+    "type": "word"
+  },
+  {
+    "id": "七上_919",
+    "phrase": "kitchen",
+    "type": "word"
+  },
+  {
+    "id": "七上_920",
+    "phrase": "kite",
+    "type": "word"
+  },
+  {
+    "id": "七上_921",
+    "phrase": "kites",
+    "type": "word"
+  },
+  {
+    "id": "七上_922",
+    "phrase": "kitty",
+    "type": "word"
+  },
+  {
+    "id": "七上_923",
+    "phrase": "kjukmb",
+    "type": "word"
+  },
+  {
+    "id": "七上_924",
+    "phrase": "klam",
+    "type": "word"
+  },
+  {
+    "id": "七上_925",
+    "phrase": "klfl",
+    "type": "word"
+  },
+  {
+    "id": "七上_926",
+    "phrase": "klmbi",
+    "type": "word"
+  },
+  {
+    "id": "七上_927",
+    "phrase": "klsmet",
+    "type": "word"
+  },
+  {
+    "id": "七上_928",
+    "phrase": "kmftbl",
+    "type": "word"
+  },
+  {
+    "id": "七上_929",
+    "phrase": "knife",
+    "type": "word"
+  },
+  {
+    "id": "七上_930",
+    "phrase": "knives",
+    "type": "word"
+  },
+  {
+    "id": "七上_931",
+    "phrase": "knows",
+    "type": "word"
+  },
+  {
+    "id": "七上_932",
+    "phrase": "knowunderstandlovelikewant",
+    "type": "word"
+  },
+  {
+    "id": "七上_933",
+    "phrase": "knst",
+    "type": "word"
+  },
+  {
+    "id": "七上_934",
+    "phrase": "kntri",
+    "type": "word"
+  },
+  {
+    "id": "七上_935",
+    "phrase": "kong",
+    "type": "word"
+  },
+  {
+    "id": "七上_936",
+    "phrase": "kplts",
+    "type": "word"
+  },
+  {
+    "id": "七上_937",
+    "phrase": "krsms",
+    "type": "word"
+  },
+  {
+    "id": "七上_938",
+    "phrase": "ksat",
+    "type": "word"
+  },
+  {
+    "id": "七上_939",
+    "phrase": "kspensv",
+    "type": "word"
+  },
+  {
+    "id": "七上_940",
+    "phrase": "ktvti",
+    "type": "word"
+  },
+  {
+    "id": "七上_941",
+    "phrase": "kung",
+    "type": "word"
+  },
+  {
+    "id": "七上_942",
+    "phrase": "kwat",
+    "type": "word"
+  },
+  {
+    "id": "七上_943",
+    "phrase": "kwestne",
+    "type": "word"
+  },
+  {
+    "id": "七上_944",
+    "phrase": "label",
+    "type": "word"
+  },
+  {
+    "id": "七上_945",
+    "phrase": "laboratory",
+    "type": "word"
+  },
+  {
+    "id": "七上_946",
+    "phrase": "ladies",
+    "type": "word"
+  },
+  {
+    "id": "七上_947",
+    "phrase": "lady",
+    "type": "word"
+  },
+  {
+    "id": "七上_948",
+    "phrase": "lafstal",
+    "type": "word"
+  },
+  {
+    "id": "七上_949",
+    "phrase": "landscape",
+    "type": "word"
+  },
+  {
+    "id": "七上_950",
+    "phrase": "language",
+    "type": "word"
+  }
+]

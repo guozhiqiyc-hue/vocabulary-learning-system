@@ -196,30 +196,41 @@
                 <!-- Learning Tab -->
                 <section id="learning-tab" class="tab-pane" style="display: none;">
                     <div class="learning-container" id="learning-container">
-                        <div class="empty-state">
-                            <div class="empty-state-icon">📚</div>
-                            <p>学习功能开发中...</p>
-                            <p>请使用"开始今日学习"按钮开始学习</p>
-                        </div>
+                        <!-- Learning content will be injected here -->
                     </div>
                 </section>
 
                 <!-- Review Tab -->
                 <section id="review-tab" class="tab-pane" style="display: none;">
                     <div class="review-container" id="review-container">
-                        <div class="empty-state">
-                            <div class="empty-state-icon">🔄</div>
-                            <p>复习功能开发中...</p>
-                        </div>
+                        <!-- Review content will be injected here -->
                     </div>
                 </section>
 
                 <!-- Editor Tab -->
                 <section id="editor-tab" class="tab-pane" style="display: none;">
                     <div class="editor-container">
-                        <div class="empty-state">
-                            <div class="empty-state-icon">✏️</div>
-                            <p>编辑器功能开发中...</p>
+                        <div class="editor-header">
+                            <h2>✏️ 语块编辑器</h2>
+                            <div class="editor-actions">
+                                <button id="add-phrase-btn" class="btn-primary">➕ 添加语块</button>
+                                <button id="batch-edit-btn" class="btn-secondary">📝 批量编辑</button>
+                                <button id="export-editor-btn" class="btn-secondary">📤 导出</button>
+                            </div>
+                        </div>
+                        <div class="editor-filters">
+                            <input type="text" id="editor-search" placeholder="搜索语块..." class="search-input">
+                            <select id="editor-level-filter" class="filter-select">
+                                <option value="">全部等级</option>
+                                <option value="核心词汇">核心词汇</option>
+                                <option value="进阶词汇">进阶词汇</option>
+                            </select>
+                            <select id="editor-topic-filter" class="filter-select">
+                                <option value="">全部主题</option>
+                            </select>
+                        </div>
+                        <div id="editor-content" class="editor-content">
+                            <!-- Editor list will be rendered here -->
                         </div>
                     </div>
                 </section>
@@ -257,10 +268,26 @@
                 <div class="learning-progress">
                     <span id="learning-progress-text">0/0</span>
                 </div>
-                <button class="modal-close">&times;</button>
+                <button class="modal-close" onclick="window.app.learningMode?.exit()">&times;</button>
             </div>
             <div class="modal-body" id="learning-modal-body">
                 <!-- Learning card will be rendered here -->
+            </div>
+        </div>
+    </div>
+
+    <!-- Review Modal -->
+    <div id="review-modal" class="modal modal-large">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>🔄 复习模式</h2>
+                <div class="learning-progress">
+                    <span id="review-progress-text">0/0</span>
+                </div>
+                <button class="modal-close" onclick="window.app.reviewMode?.exit()">&times;</button>
+            </div>
+            <div class="modal-body" id="review-modal-body">
+                <!-- Review card will be rendered here -->
             </div>
         </div>
     </div>
